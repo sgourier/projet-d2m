@@ -3,11 +3,29 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
+            <link rel="stylesheet" type="text/css" href="css/style.css">
+        {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <div class="fixed-container">
+            <div class="logo">
+                <img src="img/fixed-container/logo.png" alt="Logo des maux et des mots">
+            </div>
+            <ul class="nav">
+                <li> Item 1 </li>
+                <li> Item 2 </li>
+                <li> Item 3 </li>
+                <li> Item 4 </li>
+                <li> Item 5 </li>
+                <li> Item 6 </li>
+            </ul>
+            <a href="" class="button-new">Je pose <br/> ma question</a>
+        </div>
+        <div class="main-container">
+            {% block body %}{% endblock %}
+        </div>
         {% block javascripts %}{% endblock %}
     </body>
 </html>
