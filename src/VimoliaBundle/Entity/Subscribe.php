@@ -36,9 +36,9 @@ class Subscribe
     private $id;
 
     /**
-     * @var \VimoliaBundle\Entity\User
+     * @var \UserBundle\Entity\User
      *
-     * @ORM\ManyToOne(targetEntity="VimoliaBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_user", referencedColumnName="id")
      * })
@@ -118,11 +118,11 @@ class Subscribe
     /**
      * Set idUser
      *
-     * @param \VimoliaBundle\Entity\User $idUser
+     * @param \UserBundle\Entity\User $idUser
      *
      * @return Subscribe
      */
-    public function setIdUser(\VimoliaBundle\Entity\User $idUser = null)
+    public function setIdUser(\UserBundle\Entity\User $idUser = null)
     {
         $this->idUser = $idUser;
 
@@ -132,7 +132,7 @@ class Subscribe
     /**
      * Get idUser
      *
-     * @return \VimoliaBundle\Entity\User
+     * @return \UserBundle\Entity\User
      */
     public function getIdUser()
     {

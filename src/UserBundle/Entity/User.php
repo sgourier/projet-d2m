@@ -1,8 +1,9 @@
 <?php
 
-namespace VimoliaBundle\Entity;
+namespace UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use FOS\UserBundle\Model\User as BaseUser;
 
 /**
  * User
@@ -10,29 +11,17 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="user", indexes={@ORM\Index(name="fk_User_PractInfos1_idx", columns={"PractInfos_id"})})
  * @ORM\Entity
  */
-class User
+class User extends BaseUser
 {
     /**
-     * @var string
+     * @var integer
      *
-     * @ORM\Column(name="username", type="string", length=250, nullable=true)
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $username;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="email", type="string", length=250, nullable=true)
-     */
-    private $email;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="password", type="string", length=500, nullable=true)
-     */
-    private $password;
-
+    protected $id;
+    
     /**
      * @var string
      *
@@ -46,13 +35,6 @@ class User
      * @ORM\Column(name="firstname", type="string", length=250, nullable=true)
      */
     private $firstname;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="enabled", type="boolean", nullable=true)
-     */
-    private $enabled;
 
     /**
      * @var string
@@ -125,104 +107,14 @@ class User
     private $discoverytype;
 
     /**
-     * @var string
+     * @var \UserBundle\Entity\Practinfos
      *
-     * @ORM\Column(name="Roles", type="text", nullable=true)
-     */
-    private $roles;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
-
-    /**
-     * @var \VimoliaBundle\Entity\Practinfos
-     *
-     * @ORM\ManyToOne(targetEntity="VimoliaBundle\Entity\Practinfos")
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\Practinfos")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="PractInfos_id", referencedColumnName="id")
      * })
      */
     private $practinfos;
-
-
-
-    /**
-     * Set username
-     *
-     * @param string $username
-     *
-     * @return User
-     */
-    public function setUsername($username)
-    {
-        $this->username = $username;
-
-        return $this;
-    }
-
-    /**
-     * Get username
-     *
-     * @return string
-     */
-    public function getUsername()
-    {
-        return $this->username;
-    }
-
-    /**
-     * Set email
-     *
-     * @param string $email
-     *
-     * @return User
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    /**
-     * Get email
-     *
-     * @return string
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
-     * Set password
-     *
-     * @param string $password
-     *
-     * @return User
-     */
-    public function setPassword($password)
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
-    /**
-     * Get password
-     *
-     * @return string
-     */
-    public function getPassword()
-    {
-        return $this->password;
-    }
 
     /**
      * Set name
@@ -270,30 +162,6 @@ class User
     public function getFirstname()
     {
         return $this->firstname;
-    }
-
-    /**
-     * Set enabled
-     *
-     * @param boolean $enabled
-     *
-     * @return User
-     */
-    public function setEnabled($enabled)
-    {
-        $this->enabled = $enabled;
-
-        return $this;
-    }
-
-    /**
-     * Get enabled
-     *
-     * @return boolean
-     */
-    public function getEnabled()
-    {
-        return $this->enabled;
     }
 
     /**
@@ -537,47 +405,13 @@ class User
     }
 
     /**
-     * Set roles
-     *
-     * @param string $roles
-     *
-     * @return User
-     */
-    public function setRoles($roles)
-    {
-        $this->roles = $roles;
-
-        return $this;
-    }
-
-    /**
-     * Get roles
-     *
-     * @return string
-     */
-    public function getRoles()
-    {
-        return $this->roles;
-    }
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
      * Set practinfos
      *
-     * @param \VimoliaBundle\Entity\Practinfos $practinfos
+     * @param \UserBundle\Entity\Practinfos $practinfos
      *
      * @return User
      */
-    public function setPractinfos(\VimoliaBundle\Entity\Practinfos $practinfos = null)
+    public function setPractinfos(\UserBundle\Entity\Practinfos $practinfos = null)
     {
         $this->practinfos = $practinfos;
 
@@ -587,7 +421,7 @@ class User
     /**
      * Get practinfos
      *
-     * @return \VimoliaBundle\Entity\Practinfos
+     * @return \UserBundle\Entity\Practinfos
      */
     public function getPractinfos()
     {

@@ -71,9 +71,9 @@ class Practevals
     private $id;
 
     /**
-     * @var \VimoliaBundle\Entity\User
+     * @var \UserBundle\Entity\User
      *
-     * @ORM\ManyToOne(targetEntity="VimoliaBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_pract", referencedColumnName="id")
      * })
@@ -81,9 +81,9 @@ class Practevals
     private $idPract;
 
     /**
-     * @var \VimoliaBundle\Entity\User
+     * @var \UserBundle\Entity\User
      *
-     * @ORM\ManyToOne(targetEntity="VimoliaBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_owner", referencedColumnName="id")
      * })
@@ -273,11 +273,11 @@ class Practevals
     /**
      * Set idPract
      *
-     * @param \VimoliaBundle\Entity\User $idPract
+     * @param \UserBundle\Entity\User $idPract
      *
      * @return Practevals
      */
-    public function setIdPract(\VimoliaBundle\Entity\User $idPract = null)
+    public function setIdPract(\UserBundle\Entity\User $idPract = null)
     {
         $this->idPract = $idPract;
 
@@ -287,7 +287,7 @@ class Practevals
     /**
      * Get idPract
      *
-     * @return \VimoliaBundle\Entity\User
+     * @return \UserBundle\Entity\User
      */
     public function getIdPract()
     {
@@ -297,11 +297,11 @@ class Practevals
     /**
      * Set idOwner
      *
-     * @param \VimoliaBundle\Entity\User $idOwner
+     * @param \UserBundle\Entity\User $idOwner
      *
      * @return Practevals
      */
-    public function setIdOwner(\VimoliaBundle\Entity\User $idOwner = null)
+    public function setIdOwner(\UserBundle\Entity\User $idOwner = null)
     {
         $this->idOwner = $idOwner;
 
@@ -311,7 +311,7 @@ class Practevals
     /**
      * Get idOwner
      *
-     * @return \VimoliaBundle\Entity\User
+     * @return \UserBundle\Entity\User
      */
     public function getIdOwner()
     {

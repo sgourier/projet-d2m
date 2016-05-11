@@ -71,9 +71,9 @@ class Discussion
     private $id;
 
     /**
-     * @var \VimoliaBundle\Entity\User
+     * @var \UserBundle\Entity\User
      *
-     * @ORM\ManyToOne(targetEntity="VimoliaBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_pract", referencedColumnName="id")
      * })
@@ -81,9 +81,9 @@ class Discussion
     private $idPract;
 
     /**
-     * @var \VimoliaBundle\Entity\User
+     * @var \UserBundle\Entity\User
      *
-     * @ORM\ManyToOne(targetEntity="VimoliaBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_member", referencedColumnName="id")
      * })
@@ -91,9 +91,9 @@ class Discussion
     private $idMember;
 
     /**
-     * @var \VimoliaBundle\Entity\User
+     * @var \UserBundle\Entity\User
      *
-     * @ORM\ManyToOne(targetEntity="VimoliaBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_expert", referencedColumnName="id")
      * })
@@ -293,11 +293,11 @@ class Discussion
     /**
      * Set idPract
      *
-     * @param \VimoliaBundle\Entity\User $idPract
+     * @param \UserBundle\Entity\User $idPract
      *
      * @return Discussion
      */
-    public function setIdPract(\VimoliaBundle\Entity\User $idPract = null)
+    public function setIdPract(\UserBundle\Entity\User $idPract = null)
     {
         $this->idPract = $idPract;
 
@@ -307,7 +307,7 @@ class Discussion
     /**
      * Get idPract
      *
-     * @return \VimoliaBundle\Entity\User
+     * @return \UserBundle\Entity\User
      */
     public function getIdPract()
     {
@@ -317,11 +317,11 @@ class Discussion
     /**
      * Set idMember
      *
-     * @param \VimoliaBundle\Entity\User $idMember
+     * @param \UserBundle\Entity\User $idMember
      *
      * @return Discussion
      */
-    public function setIdMember(\VimoliaBundle\Entity\User $idMember = null)
+    public function setIdMember(\UserBundle\Entity\User $idMember = null)
     {
         $this->idMember = $idMember;
 
@@ -331,7 +331,7 @@ class Discussion
     /**
      * Get idMember
      *
-     * @return \VimoliaBundle\Entity\User
+     * @return \UserBundle\Entity\User
      */
     public function getIdMember()
     {
@@ -341,11 +341,11 @@ class Discussion
     /**
      * Set idExpert
      *
-     * @param \VimoliaBundle\Entity\User $idExpert
+     * @param \UserBundle\Entity\User $idExpert
      *
      * @return Discussion
      */
-    public function setIdExpert(\VimoliaBundle\Entity\User $idExpert = null)
+    public function setIdExpert(\UserBundle\Entity\User $idExpert = null)
     {
         $this->idExpert = $idExpert;
 
@@ -355,7 +355,7 @@ class Discussion
     /**
      * Get idExpert
      *
-     * @return \VimoliaBundle\Entity\User
+     * @return \UserBundle\Entity\User
      */
     public function getIdExpert()
     {

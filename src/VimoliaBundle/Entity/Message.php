@@ -50,9 +50,9 @@ class Message
     private $id;
 
     /**
-     * @var \VimoliaBundle\Entity\User
+     * @var \UserBundle\Entity\User
      *
-     * @ORM\ManyToOne(targetEntity="VimoliaBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_owner", referencedColumnName="id")
      * })
@@ -190,11 +190,11 @@ class Message
     /**
      * Set idOwner
      *
-     * @param \VimoliaBundle\Entity\User $idOwner
+     * @param \UserBundle\Entity\User $idOwner
      *
      * @return Message
      */
-    public function setIdOwner(\VimoliaBundle\Entity\User $idOwner = null)
+    public function setIdOwner(\UserBundle\Entity\User $idOwner = null)
     {
         $this->idOwner = $idOwner;
 
@@ -204,7 +204,7 @@ class Message
     /**
      * Get idOwner
      *
-     * @return \VimoliaBundle\Entity\User
+     * @return \UserBundle\Entity\User
      */
     public function getIdOwner()
     {
