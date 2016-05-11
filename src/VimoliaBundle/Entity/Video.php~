@@ -1,0 +1,78 @@
+<?php
+
+namespace VimoliaBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Video
+ *
+ * @ORM\Table(name="video", indexes={@ORM\Index(name="fk_Video_VideoCategory1_idx", columns={"id_videoCategory"})})
+ * @ORM\Entity
+ */
+class Video
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="title", type="string", length=1500, nullable=true)
+     */
+    private $title;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text", length=65535, nullable=true)
+     */
+    private $description;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="url", type="string", length=1500, nullable=true)
+     */
+    private $url;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateAdd", type="datetime", nullable=true)
+     */
+    private $dateadd;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateUpd", type="datetime", nullable=true)
+     */
+    private $dateupd;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="active", type="boolean", nullable=true)
+     */
+    private $active;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \VimoliaBundle\Entity\Videocategory
+     *
+     * @ORM\ManyToOne(targetEntity="VimoliaBundle\Entity\Videocategory")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_videoCategory", referencedColumnName="id")
+     * })
+     */
+    private $idVideocategory;
+
+
+}
+

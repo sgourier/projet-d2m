@@ -1,0 +1,115 @@
+<?php
+
+namespace VimoliaBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Discussion
+ *
+ * @ORM\Table(name="discussion", indexes={@ORM\Index(name="fk_Discussion_AdvancedInfos1_idx", columns={"id_advancedInfos"}), @ORM\Index(name="fk_Discussion_User1_idx", columns={"id_expert"}), @ORM\Index(name="fk_Discussion_User2_idx", columns={"id_member"}), @ORM\Index(name="fk_Discussion_User3_idx", columns={"id_pract"})})
+ * @ORM\Entity
+ */
+class Discussion
+{
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="public", type="boolean", nullable=true)
+     */
+    private $public;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="feedback", type="string", length=150, nullable=true)
+     */
+    private $feedback;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateAdd", type="datetime", nullable=true)
+     */
+    private $dateadd;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateUpd", type="datetime", nullable=true)
+     */
+    private $dateupd;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="active", type="boolean", nullable=true)
+     */
+    private $active;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="closed", type="boolean", nullable=true)
+     */
+    private $closed;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string", length=200, nullable=true)
+     */
+    private $status;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \VimoliaBundle\Entity\User
+     *
+     * @ORM\ManyToOne(targetEntity="VimoliaBundle\Entity\User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_pract", referencedColumnName="id")
+     * })
+     */
+    private $idPract;
+
+    /**
+     * @var \VimoliaBundle\Entity\User
+     *
+     * @ORM\ManyToOne(targetEntity="VimoliaBundle\Entity\User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_member", referencedColumnName="id")
+     * })
+     */
+    private $idMember;
+
+    /**
+     * @var \VimoliaBundle\Entity\User
+     *
+     * @ORM\ManyToOne(targetEntity="VimoliaBundle\Entity\User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_expert", referencedColumnName="id")
+     * })
+     */
+    private $idExpert;
+
+    /**
+     * @var \VimoliaBundle\Entity\Advancedinfos
+     *
+     * @ORM\ManyToOne(targetEntity="VimoliaBundle\Entity\Advancedinfos")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_advancedInfos", referencedColumnName="id")
+     * })
+     */
+    private $idAdvancedinfos;
+
+
+}
+

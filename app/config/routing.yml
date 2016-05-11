@@ -1,3 +1,8 @@
+user:
+    resource: "@UserBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 app:
-    resource: "@D2mBundle/Controller/"
+    resource: "@VimoliaBundle/Controller/"
     type:     annotation

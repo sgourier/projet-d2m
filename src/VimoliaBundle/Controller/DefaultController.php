@@ -1,6 +1,6 @@
 <?php
 
-namespace D2mBundle\Controller;
+namespace VimoliaBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;

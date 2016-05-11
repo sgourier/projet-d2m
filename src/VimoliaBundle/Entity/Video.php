@@ -1,0 +1,255 @@
+<?php
+
+namespace VimoliaBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Video
+ *
+ * @ORM\Table(name="video", indexes={@ORM\Index(name="fk_Video_VideoCategory1_idx", columns={"id_videoCategory"})})
+ * @ORM\Entity
+ */
+class Video
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="title", type="string", length=1500, nullable=true)
+     */
+    private $title;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text", length=65535, nullable=true)
+     */
+    private $description;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="url", type="string", length=1500, nullable=true)
+     */
+    private $url;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateAdd", type="datetime", nullable=true)
+     */
+    private $dateadd;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateUpd", type="datetime", nullable=true)
+     */
+    private $dateupd;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="active", type="boolean", nullable=true)
+     */
+    private $active;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \VimoliaBundle\Entity\Videocategory
+     *
+     * @ORM\ManyToOne(targetEntity="VimoliaBundle\Entity\Videocategory")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_videoCategory", referencedColumnName="id")
+     * })
+     */
+    private $idVideocategory;
+
+
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     *
+     * @return Video
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Video
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set url
+     *
+     * @param string $url
+     *
+     * @return Video
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+
+        return $this;
+    }
+
+    /**
+     * Get url
+     *
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    /**
+     * Set dateadd
+     *
+     * @param \DateTime $dateadd
+     *
+     * @return Video
+     */
+    public function setDateadd($dateadd)
+    {
+        $this->dateadd = $dateadd;
+
+        return $this;
+    }
+
+    /**
+     * Get dateadd
+     *
+     * @return \DateTime
+     */
+    public function getDateadd()
+    {
+        return $this->dateadd;
+    }
+
+    /**
+     * Set dateupd
+     *
+     * @param \DateTime $dateupd
+     *
+     * @return Video
+     */
+    public function setDateupd($dateupd)
+    {
+        $this->dateupd = $dateupd;
+
+        return $this;
+    }
+
+    /**
+     * Get dateupd
+     *
+     * @return \DateTime
+     */
+    public function getDateupd()
+    {
+        return $this->dateupd;
+    }
+
+    /**
+     * Set active
+     *
+     * @param boolean $active
+     *
+     * @return Video
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    /**
+     * Get active
+     *
+     * @return boolean
+     */
+    public function getActive()
+    {
+        return $this->active;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set idVideocategory
+     *
+     * @param \VimoliaBundle\Entity\Videocategory $idVideocategory
+     *
+     * @return Video
+     */
+    public function setIdVideocategory(\VimoliaBundle\Entity\Videocategory $idVideocategory = null)
+    {
+        $this->idVideocategory = $idVideocategory;
+
+        return $this;
+    }
+
+    /**
+     * Get idVideocategory
+     *
+     * @return \VimoliaBundle\Entity\Videocategory
+     */
+    public function getIdVideocategory()
+    {
+        return $this->idVideocategory;
+    }
+}

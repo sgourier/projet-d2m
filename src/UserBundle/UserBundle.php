@@ -1,9 +1,9 @@
 <?php
 
-namespace D2mBundle;
+namespace UserBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class D2mBundle extends Bundle
+class UserBundle extends Bundle
 {
 }
