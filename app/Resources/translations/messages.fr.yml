@@ -1,1 +1,5 @@
 titleDefault: 'Vimolia'
+practInfos:
+    toSubscribe: 'Sauvegarder et choisir mon abonnement'
+    new:
+        title: 'Enregistrer vous informationq professionnelles'

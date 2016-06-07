@@ -78,16 +78,15 @@ class RegistrationType extends AbstractType
             ->add('roles','Symfony\Component\Form\Extension\Core\Type\ChoiceType',array(
                 'translation_domain' => 'FOSUserBundle',
                 'choices' => array(
-                    "registration.role.user" => 0,
-                    "registration.role.pract" => 1
+                    "registration.role.user" => "ROLE_MEMBER",
+                    "registration.role.pract" => "ROLE_PRACTITIONER"
                 ),
                 'label' => false,
                 'expanded' => false,
                 'multiple' => true,
-                'mapped' => true,
+                'mapped' => false,
                 'attr' => array(
-                    'id' => 'userRole',
-                    'class' => ''
+                    'class' => 'hidden'
                 )
             ));
     }
