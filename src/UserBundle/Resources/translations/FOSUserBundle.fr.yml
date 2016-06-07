@@ -32,11 +32,22 @@ registration:
     confirmed: 'Félicitations %username%, votre compte est maintenant activé.'
     back: 'Retour à la page d''origine.'
     submit: Enregistrer
+    name: 'nom'
+    firstname: 'prénom'
     flash:
         user_created: 'L''utilisateur a été créé avec succès'
     email:
         subject: 'Bienvenue %username% !'
         message: "Bonjour %username% !\n\nPour valider votre compte utilisateur, merci de vous rendre sur %confirmationUrl%\n\nCordialement,\nL'équipe.\n"
+    user: 'Je m''inscris !'
+    pract: 'Je m''abonne !'
+    discovery:
+        friends: 'Amis'
+        advert: 'Pub'
+        other: 'Autre'
+    role:
+        user: 'utilisteur'
+        pract: 'praticien'
 resetting:
     password_already_requested: 'Un nouveau mot de passe a déjà été demandé pour cet utilisateur dans les dernières 24 heures.'
     check_email: 'Un e-mail a été envoyé à l''adresse %email%. Il contient un lien sur lequel il vous faudra cliquer afin de réinitialiser votre mot de passe.'
@@ -65,3 +76,13 @@ form:
     password_confirmation: Vérification
     new_password: 'Nouveau mot de passe'
     new_password_confirmation: Vérification
+    name: 'Nom'
+    firstname: 'Prénom'
+    birthdate: 'Date de naissance'
+    address: 'Adressse'
+    addressPlus: 'Complément d''adresse'
+    zipCode: 'Code postal'
+    city: 'Ville'
+    phone: 'Numéro de téléphone'
+    cellPhone: 'Numéro de portable'
+    discoveryType: 'Comment nous avez-vous découverts ?'

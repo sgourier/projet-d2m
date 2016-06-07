@@ -4,6 +4,7 @@ namespace UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * User
@@ -21,7 +22,7 @@ class User extends BaseUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-    
+
     /**
      * @var string
      *
@@ -115,6 +116,17 @@ class User extends BaseUser
      * })
      */
     private $practinfos;
+
+    /**
+     * User constructor.
+     *
+     * @param \DateTime $birthdate
+     */
+    public function __construct( )
+    {
+        $this->birthdate = new \DateTime();
+    }
+
 
     /**
      * Set name

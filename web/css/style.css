@@ -95,3 +95,19 @@ body{
     margin-left:20%;
     padding:2%;
 }
+
+li a
+{
+    color: #FFF;
+    text-decoration: none;
+}
+
+li a:hover
+{
+    color: #a6a6a6;
+}
+
+.hidden
+{
+    display: none;
+}

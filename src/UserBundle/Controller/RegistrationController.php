@@ -67,6 +67,10 @@ class RegistrationController extends Controller
 
             $dispatcher->dispatch(FOSUserEvents::REGISTRATION_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
 
+            if($user->hasRole('ROLE_PRACT'))
+            {
+                return new RedirectResponse($this->generateUrl('user_updatePractForm'));
+            }
             return $response;
         }
 
