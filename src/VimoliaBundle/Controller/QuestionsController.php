@@ -22,4 +22,14 @@ class QuestionsController extends Controller
         // replace this example code with whatever you need
         return $this->render('default/questions/displayQuestions.html.twig');
     }
+
+
+    /**
+     * @Route("/questions/new", name="questions_new")
+     */
+    public function displayNewAction()
+    {
+        // replace this example code with whatever you need
+        return $this->render('default/questions/displayNewQuestions.html.twig');
+    }
 }

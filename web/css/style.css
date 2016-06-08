@@ -44,7 +44,12 @@ li a:hover
     background-color:white;
     border:1px solid rgba(0,0,0,0.05);
     border-radius: 5px;
+    padding:20px;
+    text-align: center;
 }
+    .container-white .icone{
+        max-height: 100px;
+    }
 
 
 
