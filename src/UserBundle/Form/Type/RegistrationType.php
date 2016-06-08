@@ -86,8 +86,7 @@ class RegistrationType extends AbstractType
                 'multiple' => true,
                 'mapped' => true,
                 'attr' => array(
-                    'id' => 'userRole',
-                    'class' => ''
+                    'class' => 'hidden'
                 )
             ));
     }

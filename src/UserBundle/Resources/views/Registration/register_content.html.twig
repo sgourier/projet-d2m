@@ -1,6 +1,6 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-<div id="registerChoose" class="registerChoose">
+<div id="registerChoose" class="container-white" class="registerChoose">
     <div class="registerUser">
         <p>
             <h2>Les médecines alternatives vous intéresse ?</h2>
@@ -19,7 +19,10 @@
 </div>
 
 <div id="registrationForms" class="registrationForms hidden">
-    <div class="basicRegistration">
+    <div class="basicRegistration container-white">
+        <div class="title">
+            Inscription
+        </div>
         {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
         {{ form_widget(form) }}
         <div>

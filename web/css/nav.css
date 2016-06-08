@@ -1,0 +1,43 @@
+
+/****************************************************************************************/
+/*                                  FIXED CONTAINER                                     */
+/****************************************************************************************/
+
+
+
+
+.fixed-container{
+    position: fixed;
+    width:20%;
+    background-color:#353535;
+    background-image: url('img/fixed-container/background.jpg');
+    height:100%;
+}
+.fixed-container .logo{
+    margin-top:15px;
+    text-align: center;
+    background-color: rgba(255,255,255,0.5);
+    padding-top:15px;
+    padding-bottom:15px;
+}
+.fixed-container .logo img{
+    max-height:100px;
+    max-width:70%;
+}
+.fixed-container ul{
+    margin:0 !important;
+    padding:0 !important;
+}
+.fixed-container ul li{
+    margin-top:10px;
+    color:white;
+    text-align: center;
+    list-style: none;
+}
+.fixed-container a.button-new{
+    width:80%;
+    padding:3%;
+    max-width: none;
+}
+
+

@@ -6,6 +6,8 @@
         {% block stylesheets %}
             <link rel="stylesheet" type="text/css" href="{{ asset('js/jquery-ui/jquery-ui.css') }}">
             <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+            <link rel="stylesheet" type="text/css" href="{{ asset('css/nav.css') }}">
+            <link rel="stylesheet" type="text/css" href="{{ asset('css/registration.css') }}">
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
@@ -21,7 +23,7 @@
                 <li><a href="#"> Contactez-nous </a></li>
                 <li><a href="#"> Informations </a></li>
             </ul>
-            <a href="" class="button-new">Je pose <br/> ma question</a>
+            <a href="" class="button button-new">Je pose <br/> ma question</a>
         </div>
         <div class="main-container">
             {% block body %}
