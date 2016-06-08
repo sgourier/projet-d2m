@@ -12,14 +12,14 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-class VideoController extends Controller
+class ContactusController extends Controller
 {
     /**
-     * @Route("/emissions", name="emissions")
+     * @Route("/contactus", name="contactus")
      */
-    public function displayEmissionsAction()
+    public function displayContactusAction()
     {
         // replace this example code with whatever you need
-        return $this->render('default/emissions/displayEmissions.html.twig');
+        return $this->render('default/contactus/displayContactus.html.twig');
     }
 }

@@ -17,11 +17,11 @@
                 <img src="{{ asset('img/fixed-container/logo.png') }}" alt="Logo des maux et des mots">
             </div>
             <ul class="nav">
-                <li><a href="#"> Emissions </a></li>
-                <li><a href="#"> Questions  </a></li>
+                <li><a href="{{ path("emissions") }}"> Emissions </a></li>
+                <li><a href="{{ path("questions") }}"> Questions  </a></li>
                 <li><a href="#"> Praticiens </a> </li>
-                <li><a href="#"> Contactez-nous </a></li>
-                <li><a href="#"> Informations </a></li>
+                <li><a href="{{ path("contactus") }}"> Contactez-nous </a></li>
+                <li><a href="{{ path("informations") }}"> Informations </a></li>
             </ul>
             <a href="" class="button button-new">Je pose <br/> ma question</a>
         </div>

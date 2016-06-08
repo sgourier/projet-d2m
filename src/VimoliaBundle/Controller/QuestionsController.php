@@ -14,5 +14,12 @@ use Symfony\Component\HttpFoundation\Request;
 
 class QuestionsController extends Controller
 {
-
+    /**
+     * @Route("/questions", name="questions")
+     */
+    public function displayQuestionsAction()
+    {
+        // replace this example code with whatever you need
+        return $this->render('default/questions/displayQuestions.html.twig');
+    }
 }
