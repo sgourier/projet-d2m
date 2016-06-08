@@ -18,23 +18,36 @@ use UserBundle\Form\PractInfosType;
 class PractitionerBundle extends Controller
 {
 	/**
-	 * @Route("/practForm/{id}", name="user_updatePractForm")
-	 *
-	 * @param integer $id id de la fiche du praticien
+	 * @Route("/newPractForm", name="user_newPractForm")
 	 *
 	 * @return Response
 	 */
-	public function updatePractFormAction($id)
+	public function newPractFormAction()
 	{
-		if($id != 0)
-		{
-			$practInfos = $this->getDoctrine()->getRepository('UserBundle:Practinfos')->find($id);
-		}
-		else
-		{
-			$practInfos = new Practinfos();
-		}
-		
+		$this->checkPractAuth();
+		$user = $this->getUser();
+		$user->setPractinfos(new Practinfos());
+
+		$this->getDoctrine()->getManager()->persist($user);
+		$this->getDoctrine()->getManager()->flush();
+
+		$form = $this->createForm(new PractInfosType(),new Practinfos(),array('method'=>'POST', 'action' => $this->generateUrl('user_savePractForm')));
+
+		return $this->render(':default/practitionner:newPractInfos.html.twig',array(
+			'form' => $form->createView()
+		));
+	}
+
+	/**
+	 * @Route("/practForm", name="user_updatePractForm")
+	 *
+	 * @return Response
+	 */
+	public function updatePractFormAction()
+	{
+		$this->checkPractAuth();
+		$practInfos = $this->getUser()->getPractinfos();
+
 		$form = $this->createForm(new PractInfosType(),$practInfos,array('method'=>'POST', 'action' => $this->generateUrl('user_savePractForm')));
 
 		return $this->render(':default/practitionner:updatePractProfile.html.twig',array(
@@ -43,16 +56,38 @@ class PractitionerBundle extends Controller
 	}
 
 	/**
-	 * @Route("/savePractForm/{id}", name="user_savePractForm")
+	 * @Route("/savePractForm", name="user_savePractForm")
 	 *
-	 * @param integer $id id de la fiche du praticien
+	 * @param Request $request
 	 *
 	 * @return Response
 	 */
-	public function savePractFormAction($id)
+	public function savePractFormAction(Request $request)
 	{
+		$this->checkPractAuth();
+		
+		$practInfos = $this->getUser()->getPractinfos();
+
+		$form = $this->createForm(new PractInfosType(),$practInfos);
+
+		$form->handleRequest($request);
+
+		if ($form->isSubmitted() && $form->isValid())
+		{
+			$this->getDoctrine()->getManager()->persist($practInfos);
+			$this->getDoctrine()->getManager()->flush();
+
+			return $this->redirectToRoute('task_success');
+		}
 		return $this->render(':default/practitionner:updatePractProfile.html.twig',array(
 
 		));
+	}
+	
+	private function checkPractAuth()
+	{
+		if (!$this->get('security.authorization_checker')->isGranted('ROLE_PRACT')) {
+			throw $this->createAccessDeniedException();
+		}
 	}
 }

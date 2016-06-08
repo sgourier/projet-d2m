@@ -1,0 +1,13 @@
+{% extends "base.html.twig" %}
+{% block body %}
+
+    <div>
+        <h2>{{ "practInfos.new.title"|trans }}</h2>
+        {{ form_start(form) }}
+        <div>
+            <input type="submit" value="{{ 'practInfos.toSubscribe'|trans }}" />
+        </div>
+        {{ form_end(form) }}
+    </div>
+
+{% endblock body %}

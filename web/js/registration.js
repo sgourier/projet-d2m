@@ -8,12 +8,12 @@ $(document).on('ready',function ()
     {
         $('#registerChoose').hide();
         $('#registrationForms').show();
-        $('#fos_user_registration_form_roles').val(0);
+        $('#fos_user_registration_form_roles').val("ROLE_MEMBER");
     });
     $('#practRegister').on('click',function ()
     {
         $('#registerChoose').hide();
         $('#registrationForms').show();
-        $('#fos_user_registration_form_roles').val(1);
+        $('#fos_user_registration_form_roles').val("ROLE_PRACTITIONER");
     });
 });

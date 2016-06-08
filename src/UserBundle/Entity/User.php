@@ -120,10 +120,10 @@ class User extends BaseUser
     /**
      * User constructor.
      *
-     * @param \DateTime $birthdate
      */
     public function __construct( )
     {
+        parent::__construct();
         $this->birthdate = new \DateTime();
     }
 
