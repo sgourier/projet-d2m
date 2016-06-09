@@ -1,6 +1,6 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-<div id="registerChoose" class="container-white" class="registerChoose">
+<div id="registerChoose" class="container-white registerChoose {% if not form.vars.valid %}hidden{% endif %}">
     <div class="registerUser">
         <p>
             <h2>Les médecines alternatives vous intéresse ?</h2>
@@ -18,7 +18,7 @@
     </div>
 </div>
 
-<div id="registrationForms" class="registrationForms hidden">
+<div id="registrationForms" class="registrationForms {% if form.vars.valid %}hidden{% endif %}">
     <div class="basicRegistration container-white">
         <div class="title">
             Inscription

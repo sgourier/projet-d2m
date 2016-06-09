@@ -58,6 +58,11 @@ class RegistrationController extends Controller
             $event = new FormEvent($form, $request);
             $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
 
+            if(count($form['roles']->getData()) > 0)
+            {
+                $user->addRole($form['roles']->getData()[0]);
+            }
+
             $userManager->updateUser($user);
 
             if (null === $response = $event->getResponse()) {
@@ -69,7 +74,7 @@ class RegistrationController extends Controller
 
             if($user->hasRole('ROLE_PRACTITIONER'))
             {
-                return new RedirectResponse($this->generateUrl('user_updatePractForm'));
+                return new RedirectResponse($this->generateUrl('user_newPractForm'));
             }
             return $response;
         }
