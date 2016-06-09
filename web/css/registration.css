@@ -1,4 +1,20 @@
 
+
+
+#container-connexion{
+    position: fixed;
+    width:20%;
+    bottom:10px;
+}
+    #container-connexion .connexion{
+        background-color:white;
+        color:rgba(0,0,0,0.9);
+    }
+        #container-connexion .connexion:hover{
+            background-color:rgb(200,200,200);
+        }
+
+
 /****************************************************************************************/
 /*                                  REGISTER CHOOSE                                     */
 /****************************************************************************************/

@@ -24,6 +24,14 @@
                 <li><a href="{{ path("informations") }}"> Informations </a></li>
             </ul>
             <a href="{{ path("questions_new") }}" class="button button-new">Je pose <br/> ma question</a>
+
+            <div id="container-connexion">
+                {% if app.user %}
+                    <a href="{{ path("fos_user_security_logout") }}" class="button button-new connexion">Deconnexion</a>
+                {% else %}
+                    <a href="{{ path("fos_user_security_login") }}" class="button button-new connexion">Je me connecte</a>
+                {% endif %}
+            </div>
         </div>
         <div class="main-container">
             {% block body %}
