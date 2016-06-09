@@ -101,6 +101,13 @@ class User extends BaseUser
     private $avatarpath;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="practValid", type="boolean", nullable=false)
+     */
+    private $practValid;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="discoveryType", type="text", length=65535, nullable=true)
@@ -125,6 +132,7 @@ class User extends BaseUser
     {
         parent::__construct();
         $this->birthdate = new \DateTime();
+        $this->practValid = false;
     }
 
 

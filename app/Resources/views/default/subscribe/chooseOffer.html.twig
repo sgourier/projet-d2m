@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>{{ "subscribe.choose.title"|trans }}</h1>
+
+    <p>
+        {{ "subscribe.choose.description"|trans }}
+    </p>
+
+    {% for option in options %}
+        <div class="subOptionType">
+            <h2 class="subOptionName">{{ option.name }}</h2>
+            <p class="subOptionDesc">
+                {{ option.description }}
+                <span class="subOptionPrice">{{ option.price }}</span>
+            </p>
+            <button>{{ "subscribe.choose.chooseOption"|trans }}</button>
+        </div>
+    {% else %}
+        {{ "subscribe.choose.noOption"|trans }}
+    {% endfor %}
+
+
+{% endblock body %}
