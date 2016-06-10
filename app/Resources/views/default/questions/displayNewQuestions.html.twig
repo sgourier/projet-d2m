@@ -3,7 +3,12 @@
     <div class="container-white">
         <img class="icone" src="{{ asset('img/questions/icone.png') }}" alt="">
         <div class="title">
-            Liste des questions
+            Posez votre question
+        </div>
+        <div>
+			{{ form_start(form)}}
+			    {{ form_widget(form) }}
+			{{form_end(form)}}
         </div>
     </div>
 {% endblock body %}
