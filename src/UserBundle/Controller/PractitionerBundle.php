@@ -25,13 +25,13 @@ class PractitionerBundle extends Controller
 	public function newPractFormAction()
 	{
 		$this->checkPractAuth();
-		$user = $this->getUser();
-		$user->setPractinfos(new Practinfos());
 
-		$this->getDoctrine()->getManager()->persist($user);
-		$this->getDoctrine()->getManager()->flush();
+		if($this->getUser()->getPractinfos() != null)
+		{
+			return $this->redirectToRoute('user_updatePractForm');
+		}
 
-		$form = $this->createForm(new PractInfosType(),new Practinfos(),array('method'=>'POST', 'action' => $this->generateUrl('user_savePractForm')));
+		$form = $this->createForm(PractInfosType::class,new Practinfos(),array('method'=>'POST', 'action' => $this->generateUrl('user_savePractForm')));
 
 		return $this->render(':default/practitionner:newPractInfos.html.twig',array(
 			'form' => $form->createView()
@@ -48,7 +48,7 @@ class PractitionerBundle extends Controller
 		$this->checkPractAuth();
 		$practInfos = $this->getUser()->getPractinfos();
 
-		$form = $this->createForm(new PractInfosType(),$practInfos,array('method'=>'POST', 'action' => $this->generateUrl('user_savePractForm')));
+		$form = $this->createForm(PractInfosType::class,$practInfos,array('method'=>'POST', 'action' => $this->generateUrl('user_savePractForm')));
 
 		return $this->render(':default/practitionner:updatePractProfile.html.twig',array(
 			'form' => $form->createView()
@@ -67,8 +67,15 @@ class PractitionerBundle extends Controller
 		$this->checkPractAuth();
 		
 		$practInfos = $this->getUser()->getPractinfos();
+		$newPract = false;
 
-		$form = $this->createForm(new PractInfosType(),$practInfos);
+		if($practInfos == null)
+		{
+			$practInfos = new Practinfos();
+			$newPract = true;
+		}
+
+		$form = $this->createForm(PractInfosType::class,$practInfos);
 
 		$form->handleRequest($request);
 
@@ -77,8 +84,12 @@ class PractitionerBundle extends Controller
 			$this->getDoctrine()->getManager()->persist($practInfos);
 			$this->getDoctrine()->getManager()->flush();
 
-			return $this->redirectToRoute('task_success');
+			if($newPract)
+				return $this->render(':default/subscribe:chooseOffer.html.twig',array());
+
+			return $this->redirectToRoute('fos_user_profile_show');
 		}
+
 		return $this->render(':default/practitionner:updatePractProfile.html.twig',array(
 
 		));
@@ -86,7 +97,7 @@ class PractitionerBundle extends Controller
 	
 	private function checkPractAuth()
 	{
-		if (!$this->get('security.authorization_checker')->isGranted('ROLE_PRACT')) {
+		if (!$this->get('security.authorization_checker')->isGranted('ROLE_PRACTITIONER')) {
 			throw $this->createAccessDeniedException();
 		}
 	}
