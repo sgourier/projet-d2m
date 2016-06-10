@@ -1,0 +1,98 @@
+
+
+/****************************************************************************************/
+/*                                     CITATION                                         */
+/****************************************************************************************/
+#container-citation{
+    width:50%;
+    margin:0 auto 20px;
+    font-size:45px;
+    text-align: center;
+    font-family: "citation";
+    text-shadow: 1px 1px 1px silver;
+}
+
+
+/****************************************************************************************/
+/*                                  PRESENTATION                                        */
+/****************************************************************************************/
+#container-presentation{
+    width:80%;
+    margin:0 auto 20px;
+    text-align: center;
+    overflow: hidden;
+
+}
+    #container-presentation .left{
+        border-right: 1px solid #ebebeb;
+    }
+        #container-presentation .left img{
+            border-radius: 360px;
+            height:100px;
+        }
+        #container-presentation .left .name{
+            font-size:450%;
+            font-family: "citation";
+        }
+    #container-presentation .text{
+
+    }
+        #container-presentation .text .title-text{
+            font-size:200%;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+
+/****************************************************************************************/
+/*                                      VIDEOS                                          */
+/****************************************************************************************/
+#container-video{
+    background-color:#353535;
+    height:315px;
+    padding:0;
+    overflow: hidden;
+    border-radius: 5px;
+}
+    #container-video div{
+        padding:0;
+    }
+    #container-video .content{
+
+    }
+        #container-video .content .title{
+            color:white;
+            text-align: center;
+            font-size:150%;
+            margin-top:15px;
+            text-transform: uppercase;
+            height:50px;
+        }
+        #container-video .content .container-items{
+            height:250px;
+            padding-top:15px;
+            overflow: auto;
+        }
+            #container-video .content .container-items .item{
+                padding: 20px 10px;
+                color:white;
+                cursor: pointer;
+            }
+                #container-video .content .container-items .item:hover{
+                    background-color: rgba(255,255,255,0.05);
+                }
+                #container-video .content .container-items .item.white{
+                    background-color: rgba(255,255,255,0.1);
+                }
+                    #container-video .content .container-items .item.white:hover{
+                        background-color: rgba(255,255,255,0.15);
+                    }
+/****************************************************************************************/
+/*                                      LES DOMAINES                                    */
+/****************************************************************************************/
+
+
+
+/****************************************************************************************/
+/*                                  DERNIERE QUESTION                                   */
+/****************************************************************************************/

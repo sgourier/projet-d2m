@@ -41,3 +41,55 @@
 }
 
 
+/****************************************************************************************/
+/*                          BOUTONS CONNEXION ET ACCES COMPTE                           */
+/****************************************************************************************/
+#container-connexion{
+
+}
+    #container-connexion .col-xs-6{
+        padding:0;
+        margin: 0;
+    }
+        #container-connexion .button{
+            width:95%;
+            font-size:80%;
+            padding-left:15px;
+            background-repeat: no-repeat;
+            background-position:2px center;
+        }
+            #container-connexion .button.button-connexion,.button-compte{
+                background-image: url('../img/button/icon-connexion.png');
+            }
+            #container-connexion .button.button-log{
+                background-image: url('../img/button/icon-deconnexion.png');
+            }
+                #container-connexion .button.button-login{
+                    background-color:#c7ffb3;
+                }
+                    #container-connexion .button.button-login:hover{
+                        background-color:#f49696;
+                    }
+                #container-connexion .button.button-logout{
+                    background-color:#ffb3b3;
+                }
+                    #container-connexion .button.button-logout:hover{
+                        background-color:#aff496;
+                    }
+
+
+/****************************************************************************************/
+/*                                    RESEAUX SOCIAUX                                   */
+/****************************************************************************************/
+
+.reseaux_sociaux{
+    margin-top:15px;
+}
+
+    .reseaux_sociaux img{
+        width:20px;
+    }
+        .reseaux_sociaux img:hover{
+            width:20px;
+            opacity: 0.5;
+        }

@@ -90,30 +90,15 @@
         margin-bottom: 20px;
         text-transform: uppercase;
     }
-    #fos_user_registration_form{
-
-    }
-        #fos_user_registration_form div{
-            margin-bottom: 15px;
+        .container-formulaire #fos_user_registration_form_birthdate{
+            width:40%;
+            display: inline-block;
+            margin:0;
         }
-            .basicRegistration label{
-                width:50%;
-                text-align: left;
-                margin-right: 5%;
-                display: inline-block;
-                font-size:20px;
-            }
-                .basicRegistration label:after{
-                    content:" :";
-                }
-            .basicRegistration #fos_user_registration_form_birthdate{
-                width:40%;
-                display: inline-block;
-                margin:0;
-            }
-                .basicRegistration #fos_user_registration_form_birthdate select{
-                    margin-left: 20px;
-                }
-                .basicRegistration #fos_user_registration_form_birthdate select:first-child{
-                    margin-left: 0px;
-                }
+        .container-formulaire #fos_user_registration_form_birthdate select{
+            margin-left: 20px;
+            width:22%;
+        }
+        .container-formulaire #fos_user_registration_form_birthdate select:first-child{
+            margin-left: 0px;
+        }
