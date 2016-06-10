@@ -25,19 +25,11 @@ class PractitionerBundle extends Controller
 	public function newPractFormAction()
 	{
 		$this->checkPractAuth();
-		$user = $this->getUser();
 
-		if($user->getPractinfos() != null)
+		if($this->getUser()->getPractinfos() != null)
 		{
 			return $this->redirectToRoute('user_updatePractForm');
 		}
-
-		$practInfos = new Practinfos();
-		$user->setPractinfos($practInfos);
-
-		$this->getDoctrine()->getManager()->persist($practInfos);
-		$this->getDoctrine()->getManager()->persist($user);
-		$this->getDoctrine()->getManager()->flush();
 
 		$form = $this->createForm(PractInfosType::class,new Practinfos(),array('method'=>'POST', 'action' => $this->generateUrl('user_savePractForm')));
 
@@ -75,6 +67,13 @@ class PractitionerBundle extends Controller
 		$this->checkPractAuth();
 		
 		$practInfos = $this->getUser()->getPractinfos();
+		$newPract = false;
+
+		if($practInfos == null)
+		{
+			$practInfos = new Practinfos();
+			$newPract = true;
+		}
 
 		$form = $this->createForm(PractInfosType::class,$practInfos);
 
@@ -85,8 +84,12 @@ class PractitionerBundle extends Controller
 			$this->getDoctrine()->getManager()->persist($practInfos);
 			$this->getDoctrine()->getManager()->flush();
 
-			return $this->redirectToRoute('task_success');
+			if($newPract)
+				return $this->render(':default/subscribe:chooseOffer.html.twig',array());
+
+			return $this->redirectToRoute('fos_user_profile_show');
 		}
+
 		return $this->render(':default/practitionner:updatePractProfile.html.twig',array(
 
 		));
