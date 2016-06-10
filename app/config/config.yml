@@ -75,3 +75,67 @@ fos_user:
     registration:
         form:
             type: UserBundle\Form\Type\RegistrationType
+
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        sonata.admin.block.admin_list:
+            contexts: [admin]
+        sonata.block.service.text:
+            contexts: [admin]
+        sonata.block.service.rss:
+            contexts: [admin]
+        sonata.news.admin.post:
+            contexts: [admin]
+
+
+services:
+    app.admin.post:
+        class: AppBundle\Admin\PostAdmin
+        tags:
+            - name: sonata.admin
+              manager_type: orm
+              group: "app.admin.group.content"
+              label: "app.admin.model.post"
+              label_catalogue: "AppBundle"
+        arguments:
+            - ~
+            - AppBundle\Entity\Post
+            - ~
+
+sonata_admin:
+    templates:
+        knp_menu_template:           ApplicationAdminBundle:Menu:custom_knp_menu.html.twig
+    dashboard:
+        blocks:
+            -
+                position: left
+                type: sonata.admin.block.admin_list
+            -
+                position: left
+                type: sonata.block.service.text
+                settings:
+                    content: >
+                        <h2>Welcome to the Admin Block</h2>
+                        <p>Admin Dashboard</p>
+          #  -
+          #      position: right
+          #      type: sonata.block.service.rss
+          #     roles: [POST_READER]
+          #      settings:
+          #          title: Sonata Project's Feeds
+          #          url: https://sonata-project.org/blog/archive.rss
+    #    groups:
+         #           news:
+         #               label:                ~
+         #               label_catalogue:      ~
+         #               items:
+         #                   - sonata.news.admin.post
+         #                   - route:        content_home
+         #                     label:        Content
+         #           news:
+         #               on_top:               true
+         #               label:                ~
+         #               label_catalogue:      ~
+         #               items:
+         #                   - sonata.news.admin.post

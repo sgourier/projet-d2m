@@ -10,34 +10,87 @@
     position: fixed;
     width:20%;
     background-color:#353535;
-    background-image: url('img/fixed-container/background.jpg');
+    background-image: url('../img/fixed-container/background.jpg');
     height:100%;
 }
-.fixed-container .logo{
+    .fixed-container .logo{
+        text-align: center;
+        border-bottom: 1px solid silver;
+        padding-top:15px;
+        padding-bottom:15px;
+        width:80%;
+        margin:15px auto 0;
+    }
+        .fixed-container .logo img{
+            max-height:100px;
+            max-width:70%;
+        }
+    .fixed-container ul{
+        margin:0 !important;
+        padding:0 !important;
+    }
+        .fixed-container ul li{
+            margin-top:10px;
+            color:white;
+            text-align: center;
+            list-style: none;
+        }
+    .fixed-container a.button-new{
+        width:80%;
+        padding:3%;
+        max-width: none;
+    }
+
+
+/****************************************************************************************/
+/*                          BOUTONS CONNEXION ET ACCES COMPTE                           */
+/****************************************************************************************/
+#container-connexion{
+
+}
+    #container-connexion .col-xs-6{
+        padding:0;
+        margin: 0;
+    }
+        #container-connexion .button{
+            width:95%;
+            font-size:80%;
+            padding-left:15px;
+            background-repeat: no-repeat;
+            background-position:2px center;
+        }
+            #container-connexion .button.button-connexion,.button-compte{
+                background-image: url('../img/button/icon-connexion.png');
+            }
+            #container-connexion .button.button-log{
+                background-image: url('../img/button/icon-deconnexion.png');
+            }
+                #container-connexion .button.button-login{
+                    background-color:#c7ffb3;
+                }
+                    #container-connexion .button.button-login:hover{
+                        background-color:#f49696;
+                    }
+                #container-connexion .button.button-logout{
+                    background-color:#ffb3b3;
+                }
+                    #container-connexion .button.button-logout:hover{
+                        background-color:#aff496;
+                    }
+
+
+/****************************************************************************************/
+/*                                    RESEAUX SOCIAUX                                   */
+/****************************************************************************************/
+
+.reseaux_sociaux{
     margin-top:15px;
-    text-align: center;
-    background-color: rgba(255,255,255,0.5);
-    padding-top:15px;
-    padding-bottom:15px;
-}
-.fixed-container .logo img{
-    max-height:100px;
-    max-width:70%;
-}
-.fixed-container ul{
-    margin:0 !important;
-    padding:0 !important;
-}
-.fixed-container ul li{
-    margin-top:10px;
-    color:white;
-    text-align: center;
-    list-style: none;
-}
-.fixed-container a.button-new{
-    width:80%;
-    padding:3%;
-    max-width: none;
 }
 
-
+    .reseaux_sociaux img{
+        width:20px;
+    }
+        .reseaux_sociaux img:hover{
+            width:20px;
+            opacity: 0.5;
+        }

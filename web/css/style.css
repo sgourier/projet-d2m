@@ -73,10 +73,12 @@ input[type=submit],.button,button
     padding: 10px 20px;
     text-transform: uppercase;
     border:none;
+    text-decoration: none;
 }
     input[type=submit]:hover,.button:hover,button:hover{
         background-color: #740e3e;
         cursor: pointer;
+        text-decoration: none;
     }
 
 input[type=text],input[type=email],input[type=password],input[type=number],select,textarea{
@@ -91,23 +93,29 @@ input[type=text],input[type=email],input[type=password],input[type=number],selec
 
 
 
-
-
-
 /****************************************************************************************/
-/*                                    VALEURS                                           */
+/*                                    FORMULAIRE                                        */
 /****************************************************************************************/
-/*
-
-    COULEURS :
-
-    Violet : #a6366b
 
 
+#fos_user_registration_form div{
+    margin-bottom: 15px;
+}
+.container-formulaire label{
+    width:50%;
+    text-align: left;
+    margin-right: 5%;
+    display: inline-block;
+    font-size:20px;
+}
+.container-formulaire label:after{
+    content:" :";
+}
 
 
 
-*/
+
+
 /****************************************************************************************/
 /*                                  MAIN CONTAINER                                      */
 /****************************************************************************************/
@@ -115,13 +123,6 @@ input[type=text],input[type=email],input[type=password],input[type=number],selec
     margin-left:20%;
     padding:2%;
 }
-    .main-container .citation{
-        width:50%;
-        margin:auto;
-        font-size:55px;
-        text-align: center;
-        font-family: "citation";
-    }
 
 .hidden
 {

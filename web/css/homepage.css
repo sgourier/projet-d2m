@@ -1,0 +1,162 @@
+
+
+
+#container-logo{
+    text-align: center;
+}
+    #container-logo img{
+        height:50px;
+    }
+/****************************************************************************************/
+/*                                     CITATION                                         */
+/****************************************************************************************/
+#container-citation{
+    width:50%;
+    margin:0 auto 20px;
+    font-size:45px;
+    text-align: center;
+    font-family: "citation";
+    text-shadow: 1px 1px 1px silver;
+}
+
+
+/****************************************************************************************/
+/*                                  PRESENTATION                                        */
+/****************************************************************************************/
+#container-presentation{
+    width:80%;
+    margin:0 auto 20px;
+    text-align: center;
+    overflow: hidden;
+
+}
+    #container-presentation .left{
+        border-right: 1px solid #ebebeb;
+    }
+        #container-presentation .left img{
+            border-radius: 360px;
+            height:100px;
+        }
+        #container-presentation .left .name{
+            font-size:450%;
+            font-family: "citation";
+        }
+    #container-presentation .text{
+
+    }
+        #container-presentation .text .title-text{
+            font-size:200%;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+
+/****************************************************************************************/
+/*                                      VIDEOS                                          */
+/****************************************************************************************/
+#container-video{
+    background-color:#353535;
+    height:315px;
+    padding:0;
+    overflow: hidden;
+    border-radius: 5px;
+    margin-bottom:20px;
+}
+    #container-video div{
+        padding:0;
+    }
+    #container-video .content{
+
+    }
+        #container-video .content .title{
+            color:white;
+            text-align: center;
+            font-size:150%;
+            margin-top:15px;
+            text-transform: uppercase;
+            height:50px;
+        }
+        #container-video .content .container-items{
+            height:250px;
+            padding-top:15px;
+            overflow: auto;
+        }
+            #container-video .content .container-items .item{
+                padding: 20px 0px;
+                padding-left: 20px;
+                color:white;
+                cursor: pointer;
+                background-repeat: no-repeat;
+                background-position: 5px center;
+                background-image: url('../img/homepage/videos/icone.png');
+                background-size: 10px auto;
+            }
+                #container-video .content .container-items .item:hover{
+                    background-color: rgba(255,255,255,0.05);
+                }
+                #container-video .content .container-items .item.white{
+                    background-color: rgba(255,255,255,0.1);
+                }
+                    #container-video .content .container-items .item.white:hover{
+                        background-color: rgba(255,255,255,0.15);
+                    }
+
+
+/****************************************************************************************/
+/*                                  DERNIERE QUESTION                                   */
+/****************************************************************************************/
+#container-discussion{
+    overflow: hidden;
+    width:80%;
+    margin:auto;
+}
+    #container-discussion .personne{
+        overflow: hidden;
+        width:50%;
+        margin:10px auto 0;
+    }
+        #container-discussion .personne .container_img{
+            text-align: right;
+        }
+            #container-discussion .personne .container_img img{
+                border-radius: 360px;
+                height:50px;
+            }
+        #container-discussion .personne .nom{
+            font-size:150%;
+            text-align: left;
+        }
+        #container-discussion .personne .description {
+            font-size: 80%;
+            text-indent: 15px;
+            color: grey;
+            font-style: italic;
+            text-align: left;
+        }
+    #container-discussion .dialogue{
+        text-align: left;
+        width: 80%;
+        margin:15px auto 0;
+        padding:15px;
+        border-radius: 5px;
+        background-color: #ffb4d8;
+    }
+        #container-discussion .dialogue.expert{
+            background-color: #be4d83;
+            color:white;
+        }
+        #container-discussion .dialogue .nom{
+            font-size:20px;
+            margin-bottom: 8px;
+        }
+        #container-discussion .dialogue .text{
+            font-size:14px;
+        }
+
+
+
+/****************************************************************************************/
+/*                                      LES DOMAINES                                    */
+/****************************************************************************************/
+
+
