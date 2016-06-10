@@ -14,5 +14,4 @@ use Symfony\Component\HttpFoundation\Request;
 
 class AdminContentsController extends Controller
 {
-
 }
