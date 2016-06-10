@@ -19,8 +19,9 @@ class AdminArticleController
      * @Route("/{id}", name="admin_post_show")
      */
 
-    public function showAction($id)
+    /* public function showAction($id)
     {
+        return $this->render("")
     }
 
     /**
@@ -28,7 +29,7 @@ class AdminArticleController
      * @Method({"GET", "POST"})
      */
 
-    public function editAction($id)
+   /* public function editAction($id)
     {
-    }
+    } */
 }
