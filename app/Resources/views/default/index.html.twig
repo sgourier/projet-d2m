@@ -1,10 +1,32 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="citation">
+    <div id="container-citation">
         "A votre écoute pour prendre soin de votre santé"
     </div>
-    <div class="container-video">
+
+
+
+    <div id="container-presentation" class="container-white">
+        <div class="col-xs-5 left">
+            <img class="icone" src="{{ asset('img/homepage//presentation/photo.jpg') }}" alt="">
+            <div class="name">
+                Frédéric Zenouda
+            </div>
+        </div>
+        <div class="col-xs-6 col-xs-offset-1 text">
+            <div class="title-text">
+                Présentation
+            </div>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </div>
+    </div>
+
+
+
+
+    <div id="container-video">
         <div class="col-xs-7">
             <iframe id="player_youtube" width="560" height="315" src="https://www.youtube.com/embed/WsYqUX5xwjc" frameborder="0" allowfullscreen></iframe>
         </div>
