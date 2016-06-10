@@ -22,6 +22,19 @@ class SubscribeController extends Controller
 	 */
 	public function chooseSubscribeAction()
 	{
+		$this->checkPractAuth();
 
+		$offers = $this->getDoctrine()->getRepository("VimoliaBundle:Subscribetype")->findBy(array("active" => true));
+		
+		return $this->render(":default/subscribe:chooseOffer.html.twig",array(
+			"offers" => $offers
+		));
+	}
+
+	private function checkPractAuth()
+	{
+		if (!$this->get('security.authorization_checker')->isGranted('ROLE_PRACTITIONER')) {
+			throw $this->createAccessDeniedException();
+		}
 	}
 }

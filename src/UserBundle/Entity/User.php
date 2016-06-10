@@ -447,4 +447,28 @@ class User extends BaseUser
     {
         return $this->practinfos;
     }
+
+    /**
+     * Set practValid
+     *
+     * @param boolean $practValid
+     *
+     * @return User
+     */
+    public function setPractValid($practValid)
+    {
+        $this->practValid = $practValid;
+
+        return $this;
+    }
+
+    /**
+     * Get practValid
+     *
+     * @return boolean
+     */
+    public function getPractValid()
+    {
+        return $this->practValid;
+    }
 }

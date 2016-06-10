@@ -4,6 +4,7 @@ namespace UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * User
@@ -21,7 +22,7 @@ class User extends BaseUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-    
+
     /**
      * @var string
      *
@@ -100,6 +101,13 @@ class User extends BaseUser
     private $avatarpath;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="practValid", type="boolean", nullable=false)
+     */
+    private $practValid;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="discoveryType", type="text", length=65535, nullable=true)
@@ -107,14 +115,26 @@ class User extends BaseUser
     private $discoverytype;
 
     /**
-     * @var \VimoliaBundle\Entity\Practinfos
+     * @var \UserBundle\Entity\Practinfos
      *
-     * @ORM\ManyToOne(targetEntity="VimoliaBundle\Entity\Practinfos")
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\Practinfos")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="PractInfos_id", referencedColumnName="id")
      * })
      */
     private $practinfos;
+
+    /**
+     * User constructor.
+     *
+     */
+    public function __construct( )
+    {
+        parent::__construct();
+        $this->birthdate = new \DateTime();
+        $this->practValid = false;
+    }
+
 
     /**
      * Set name
@@ -407,11 +427,11 @@ class User extends BaseUser
     /**
      * Set practinfos
      *
-     * @param \VimoliaBundle\Entity\Practinfos $practinfos
+     * @param \UserBundle\Entity\Practinfos $practinfos
      *
      * @return User
      */
-    public function setPractinfos(\VimoliaBundle\Entity\Practinfos $practinfos = null)
+    public function setPractinfos(\UserBundle\Entity\Practinfos $practinfos = null)
     {
         $this->practinfos = $practinfos;
 
@@ -421,7 +441,7 @@ class User extends BaseUser
     /**
      * Get practinfos
      *
-     * @return \VimoliaBundle\Entity\Practinfos
+     * @return \UserBundle\Entity\Practinfos
      */
     public function getPractinfos()
     {

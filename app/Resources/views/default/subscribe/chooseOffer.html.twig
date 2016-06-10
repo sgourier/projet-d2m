@@ -7,18 +7,17 @@
         {{ "subscribe.choose.description"|trans }}
     </p>
 
-    {% for option in options %}
+    {% for offer in offers %}
         <div class="subOptionType">
-            <h2 class="subOptionName">{{ option.name }}</h2>
+            <h2 class="subOptionName">{{ offer.name }}</h2>
             <p class="subOptionDesc">
-                {{ option.description }}
-                <span class="subOptionPrice">{{ option.price }}</span>
+                {{ offer.description }}
+                <span class="subOptionPrice">{{ offer.price }}</span>
             </p>
             <button>{{ "subscribe.choose.chooseOption"|trans }}</button>
         </div>
     {% else %}
         {{ "subscribe.choose.noOption"|trans }}
     {% endfor %}
-
 
 {% endblock body %}
