@@ -76,3 +76,20 @@
                     #container-connexion .button.button-logout:hover{
                         background-color:#aff496;
                     }
+
+
+/****************************************************************************************/
+/*                                    RESEAUX SOCIAUX                                   */
+/****************************************************************************************/
+
+.reseaux_sociaux{
+    margin-top:15px;
+}
+
+    .reseaux_sociaux img{
+        width:20px;
+    }
+        .reseaux_sociaux img:hover{
+            width:20px;
+            opacity: 0.5;
+        }
