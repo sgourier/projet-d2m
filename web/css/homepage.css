@@ -107,8 +107,8 @@
 /****************************************************************************************/
 #container-discussion{
     overflow: hidden;
-    width:80%;
-    margin:auto;
+    width:95%;
+    margin:150px auto 0;
 }
     #container-discussion .personne{
         overflow: hidden;
@@ -159,4 +159,16 @@
 /*                                      LES DOMAINES                                    */
 /****************************************************************************************/
 
-
+#container-domaines{
+    overflow: hidden;
+    text-align: center;
+    margin-top:50px;
+    padding-bottom: 40px;
+}
+    #container-domaines .nom-domaine{
+        font-size:14px;
+        margin-top:15px;
+    }
+    #container-domaines img{
+        height:50px;
+    }
