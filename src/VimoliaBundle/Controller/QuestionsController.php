@@ -49,6 +49,7 @@ class QuestionsController extends Controller
      */
     public function saveMessageFormAction(Request $request)
     {
-
+        // replace this example code with whatever you need
+        return $this->render('default/questions/displayConfirmQuestions.html.twig');
     }
 }

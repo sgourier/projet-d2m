@@ -3,12 +3,8 @@
     <div id="container-newquestions" class="container-white">
         <img class="icone" src="{{ asset('img/questions/icone.png') }}" alt="">
         <div class="title">
-            Posez votre question :
+            Question enregistrée !
         </div>
-        <div>
-			{{ form_start(form)}}
-			    {{ form_widget(form) }}
-			{{form_end(form)}}
-        </div>
+        <a href="{{ path("homepage") }}" class="button">Retour à l'accueil</a>
     </div>
 {% endblock body %}
