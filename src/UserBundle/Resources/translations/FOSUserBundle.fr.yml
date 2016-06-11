@@ -19,6 +19,12 @@ profile:
     show:
         username: 'Nom d''utilisateur'
         email: 'Adresse e-mail'
+        errorPractValid: 'Vous n''avez pas été validé par l''administration. Si vous êtes inscris depuis plus de 3 jours, meci de contacter l''administration.'
+        errorPractValid2: 'Vous pouvez en attendant naviguer sur le site comme un utilisateur normal. Une fois validé, vous serez invité à vous abonner afin de profiter de nombreux avantages.'
+        practMenu:
+            promotions: 'Promotions'
+            myPage: 'Ma page pro'
+            questions: 'Mes questions'
     edit:
         submit: 'Mettre à jour'
     flash:
@@ -63,26 +69,26 @@ resetting:
         subject: 'Réinitialisation de votre mot de passe'
         message: "Bonjour %username% !\n\nPour réinitialiser votre mot de passe, merci de vous rendre sur %confirmationUrl%\n\nCordialement,\nL'équipe.\n"
 layout:
-    logout: Déconnexion
-    login: Connexion
-    register: Inscription
+    logout: 'Déconnexion'
+    login: 'Connexion'
+    register: 'nscription'
     logged_in_as: 'Connecté en tant que %username%'
 form:
     group_name: 'Nom du groupe'
-    username: 'Nom d''utilisateur'
-    email: 'Adresse e-mail'
+    username: 'Nom d''utilisateur*'
+    email: 'Adresse e-mail*'
     current_password: 'Mot de passe actuel'
-    password: 'Mot de passe'
-    password_confirmation: Vérification
+    password: 'Mot de passe*'
+    password_confirmation: 'Vérification*'
     new_password: 'Nouveau mot de passe'
-    new_password_confirmation: Vérification
-    name: 'Nom'
-    firstname: 'Prénom'
-    birthdate: 'Date de naissance'
-    address: 'Adressse'
+    new_password_confirmation: 'Vérification'
+    name: 'Nom*'
+    firstname: 'Prénom*'
+    birthdate: 'Date de naissance*'
+    address: 'Adresse*'
     addressPlus: 'Complément d''adresse'
-    zipCode: 'Code postal'
-    city: 'Ville'
+    zipCode: 'Code postal*'
+    city: 'Ville*'
     phone: 'Numéro de téléphone'
     cellPhone: 'Numéro de portable'
     discoveryType: 'Comment nous avez-vous découverts ?'

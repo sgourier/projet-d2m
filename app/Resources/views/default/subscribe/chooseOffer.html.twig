@@ -7,14 +7,21 @@
         {{ "subscribe.choose.description"|trans }}
     </p>
 
+    {% if error is defined and error == true %}
+        <div class="alert alert-danger" role="alert">
+            {{ "subscribe.choose.error"|trans }}<br>
+            {{ "subscribe.choose.error2"|trans }} <a href="{{ path('contactus') }}">{{ "subscribe.choose.contactPage"|trans }}</a>
+        </div>
+    {% endif %}
+
     {% for offer in offers %}
         <div class="subOptionType">
             <h2 class="subOptionName">{{ offer.name }}</h2>
             <p class="subOptionDesc">
                 {{ offer.description }}
-                <span class="subOptionPrice">{{ offer.price }}</span>
+                <span class="subOptionPrice">{{ offer.price }} €</span>
             </p>
-            <button>{{ "subscribe.choose.chooseOption"|trans }}</button>
+            <button><a href="{{ path('user_generateSubscribe',{'id':offer.id}) }}">{{ "subscribe.choose.chooseOption"|trans }}</a></button>
         </div>
     {% else %}
         {{ "subscribe.choose.noOption"|trans }}

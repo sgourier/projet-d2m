@@ -34,8 +34,6 @@ class PaypalInterface
 	private $router;
 	private $mode;
 	private $taxesPercent;
-	private $accessToken;
-	private $expirationDate;
 
 	/**
 	 * PaypalInterface constructor.
@@ -49,9 +47,6 @@ class PaypalInterface
 		$this->router = $router;
 		$this->taxesPercent = $taxePercent;
 		$this->apiContext = $this->getApiContext();
-		$resultCurlAuth = $this->getApiContextCurl();
-		$this->accessToken = $resultCurlAuth['access_token'];
-		$this->expirationDate = $resultCurlAuth['expires_in'];
 	}
 
 	public function getApiContext()
@@ -81,7 +76,7 @@ class PaypalInterface
 		return $apiContext;
 	}
 
-	public function createExpressPayment($items,$routeCallbackName,$shippingPrice,$currency = "EUR",$description = "Payment description",$sale = "sale")
+	public function createExpressPayment($items,$routeCallbackName,$shippingPrice,$typeId,$currency = "EUR",$description = "Payment description",$sale = "sale")
 	{
 		$payer = new Payer();
 		$payer->setPaymentMethod("paypal");
@@ -127,8 +122,8 @@ class PaypalInterface
 		            ->setInvoiceNumber(uniqid());
 
 		$redirectUrls = new RedirectUrls();
-		$redirectUrls->setReturnUrl($this->router->generate($routeCallbackName,array('result'=>"ok"),UrlGeneratorInterface::ABSOLUTE_URL))
-		             ->setCancelUrl($this->router->generate($routeCallbackName,array('result'=>"nok"),UrlGeneratorInterface::ABSOLUTE_URL));
+		$redirectUrls->setReturnUrl($this->router->generate($routeCallbackName,array('id'=>$typeId,'result'=>"ok"),UrlGeneratorInterface::ABSOLUTE_URL))
+		             ->setCancelUrl($this->router->generate($routeCallbackName,array('id'=>$typeId,'result'=>"nok"),UrlGeneratorInterface::ABSOLUTE_URL));
 
 		$payment = new Payment();
 		$payment->setIntent($sale)

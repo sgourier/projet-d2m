@@ -18,27 +18,6 @@ use UserBundle\Form\PractInfosType;
 class PractitionerBundle extends Controller
 {
 	/**
-	 * @Route("/newPractForm", name="user_newPractForm")
-	 *
-	 * @return Response
-	 */
-	public function newPractFormAction()
-	{
-		$this->checkPractAuth();
-
-		if($this->getUser()->getPractinfos() != null)
-		{
-			return $this->redirectToRoute('user_updatePractForm');
-		}
-
-		$form = $this->createForm(PractInfosType::class,new Practinfos(),array('method'=>'POST', 'action' => $this->generateUrl('user_savePractForm')));
-
-		return $this->render(':default/practitionner:newPractInfos.html.twig',array(
-			'form' => $form->createView()
-		));
-	}
-
-	/**
 	 * @Route("/practForm", name="user_updatePractForm")
 	 *
 	 * @return Response
@@ -46,7 +25,18 @@ class PractitionerBundle extends Controller
 	public function updatePractFormAction()
 	{
 		$this->checkPractAuth();
+		
 		$practInfos = $this->getUser()->getPractinfos();
+		
+		if($practInfos == null)
+		{
+			$practInfos = new Practinfos();
+			$user = $this->getUser();
+			$user->setPractinfos($practInfos);
+			$this->getDoctrine()->getManager()->persist($practInfos);
+			$this->getDoctrine()->getManager()->persist($user);
+			$this->getDoctrine()->getManager()->flush();
+		}
 
 		$form = $this->createForm(PractInfosType::class,$practInfos,array('method'=>'POST', 'action' => $this->generateUrl('user_savePractForm')));
 
@@ -67,13 +57,6 @@ class PractitionerBundle extends Controller
 		$this->checkPractAuth();
 		
 		$practInfos = $this->getUser()->getPractinfos();
-		$newPract = false;
-
-		if($practInfos == null)
-		{
-			$practInfos = new Practinfos();
-			$newPract = true;
-		}
 
 		$form = $this->createForm(PractInfosType::class,$practInfos);
 
@@ -84,14 +67,11 @@ class PractitionerBundle extends Controller
 			$this->getDoctrine()->getManager()->persist($practInfos);
 			$this->getDoctrine()->getManager()->flush();
 
-			if($newPract)
-				return $this->render(':default/subscribe:chooseOffer.html.twig',array());
-
 			return $this->redirectToRoute('fos_user_profile_show');
 		}
 
 		return $this->render(':default/practitionner:updatePractProfile.html.twig',array(
-
+			
 		));
 	}
 	

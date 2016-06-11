@@ -62,14 +62,7 @@ class Subscribe
      */
     private $idSubscribetype;
 
-    /**
-     * Subscribe constructor.
-     *
-     */
-    public function __construct( )
-    {
-        $this->enddate = new \DateTime();
-    }
+
 
     /**
      * Set idCommand
@@ -175,29 +168,5 @@ class Subscribe
     public function getIdSubscribetype()
     {
         return $this->idSubscribetype;
-    }
-
-    /**
-     * Set idPayer
-     *
-     * @param string $idPayer
-     *
-     * @return Subscribe
-     */
-    public function setIdPayer($idPayer)
-    {
-        $this->idPayer = $idPayer;
-
-        return $this;
-    }
-
-    /**
-     * Get idPayer
-     *
-     * @return string
-     */
-    public function getIdPayer()
-    {
-        return $this->idPayer;
     }
 }

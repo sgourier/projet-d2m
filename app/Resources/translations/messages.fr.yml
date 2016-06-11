@@ -2,7 +2,7 @@ titleDefault: 'Vimolia'
 practInfos:
     toSubscribe: 'Sauvegarder et choisir mon abonnement'
     new:
-        title: 'Enregistrer vous informationq professionnelles'
+        title: 'Enregistrer vous informations professionnelles'
     siret: 'Numéro de SIRET'
     proAddress: 'Adresse professionnelle'
     proAddressPlus: 'compléments adresse professionnelle'
@@ -20,3 +20,6 @@ subscribe:
         description: 'Afin d''accéder à tout les privilèges des praticiens vous devez choisir une des offres suivante (vous serez redirigé vers paypal) :'
         chooseOption: 'Je m''abonne !'
         noOption: 'Aucune option d''abonnement disponible pour le moment. Veuillez contacter l''administration du site pour plus d''information'
+        error: 'Une erreur est intervenue lors du processus de paiement, merci de réessayer.'
+        error2: 'Si l''erreur persiste, merci de contacter un administrateur.'
+        contactPage: 'Aller à la page de contact'

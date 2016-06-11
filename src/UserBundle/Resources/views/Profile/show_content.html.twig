@@ -1,6 +1,20 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 <div class="fos_user_user_show">
+    {% if is_granted('ROLE_PRACTITIONER') and user.practValid == false %}
+        <div class="alert alert-danger" role="alert">
+            {{ "profile.show.errorPractValid"|trans }}<br>
+            {{ "profile.show.errorPractValid2"|trans }}
+        </div>
+    {% elseif is_granted('ROLE_PRACTITIONER') %}
+        <nav>
+            <ul>
+                <li><a href="#">{{ "profile.show.practMenu.promotions"|trans }}</a></li>
+                <li><a href="#">{{ "profile.show.practMenu.questions"|trans }}</a></li>
+                <li><a href="#">{{ "profile.show.practMenu.myPage"|trans }}</a></li>
+            </ul>
+        </nav>
+    {% endif %}
     <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
     <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
 </div>
