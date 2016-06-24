@@ -20,11 +20,6 @@ class MessageType extends AbstractType
                 'label' => 'Votre question',
                 'required' => true
             ))
-            ->add('public', 'Symfony\Component\Form\Extension\Core\Type\CheckboxType', array(
-                'mapped' => false,
-                'label' => 'Souhaitez-vous rendre votre question publique?',
-                'required' => true
-            ))
             ->add('save', SubmitType::class, array('label' => 'Envoyer'))
         ;
     }

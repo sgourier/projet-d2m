@@ -79,6 +79,15 @@ class Message
      */
     private $idDiscussion;
 
+    /**
+     * Message constructor.
+     */
+    public function __construct()
+    {
+        $this->dateadd = new \DateTime();
+        $this->dateupd = new \DateTime();
+        $this->active = true;
+    }
 
 
     /**

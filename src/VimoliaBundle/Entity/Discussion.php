@@ -110,7 +110,20 @@ class Discussion
      */
     private $idAdvancedinfos;
 
+    public $messages;
 
+    /**
+     * Message constructor.
+     */
+    public function __construct()
+    {
+        $this->status = 'new';
+        $this->dateadd = new \DateTime();
+        $this->dateupd = new \DateTime();
+        $this->public = false;
+        $this->active = true;
+        $this->closed = false;
+    }
 
     /**
      * Set public
@@ -384,5 +397,29 @@ class Discussion
     public function getIdAdvancedinfos()
     {
         return $this->idAdvancedinfos;
+    }
+
+    /**
+     * Set messages
+     *
+     * @param $messages
+     *
+     * @return Discussion
+     */
+    public function setMessages($messages = null)
+    {
+        $this->messages = $messages;
+
+        return $this;
+    }
+
+    /**
+     * Get messages
+     *
+     * @return messages
+     */
+    public function getMessages()
+    {
+        return $this->messages;
     }
 }
