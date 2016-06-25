@@ -110,7 +110,8 @@ class Discussion
      */
     private $idAdvancedinfos;
 
-    public $messages;
+    public $question;
+    public $reponse;
 
     /**
      * Message constructor.
@@ -400,26 +401,50 @@ class Discussion
     }
 
     /**
-     * Set messages
+     * Set question
      *
-     * @param $messages
+     * @param $question
      *
      * @return Discussion
      */
-    public function setMessages($messages = null)
+    public function setQuestion($question = null)
     {
-        $this->messages = $messages;
+        $this->question = $question;
 
         return $this;
     }
 
     /**
-     * Get messages
+     * Get question
      *
-     * @return messages
+     * @return question
      */
-    public function getMessages()
+    public function getQuestion()
     {
-        return $this->messages;
+        return $this->question;
+    }
+
+    /**
+     * Set reponse
+     *
+     * @param $reponse
+     *
+     * @return Discussion
+     */
+    public function setReponse($reponse = null)
+    {
+        $this->reponse = $reponse;
+
+        return $this;
+    }
+
+    /**
+     * Get reponse
+     *
+     * @return reponse
+     */
+    public function getReponse()
+    {
+        return $this->reponse;
     }
 }

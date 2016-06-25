@@ -27,9 +27,19 @@ class QuestionsController extends Controller
                           ->findBy(array("public" => true, "status" => "expertResponded", "active" => true),array("dateupd" => "DESC"));
 
         foreach($discussions as $discussion) {
-            $messages = $em->getRepository('VimoliaBundle:Message')
-                           ->findBy(array("idDiscussion" => $discussion->getId(), "active" => true),array("dateupd" => "ASC"));
-            $discussion->setMessages($messages);
+            $question = $em->getRepository('VimoliaBundle:Message')
+                           ->findOneBy(array("idDiscussion" => $discussion->getId(),
+                                          "idOwner" => $discussion->getIdMember(),
+                                          "active" => true
+                                    ));
+            $discussion->setQuestion($question);
+
+            $reponse = $em->getRepository('VimoliaBundle:Message')
+                          ->findOneBy(array("idDiscussion" => $discussion->getId(),
+                                         "idOwner" => $discussion->getIdExpert(),
+                                         "active" => true
+                                    ));
+            $discussion->setReponse($reponse);
         }
 
         return $this->render('default/questions/displayQuestions.html.twig', array(
@@ -43,6 +53,9 @@ class QuestionsController extends Controller
      */
     public function displayNewQuestionAction()
     {
+        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            throw $this->createAccessDeniedException();
+        }
 
         $form = $this->createForm(MessageType::class, new Message(),array('method'=>'POST', 'action' => $this->generateUrl('questions_saveMessageForm')));
 
@@ -71,7 +84,10 @@ class QuestionsController extends Controller
         /* To Do save id_owner in $newMessage and $id_member in $newDiscussion */
 
         $newDiscussion = new Discussion();
+        $newDiscussion->setIdMember($this->getUser());
+
         $newMessage = new Message();
+        $newMessage->setIdOwner($this->getUser());
 
         $form = $this->createForm(MessageType::class, $newMessage);
 

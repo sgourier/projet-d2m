@@ -12,7 +12,7 @@
 		        </div>
 		        <div class="col-xs-8">
 		            <div class="nom">
-		                Expert 1
+		                {{discussion.idExpert}}
 		            </div>
 		            <div class="description">
 		                Lorem Ipsum Delor
@@ -25,7 +25,7 @@
 		        </div>
 		        <div class="col-xs-8">
 		            <div class="nom">
-		                Membre
+		                {{discussion.idMember}}
 		            </div>
 		        </div>
 		    </div>
@@ -35,8 +35,8 @@
 		            Question posée par le membre :
 		        </div>
 		        <div class="text">
-		        	<strong>Le {{discussion.messages[0].dateupd|date('d m Y')}}</strong><br>
-		            {{discussion.messages[0].text}}
+		        	<strong>Le {{discussion.question.dateupd|date('d m Y')}}</strong><br>
+		            {{discussion.question.text}}
 		        </div>
 		    </div>
 		    <div class="dialogue expert">
@@ -44,8 +44,8 @@
 		            La réponse de notre expert :
 		        </div>
 		        <div class="text">
-		        	<strong>Le {{discussion.messages[1].dateupd|date('d m Y')}}</strong><br>
-		            {{discussion.messages[1].text}}
+		        	<strong>Le {{discussion.reponse.dateupd|date('d m Y')}}</strong><br>
+		            {{discussion.reponse.text}}
 		        </div>
 		    </div>
 	    {% endfor %}
