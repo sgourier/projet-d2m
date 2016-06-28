@@ -15,3 +15,45 @@ services:
     paypal_interface:
         class: UserBundle\Services\PaypalInterface
         arguments: ["%paypal_client_id%","%paypal_client_secret%","%paypal_mode%","%paypal_taxe_percent%","@router"]
+
+    admin.user:
+            class: VimoliaBundle\Admin\UserAdmin
+            arguments: [~, UserBundle\Entity\User, ~]
+            tags:
+                - { name: sonata.admin, manager_type: orm, label: Utilisateurs }
+
+    admin.cgu:
+            class: VimoliaBundle\Admin\CguAdmin
+            arguments: [~, VimoliaBundle\Entity\Cgu, ~]
+            tags:
+               - { name: sonata.admin, manager_type: orm, label: Cgu }
+
+    admin.partners:
+            class: VimoliaBundle\Admin\PartnersAdmin
+            arguments: [~, VimoliaBundle\Entity\Partners, ~]
+            tags:
+              - { name: sonata.admin, manager_type: orm, label: Partenaires }
+
+    admin.aboutus:
+            class: VimoliaBundle\Admin\AboutUsAdmin
+            arguments: [~, VimoliaBundle\Entity\Aboutus, ~]
+            tags:
+              - { name: sonata.admin, manager_type: orm, label: AboutUs }
+
+    admin.certifications:
+            class: VimoliaBundle\Admin\CertificationsAdmin
+            arguments: [~, VimoliaBundle\Entity\Certification, ~]
+            tags:
+              - { name: sonata.admin, manager_type: orm, label: Certifications }
+
+    admin.video:
+            class: VimoliaBundle\Admin\VideoAdmin
+            arguments: [~, VimoliaBundle\Entity\Video, ~]
+            tags:
+              - { name: sonata.admin, manager_type: orm, label: Vidéos }
+
+    admin.article:
+            class: VimoliaBundle\Admin\ArticleAdmin
+            arguments: [~, VimoliaBundle\Entity\Article, ~]
+            tags:
+              - { name: sonata.admin, manager_type: orm, label: Article }
