@@ -36,4 +36,28 @@
             {{ 'profile.show.subscribeUntil'|trans }} {{ user.getLastSub.endDate|localizeddate('full','none') }}
         </p>
     {% endif %}
+    <div class="container-informations">
+        <div class="left">
+            <div class="container-white last-discussion">
+                <div class="title-part">Votre dernière discussion</div>
+                <div class="item-last-discussion">
+                    <div class="question">
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit ?"
+                    </div>
+                    <div class="membre">
+                        ThiboJ2
+                    </div>
+                    <div class="button">
+                        Voir la discussion
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            <div class="container-white discussion-evol">
+                <div class="title-part">Evolution de vos consultations</div>
+                <img src="{{ asset('img/profile/graphique.jpg') }}" alt="graphique">
+            </div>
+        </div>
+    </div>
 </div>
