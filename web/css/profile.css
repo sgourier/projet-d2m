@@ -1,0 +1,30 @@
+
+.container-profile{
+
+}
+    .container-profile .profile-nav{
+
+    }
+        .container-profile .profile-nav nav{
+            color: black;
+        }
+            .container-profile .profile-nav nav ul{
+                list-style: none;
+                padding:0;
+                margin: 0;
+                overflow: hidden;
+            }
+                .container-profile .profile-nav nav ul li{
+                    float:left;
+                    width:50%;
+                }
+                    .container-profile .profile-nav nav ul li.practicien{
+                        width:33%;
+                        margin-bottom: 20px;
+                    }
+                    .container-profile .profile-nav nav ul li a{
+                        font-size: 14px;
+                        width:95% !important;
+                        max-width: 1000px;
+                        margin-top:0px;border-radius:3px;
+                    }
