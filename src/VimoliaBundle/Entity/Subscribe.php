@@ -31,7 +31,7 @@ class Subscribe
      *
      * @ORM\Column(name="endDate", type="datetime", nullable=false)
      */
-    private $enddate;
+    private $endDate;
 
     /**
      * @var integer
@@ -68,7 +68,7 @@ class Subscribe
      */
     public function __construct( )
     {
-        $this->enddate = new \DateTime();
+        $this->endDate = new \DateTime();
     }
 
     /**
@@ -96,27 +96,27 @@ class Subscribe
     }
 
     /**
-     * Set enddate
+     * Set endDate
      *
-     * @param \DateTime $enddate
+     * @param \DateTime $endDate
      *
      * @return Subscribe
      */
-    public function setEnddate($enddate)
+    public function setEndDate($endDate)
     {
-        $this->enddate = $enddate;
+        $this->endDate = $endDate;
 
         return $this;
     }
 
     /**
-     * Get enddate
+     * Get endDate
      *
      * @return \DateTime
      */
-    public function getEnddate()
+    public function getEndDate()
     {
-        return $this->enddate;
+        return $this->endDate;
     }
 
     /**

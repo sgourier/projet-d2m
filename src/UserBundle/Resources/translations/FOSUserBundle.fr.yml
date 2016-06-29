@@ -21,10 +21,16 @@ profile:
         email: 'Adresse e-mail'
         errorPractValid: 'Vous n''avez pas été validé par l''administration. Si vous êtes inscris depuis plus de 3 jours, meci de contacter l''administration.'
         errorPractValid2: 'Vous pouvez en attendant naviguer sur le site comme un utilisateur normal. Une fois validé, vous serez invité à vous abonner afin de profiter de nombreux avantages.'
+        noSub: 'Vous n''êtes plus abonné, prenez une offre d''abonnement afin de profiter de nos offres'
+        soonNoSub: 'Votre abonnement expire dans moins de 7 jours, pensez à vous ré-abonner afin de continuer à profiter de nos offres'
+        clickHereToSub: 'Cliquez ici pour vous abonner'
+        subscribeUntil: 'Vous êtes abonné jusqu''au '
+        edit: 'Modifier mes informations'
         practMenu:
             promotions: 'Promotions'
             myPage: 'Ma page pro'
             questions: 'Mes questions'
+            subscribe: 'M''abonner'
     edit:
         submit: 'Mettre à jour'
     flash:

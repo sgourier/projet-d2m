@@ -259,28 +259,4 @@ class Video
     {
         return $this->idVideocategory;
     }
-
-    /**
-     * Set youtubeId
-     *
-     * @param string $youtubeId
-     *
-     * @return Video
-     */
-    public function setYoutubeId($youtubeId)
-    {
-        $this->youtubeId = $youtubeId;
-
-        return $this;
-    }
-
-    /**
-     * Get youtubeId
-     *
-     * @return string
-     */
-    public function getYoutubeId()
-    {
-        return $this->youtubeId;
-    }
 }

@@ -2,6 +2,7 @@
 
 namespace UserBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -125,6 +126,12 @@ class User extends BaseUser
     private $practinfos;
 
     /**
+     * @ORM\OneToMany(targetEntity="VimoliaBundle\Entity\Subscribe", mappedBy="idUser")
+     * @ORM\OrderBy({"endDate" = "DESC"})
+     */
+    private $subscribes;
+
+    /**
      * User constructor.
      *
      */
@@ -133,8 +140,8 @@ class User extends BaseUser
         parent::__construct();
         $this->birthdate = new \DateTime();
         $this->practValid = false;
+        $this->subscribes = new ArrayCollection();
     }
-
 
     /**
      * Set name
@@ -470,5 +477,20 @@ class User extends BaseUser
     public function getPractValid()
     {
         return $this->practValid;
+    }
+
+    /**
+     * Get subscribes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSubscribes()
+    {
+        return $this->subscribes;
+    }
+
+    public function getLastSub()
+    {
+        return $this->getSubscribes()->first();
     }
 }

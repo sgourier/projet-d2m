@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use UserBundle\Entity\Practinfos;
 use UserBundle\Form\PractInfosType;
+use UserBundle\Entity\User;
 
 class PractitionerBundle extends Controller
 {
@@ -72,6 +73,16 @@ class PractitionerBundle extends Controller
 
 		return $this->render(':default/practitionner:updatePractProfile.html.twig',array(
 			
+		));
+	}
+
+	/**
+	 * @Route("/proPage/{idPract}", name="user_proPage")
+	 */
+	public function showProPage(User $pract)
+	{
+		return $this->render(":default/practitionner:practProfile.html.twig",array(
+			"pract" => $pract
 		));
 	}
 	

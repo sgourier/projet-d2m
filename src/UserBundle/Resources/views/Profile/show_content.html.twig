@@ -2,19 +2,38 @@
 
 <div class="fos_user_user_show">
     {% if is_granted('ROLE_PRACTITIONER') and user.practValid == false %}
-        <div class="alert alert-danger" role="alert">
-            {{ "profile.show.errorPractValid"|trans }}<br>
-            {{ "profile.show.errorPractValid2"|trans }}
-        </div>
+    <div class="alert alert-danger" role="alert">
+        {{ "profile.show.errorPractValid"|trans }}<br>
+        {{ "profile.show.errorPractValid2"|trans }}
+    </div>
     {% elseif is_granted('ROLE_PRACTITIONER') %}
-        <nav>
-            <ul>
-                <li><a href="#">{{ "profile.show.practMenu.promotions"|trans }}</a></li>
-                <li><a href="#">{{ "profile.show.practMenu.questions"|trans }}</a></li>
-                <li><a href="#">{{ "profile.show.practMenu.myPage"|trans }}</a></li>
-            </ul>
-        </nav>
+        {% if user.getLastSub.endDate < date() %}
+            <div class="alert alert-danger" role="alert">
+                {{ "profile.show.noSub"|trans }}
+            </div>
+        {% elseif user.getLastSub.endDate.diff(date()).days <= 7 %}
+            <div class="alert alert-warning" role="alert">
+                {{ "profile.show.soonNoSub"|trans }}
+            </div>
+        {% endif %}
     {% endif %}
+    <nav>
+        <ul>
+            {% if is_granted('ROLE_PRACTITIONER') %}
+                <li><a href="#">{{ "profile.show.practMenu.promotions"|trans }}</a></li>
+                <li><a href="#">{{ "profile.show.practMenu.myPage"|trans }}</a></li>
+                <li><a href="{{ path('user_chooseSubscribe') }}">{{ "profile.show.practMenu.subscribe"|trans }}</a></li>
+            {% endif %}
+            <li><a href="#">{{ "profile.show.practMenu.questions"|trans }}</a></li>
+            <li><a href="{{ path('fos_user_profile_edit') }}">{{ "profile.show.edit"|trans }}</a></li>
+        </ul>
+    </nav>
     <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
-    <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
+    <p>{{ 'profile.show.email'|trans }}: {{ user.email }}
+
+    {% if is_granted('ROLE_PRACTITIONER') and user.getLastSub.endDate > date() %}
+        <p>
+            {{ 'profile.show.subscribeUntil'|trans }} {{ user.getLastSub.endDate|localizeddate('full','none') }}
+        </p>
+    {% endif %}
 </div>

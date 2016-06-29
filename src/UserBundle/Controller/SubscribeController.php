@@ -34,7 +34,8 @@ class SubscribeController extends Controller
 
 			return $this->render(":default/subscribe:chooseOffer.html.twig",array(
 				"offers" => $offers,
-				"error" => $error
+				"error" => $error,
+				"user" => $this->getUser()
 			));
 		}
 
@@ -102,7 +103,7 @@ class SubscribeController extends Controller
 				$sub->setIdUser($user);
 			}
 			
-			$sub->setEnddate($sub->getEnddate()->add(new \DateInterval('P'.$type->getTime().'M')));
+			$sub->setEndDate($sub->getEndDate()->add(new \DateInterval('P'.$type->getTime().'M')));
 			$sub->setIdCommand($paymentId);
 			$sub->setIdPayer($payerId);
 			$sub->setIdSubscribetype($type);
