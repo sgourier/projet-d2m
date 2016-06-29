@@ -2,6 +2,9 @@
 .container-profile{
 
 }
+    .container-profile .alert{
+        text-align: center;
+    }
     .container-profile .profile-nav{
 
     }
