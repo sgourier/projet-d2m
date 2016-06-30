@@ -24,7 +24,7 @@ profile:
         noSub: 'Vous n''êtes plus abonné, prenez une offre d''abonnement afin de profiter de nos offres'
         soonNoSub: 'Votre abonnement expire dans moins de 7 jours, pensez à vous ré-abonner afin de continuer à profiter de nos offres'
         clickHereToSub: 'Cliquez ici pour vous abonner'
-        subscribeUntil: 'Vous êtes abonné jusqu''au '
+        subscribeUntil: 'Vous êtes abonnés jusqu''au '
         edit: 'Modifier mes informations'
         practMenu:
             promotions: 'Promotions'
@@ -64,7 +64,7 @@ resetting:
     password_already_requested: 'Un nouveau mot de passe a déjà été demandé pour cet utilisateur dans les dernières 24 heures.'
     check_email: 'Un e-mail a été envoyé à l''adresse %email%. Il contient un lien sur lequel il vous faudra cliquer afin de réinitialiser votre mot de passe.'
     request:
-        invalid_username: 'Le nom d''utilisateur ou l''adresse e-mail "%username%" n''existe pas.'
+        invalid_username: 'Le nom d''utilisateur ou l''adresse e-mail "%username%" n''existent pas.'
         username: 'Nom d''utilisateur ou adresse e-mail'
         submit: 'Réinitialiser le mot de passe'
     reset:
@@ -77,7 +77,7 @@ resetting:
 layout:
     logout: 'Déconnexion'
     login: 'Connexion'
-    register: 'nscription'
+    register: 'Inscription'
     logged_in_as: 'Connecté en tant que %username%'
 form:
     group_name: 'Nom du groupe'
@@ -97,5 +97,5 @@ form:
     city: 'Ville*'
     phone: 'Numéro de téléphone'
     cellPhone: 'Numéro de portable'
-    discoveryType: 'Comment nous avez-vous découverts ?'
+    discoveryType: 'Comment avez-vous découvert Vimolia ?'
     avatar: 'Image de profile'
