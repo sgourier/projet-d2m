@@ -81,6 +81,9 @@ input[type=submit],.button,button
         cursor: pointer;
         text-decoration: none;
     }
+    input[type=submit]:hover,.button:hover,button:active{
+        color:white;
+    }
 
 input[type=text],input[type=email],input[type=password],input[type=number],select,textarea{
     padding:5px;

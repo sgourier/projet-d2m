@@ -1,4 +1,10 @@
 
+
+/****************************************************************************************/
+/*                                    DASHBOARD                                         */
+/****************************************************************************************/
+
+
 .container-profile{
 
 }
@@ -49,8 +55,13 @@
             margin-left: 2%;
         }
 
-
-            .container-profile .container-informations .discussion-evol{
+            .container-profile .container-informations .informations-profile{
+                margin-bottom: 15px;
+            }
+                .container-profile .container-informations .informations-profile .button{
+                    max-width: 10000px !important;
+                }
+            .container-profile .container-informations .item-last-discussion{
 
             }
                 .container-profile .container-informations .item-last-discussion{
@@ -77,3 +88,35 @@
                 .container-profile .container-informations .discussion-evol img{
                     width:100%;
                 }
+
+
+/****************************************************************************************/
+/*                          PAGE PUBLIQUE PRACTICIEN                                    */
+/****************************************************************************************/
+.container-white.container-pract-profile{
+    padding:0px;
+    overflow: hidden;
+}
+    .container-white.container-pract-profile .banner{
+        max-height: 200px;
+        overflow: hidden;
+    }
+        .container-white.container-pract-profile .banner img{
+            width:100%;
+        }
+    .container-white.container-pract-profile .pract-type{
+        padding:15px;
+        background-color:#a6366b;
+        width:250px;
+        margin:0px auto -50px;
+        color:white;
+        position: relative;
+        top:-125px;
+    }
+
+
+
+    .container-white.container-pract-profile #map{
+        width: 100%;
+        height: 250px;
+    }

@@ -18,7 +18,6 @@
         {% endif %}
     {% endif %}
     <div class="container-white profile-nav">
-        <p>{{ user.username }} - {{ user.email }}</p>
         <nav>
             <ul>
                 {% if is_granted('ROLE_PRACTITIONER') %}
@@ -38,6 +37,13 @@
     {% endif %}
     <div class="container-informations">
         <div class="left">
+            <div class="container-white informations-profile">
+                <div class="title-part">Vos informations</div>
+                <p>{{ user.username }} - {{ user.email }}</p>
+                <a target="_blank" href="{{ path('user_proPage',{"id":user.id}) }}" class="button">
+                    Votre page publique
+                </a>
+            </div>
             <div class="container-white last-discussion">
                 <div class="title-part">Votre dernière discussion</div>
                 <div class="item-last-discussion">
