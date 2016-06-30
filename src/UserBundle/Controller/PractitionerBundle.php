@@ -77,12 +77,15 @@ class PractitionerBundle extends Controller
 	}
 
 	/**
-	 * @Route("/proPage/{idPract}", name="user_proPage")
+	 * @Route("/proPage/{id}", name="user_proPage")
+	 * @param User $pract praticien
+	 *
+	 * @return Response
 	 */
 	public function showProPage(User $pract)
 	{
 		return $this->render(":default/practitionner:practProfile.html.twig",array(
-			"pract" => $pract
+			"user" => $pract
 		));
 	}
 	

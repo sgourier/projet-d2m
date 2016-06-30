@@ -98,3 +98,4 @@ form:
     phone: 'Numéro de téléphone'
     cellPhone: 'Numéro de portable'
     discoveryType: 'Comment nous avez-vous découverts ?'
+    avatar: 'Image de profile'

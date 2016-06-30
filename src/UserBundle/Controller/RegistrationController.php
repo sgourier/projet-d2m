@@ -74,7 +74,7 @@ class RegistrationController extends Controller
 
             if($user->hasRole('ROLE_PRACTITIONER'))
             {
-                return new RedirectResponse($this->generateUrl('user_newPractForm'));
+                return new RedirectResponse($this->generateUrl('user_updatePractForm'));
             }
             return $response;
         }

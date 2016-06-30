@@ -2,12 +2,14 @@
 
 namespace UserBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use VimoliaBundle\Entity\Practdomains;
 
 /**
  * Practinfos
  *
- * @ORM\Table(name="practinfos", indexes={@ORM\Index(name="fk_PractInfos_PractDomains1_idx", columns={"id_practDomains"})})
+ * @ORM\Table(name="practinfos")
  * @ORM\Entity
  */
 class Practinfos
@@ -92,15 +94,22 @@ class Practinfos
     private $id;
 
     /**
-     * @var \VimoliaBundle\Entity\Practdomains
-     *
-     * @ORM\ManyToOne(targetEntity="VimoliaBundle\Entity\Practdomains")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_practDomains", referencedColumnName="id")
-     * })
+     * @ORM\ManyToMany(targetEntity="VimoliaBundle\Entity\Practdomains")
+     * @ORM\JoinTable(
+     *     name="practDomains_practInfos",
+     *     joinColumns={@ORM\JoinColumn(name="practDomainsId", referencedColumnName="id", onDelete="CASCADE")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="practInfosId", referencedColumnName="id", onDelete="CASCADE")}
+     * )
      */
-    private $idPractdomains;
+    private $practDomains;
 
+    /**
+     * Practinfos constructor.
+     */
+    public function __construct()
+    {
+        $this->practDomains = new ArrayCollection();
+    }
 
 
     /**
@@ -353,27 +362,20 @@ class Practinfos
         return $this->id;
     }
 
-    /**
-     * Set idPractdomains
-     *
-     * @param \VimoliaBundle\Entity\Practdomains $idPractdomains
-     *
-     * @return Practinfos
-     */
-    public function setIdPractdomains(\VimoliaBundle\Entity\Practdomains $idPractdomains = null)
+    public function addPractDomains(Practdomains $domain)
     {
-        $this->idPractdomains = $idPractdomains;
+        $this->practDomains[] = $domain;
 
         return $this;
     }
 
-    /**
-     * Get idPractdomains
-     *
-     * @return \VimoliaBundle\Entity\Practdomains
-     */
-    public function getIdPractdomains()
+    public function removePractDomains(Practdomains $domain)
     {
-        return $this->idPractdomains;
+        $this->practDomains->removeElement($domain);
+    }
+
+    public function getPractDomains()
+    {
+        return $this->practDomains;
     }
 }

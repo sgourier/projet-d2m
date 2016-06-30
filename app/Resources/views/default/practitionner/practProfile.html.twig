@@ -1,0 +1,5 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <p>{{ user.name }} {{ user.firstname }}</p>
+    <p>SIRET : {{ user.practInfos.siret }}</p>
+{% endblock %}
