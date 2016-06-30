@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  * User
  *
  * @ORM\Table(name="user", indexes={@ORM\Index(name="fk_User_PractInfos1_idx", columns={"PractInfos_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="UserBundle\Entity\UserRepository")
  * @ORM\HasLifecycleCallbacks
  */
 class User extends BaseUser
@@ -582,5 +582,29 @@ class User extends BaseUser
 
             rmdir($this->getUploadRootDir());
         }
+    }
+
+    /**
+     * Add subscribe
+     *
+     * @param \VimoliaBundle\Entity\Subscribe $subscribe
+     *
+     * @return User
+     */
+    public function addSubscribe(\VimoliaBundle\Entity\Subscribe $subscribe)
+    {
+        $this->subscribes[] = $subscribe;
+
+        return $this;
+    }
+
+    /**
+     * Remove subscribe
+     *
+     * @param \VimoliaBundle\Entity\Subscribe $subscribe
+     */
+    public function removeSubscribe(\VimoliaBundle\Entity\Subscribe $subscribe)
+    {
+        $this->subscribes->removeElement($subscribe);
     }
 }

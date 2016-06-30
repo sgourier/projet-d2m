@@ -8,15 +8,17 @@
 
 namespace UserBundle\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use UserBundle\Entity\Practinfos;
 use UserBundle\Form\PractInfosType;
 use UserBundle\Entity\User;
+use VimoliaBundle\Entity\Practdomains;
 
-class PractitionerBundle extends Controller
+class PractitionerController extends Controller
 {
 	/**
 	 * @Route("/practForm", name="user_updatePractForm")
@@ -78,14 +80,40 @@ class PractitionerBundle extends Controller
 
 	/**
 	 * @Route("/proPage/{id}", name="user_proPage")
-	 * @param User $pract praticien
+	 * requirements={
+	 *         "id": "\d+"
+	 *     }
 	 *
+	 * @param User $pract praticien
 	 * @return Response
 	 */
-	public function showProPage(User $pract)
+	public function showProPage(User $pract = null)
 	{
+		if($pract === null)
+		{
+			return $this->redirectToRoute('fos_user_profile_show');
+		}
 		return $this->render(":default/practitionner:practProfile.html.twig",array(
 			"user" => $pract
+		));
+	}
+
+	/**
+	 * @Route("/proList/{id_domain}", name="user_practList", defaults={"id_domain" = -1})
+	 * @ParamConverter("domain", class="VimoliaBundle:Practdomains", options={"id" = "id_domain"})
+	 *
+	 * @param Practdomains $domain domaine d'expertise sur lequel filtrer
+	 * 
+	 * @return Response
+	 */
+	public function proListAction(Practdomains $domain = null)
+	{
+		$practs = $this->getDoctrine()->getRepository("UserBundle:User")->findPracts($domain);
+
+		return $this->render(":default/practitionner:displayPractitionners.html.twig",array(
+			"domains" => $this->getDoctrine()->getRepository("VimoliaBundle:Practdomains")->findAll(),
+			"practs" => $practs,
+			"sDomain" => $domain
 		));
 	}
 	
