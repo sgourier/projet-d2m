@@ -1,6 +1,6 @@
 {% extends "base.html.twig" %}
 {% block body %}
-    <div class="container-white">
+    <div class="container-white container-practicionners">
         <img class="icone" src="{{ asset('img/practitionners/icone.png') }}" alt="">
         <div class="title">
             Tous nos praticiens
@@ -8,8 +8,9 @@
         <div id="menuFilterPract">
             <form id="formFilterPract" method="post" action="{{ path('user_practList') }}">
                 <label for="selectDomain">{{ "practList.selectDomain"|trans }}</label>
+                <br/>
                 <select id="selectDomain" name="domain">
-                    <option value="-1" selected="selected">{{ "practList.defaultSelectDomain"|trans }}</option>
+                    <option value="-1" selected="selected">{{ "practList.defaultSelectDomain"|trans }}...</option>
                     {% for domain in domains %}
                         <option value="{{ domain.id }}" {% if sDomain is not null and sDomain.id == domain.id%}selected="selected"{% endif %}>{{ domain.name }}</option>
                     {% endfor %}
