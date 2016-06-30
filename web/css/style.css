@@ -90,6 +90,9 @@ input[type=text],input[type=email],input[type=password],input[type=number],selec
     box-shadow: inset 0 0 3px silver;
     background-color:rgba(0,0,0,0.02);
 }
+input[type=file]{
+    display: inline-block;
+}
 
 
 

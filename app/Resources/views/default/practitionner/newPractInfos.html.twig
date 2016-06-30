@@ -1,9 +1,11 @@
 {% extends "base.html.twig" %}
 {% block body %}
 <div class="container-white container-formulaire">
-    <h2>{{ "practInfos.new.title"|trans }}</h2>
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
+    <div class="title">{{ "practInfos.new.title"|trans }}</div>
+    <div class="container-formulaire">
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+    </div>
     <input type="submit" value="{{ 'practInfos.toSubscribe'|trans }}" />
     {{ form_end(form) }}
 </div>

@@ -36,17 +36,6 @@ class ProfileFormType extends AbstractType
                         'class' => 'datepicker'
                     )
                 ))
-                ->add('avatarPath','Symfony\Component\Form\Extension\Core\Type\FileType',array(
-                    'label' => 'form.avatar',
-                    'translation_domain' => 'FOSUserBundle',
-                    'required' => false,
-                    'mapped' => false
-                ))
-                ->add('keepImg','Symfony\Component\Form\Extension\Core\Type\HiddenType',array(
-                    'required' => true,
-                    'empty_data' => 1,
-                    'mapped' => false
-                ))
                 ->add('address','Symfony\Component\Form\Extension\Core\Type\TextType',array(
                     'label' => 'form.address',
                     'translation_domain' => 'FOSUserBundle',
@@ -76,6 +65,17 @@ class ProfileFormType extends AbstractType
                     'label' => 'form.cellPhone',
                     'translation_domain' => 'FOSUserBundle',
                     'required' => false
+                ))
+                ->add('avatarPath','Symfony\Component\Form\Extension\Core\Type\FileType',array(
+                    'label' => 'form.avatar',
+                    'translation_domain' => 'FOSUserBundle',
+                    'required' => false,
+                    'mapped' => false
+                ))
+                ->add('keepImg','Symfony\Component\Form\Extension\Core\Type\HiddenType',array(
+                    'required' => true,
+                    'empty_data' => 1,
+                    'mapped' => false
                 ));
     }
 

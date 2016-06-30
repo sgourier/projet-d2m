@@ -104,6 +104,18 @@
         }
 
 
+        .container-formulaire #fos_user_profile_form_birthdate{
+            display: inline-block;
+        }
+        .container-formulaire #fos_user_profile_form_birthdate select{
+            margin-left: 20px;
+            width:22%;
+        }
+        .container-formulaire #fos_user_profile_form_birthdate select:first-child{
+            margin-left: 0px;
+        }
+
+
 
 
 
