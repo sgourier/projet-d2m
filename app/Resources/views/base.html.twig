@@ -15,8 +15,6 @@
             <link rel="stylesheet" type="text/css" href="{{ asset('css/profile.css') }}">
             <link rel="stylesheet" type="text/css" href="{{ asset('css/lib/component.css') }}">
         {% endblock %}
-        <script src="{{ asset('js/jquery-2.2.4.min.js') }}"></script>
-        <script src="{{ asset('js/jquery-ui/jquery-ui.js') }}"></script>
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
@@ -91,10 +89,8 @@
             {% endblock %}
         </div>
         {% block javascripts %}
-            <script src="{{ asset('js/input_file/custom-file-input.js') }}"></script>
-            <script src="{{ asset('js/input_file/jquery.custom-file-input.js') }}"></script>
-            <script src="{{ asset('js/homepage/video-youtube.js') }}"></script>
-            <script src="{{ asset('js/nav/sous-menu-webtv.js') }}"></script>
+            <script src="{{ asset('js/jquery-2.2.4.min.js') }}"></script>
+            <script src="{{ asset('js/jquery-ui/jquery-ui.js') }}"></script>
         {% endblock %}
     </body>
 </html>
