@@ -69,8 +69,7 @@ class ProfileFormType extends AbstractType
                 ->add('avatarPath','Symfony\Component\Form\Extension\Core\Type\FileType',array(
                     'label' => 'form.avatar',
                     'translation_domain' => 'FOSUserBundle',
-                    'required' => false,
-                    'mapped' => false
+                    'required' => false
                 ))
                 ->add('keepImg','Symfony\Component\Form\Extension\Core\Type\HiddenType',array(
                     'required' => true,

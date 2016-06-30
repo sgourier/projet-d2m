@@ -6,14 +6,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * User
  *
  * @ORM\Table(name="user", indexes={@ORM\Index(name="fk_User_PractInfos1_idx", columns={"PractInfos_id"})})
  * @ORM\Entity(repositoryClass="UserBundle\Entity\UserRepository")
- * @ORM\HasLifecycleCallbacks
  */
 class User extends BaseUser
 {
@@ -100,6 +98,7 @@ class User extends BaseUser
      * @var string
      *
      * @ORM\Column(name="avatarPath", type="string", length=500, nullable=true)
+     * @Assert\File(mimeTypes={ "image/jpeg","image/jpeg", "image/png" })
      */
     private $avatarPath;
 
@@ -494,94 +493,6 @@ class User extends BaseUser
     public function getLastSub()
     {
         return $this->getSubscribes()->first();
-    }
-
-    public function getFullImagePath()
-    {
-        return null === $this->avatarPath ? null : $this->getUploadRootDir() . $this->avatarPath;
-    }
-
-    public function getWebPath()
-    {
-        return null === $this->avatarPath ? null : $this->getUploadDir().'/'.$this->avatarPath;
-    }
-
-    protected function getUploadDir()
-    {
-        return 'uploads/users/'.$this->getId();
-    }
-
-    protected function getUploadRootDir() {
-        // the absolute directory path where uploaded documents should be saved
-        return $this->getTmpUploadRootDir().$this->getId()."/";
-    }
-
-    protected function getTmpUploadRootDir() {
-        // the absolute directory path where uploaded documents should be saved
-        return realpath('./') . '/uploads/users/';
-    }
-
-    /**
-     * @ORM\PrePersist()
-     * @ORM\PreUpdate()
-     */
-    public function uploadImage() {
-        // the file property can be empty if the field is not required
-        $img = $this->avatarPath;
-
-        if ( null !== $img && $img instanceof UploadedFile && file_exists( $img->getPathname() ) && $img->getPath() != $this->getUploadRootDir())
-        {
-            if ( ! $this->id )
-            {
-                $img->move( $this->getTmpUploadRootDir(), $img->getFilename() . "." . $img->getClientOriginalExtension() );
-            }
-            else
-            {
-                if ( ! is_dir( $this->getUploadRootDir() ) )
-                {
-                    mkdir( $this->getUploadRootDir() );
-                }
-                $img->move( $this->getUploadRootDir(), $img->getFilename() . "." . $img->getClientOriginalExtension() );
-            }
-            $this->setAvatarPath( $img->getFilename() . "." . $img->getClientOriginalExtension() );
-        }
-
-    }
-
-    /**
-     * @ORM\PostPersist()
-     * @ORM\PostUpdate()
-     */
-    public function moveImage()
-    {
-        if ( null !== $this->avatarPath && file_exists( $this->getTmpUploadRootDir() . $this->avatarPath))
-        {
-            if ( ! is_dir( $this->getUploadRootDir() ) )
-            {
-                mkdir( $this->getUploadRootDir() );
-            }
-
-            copy( $this->getTmpUploadRootDir() . $this->avatarPath, $this->getFullImagePath() );
-            unlink( $this->getTmpUploadRootDir() . $this->avatarPath );
-        }
-    }
-
-    /**
-     * @ORM\PreRemove()
-     */
-    public function removeImage()
-    {
-        if(file_exists($this->getFullImagePath()))
-            unlink($this->getFullImagePath());
-        if(is_dir($this->getUploadRootDir()))
-        {
-            foreach (scandir($this->getUploadRootDir()) as $item) {
-                if($item != '.' && $item != '..')
-                    unlink($this->getUploadRootDir().$item);
-            }
-
-            rmdir($this->getUploadRootDir());
-        }
     }
 
     /**

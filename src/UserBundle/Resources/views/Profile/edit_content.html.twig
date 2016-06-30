@@ -4,7 +4,26 @@
             Vos informations
         </div>
         {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
-        {{ form_widget(form) }}
+        {{ form_row(form.username) }}
+        {{ form_row(form.email) }}
+        {{ form_row(form.current_password) }}
+        {{ form_row(form.name) }}
+        {{ form_row(form.firstname) }}
+        {{ form_row(form.birthdate) }}
+        {{ form_row(form.address) }}
+        {{ form_row(form.addressPlus) }}
+        {{ form_row(form.zipCode) }}
+        {{ form_row(form.city) }}
+        {{ form_row(form.phone) }}
+        {{ form_row(form.cellPhone) }}
+        {{ form_row(form.avatarPath) }}
+        {% if avatar != "" %}
+            <div id="profilePictContainer" class="avatarProfile">
+                <img id="avatar" src="{{ asset('uploads/users/'~user.id~'/'~avatar) }}">
+                <span title="supprimer l'image" id="deleteImgProfile">X</span>
+            </div>
+        {% endif %}
+        {{ form_rest(form) }}
         <div>
             <input type="submit" value="Enregistrer" />
         </div>
