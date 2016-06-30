@@ -99,7 +99,8 @@ input[type=text],input[type=email],input[type=password],input[type=number],selec
 /****************************************************************************************/
 
 
-#fos_user_registration_form div{
+
+.container-formulaire div {
     margin-bottom: 15px;
 }
 .container-formulaire label{
