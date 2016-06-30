@@ -62,7 +62,15 @@ class PractInfosType extends AbstractType
                 'expanded' => true,
                 'choice_label' => 'name'
             ))
-        ;
+            ->add('imgPro','Symfony\Component\Form\Extension\Core\Type\FileType',array(
+                'label' => 'practInfos.proImg',
+                'required' => false
+            ))
+            ->add('keepImg','Symfony\Component\Form\Extension\Core\Type\HiddenType',array(
+                'required' => true,
+                'empty_data' => 1,
+                'mapped' => false
+            ));
     }
     
     /**

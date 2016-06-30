@@ -3,6 +3,7 @@
 namespace UserBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use VimoliaBundle\Entity\Practdomains;
 
@@ -83,6 +84,13 @@ class Practinfos
      * @ORM\Column(name="degrees", type="text", length=65535, nullable=true)
      */
     private $degrees;
+
+    /**
+     * @ORM\Column(name="imgPro", type="string", length=500, nullable=true)
+     * @Assert\File(mimeTypes={ "image/jpeg","image/jpeg", "image/png" })
+     * @Assert\Image(minWidth = 1000)
+     */
+    private $imgPro;
 
     /**
      * @var integer
@@ -377,5 +385,53 @@ class Practinfos
     public function getPractDomains()
     {
         return $this->practDomains;
+    }
+
+    /**
+     * Set imgPro
+     *
+     * @param string $imgPro
+     *
+     * @return Practinfos
+     */
+    public function setImgPro($imgPro)
+    {
+        $this->imgPro = $imgPro;
+
+        return $this;
+    }
+
+    /**
+     * Get imgPro
+     *
+     * @return string
+     */
+    public function getImgPro()
+    {
+        return $this->imgPro;
+    }
+
+    /**
+     * Add practDomain
+     *
+     * @param Practdomains $practDomain
+     *
+     * @return Practinfos
+     */
+    public function addPractDomain(Practdomains $practDomain)
+    {
+        $this->practDomains[] = $practDomain;
+
+        return $this;
+    }
+
+    /**
+     * Remove practDomain
+     *
+     * @param Practdomains $practDomain
+     */
+    public function removePractDomain(Practdomains $practDomain)
+    {
+        $this->practDomains->removeElement($practDomain);
     }
 }
