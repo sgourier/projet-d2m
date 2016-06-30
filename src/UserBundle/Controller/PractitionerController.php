@@ -17,6 +17,8 @@ use UserBundle\Entity\Practinfos;
 use UserBundle\Form\PractInfosType;
 use UserBundle\Entity\User;
 use VimoliaBundle\Entity\Practdomains;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class PractitionerController extends Controller
 {
@@ -30,6 +32,15 @@ class PractitionerController extends Controller
 		$this->checkPractAuth();
 		
 		$practInfos = $this->getUser()->getPractinfos();
+		$oldImg = $practInfos->getImgPro();
+
+		$filePath = $this->getParameter('user_directory').'/'.$this->getUser()->getId().'/'.$practInfos->getImgPro();
+		if(is_string($practInfos->getImgPro()) && $practInfos->getImgPro() != "" && file_exists($filePath))
+		{
+			$practInfos->setImgPro(
+				new File($filePath)
+			);
+		}
 		
 		if($practInfos == null)
 		{
@@ -44,7 +55,9 @@ class PractitionerController extends Controller
 		$form = $this->createForm(PractInfosType::class,$practInfos,array('method'=>'POST', 'action' => $this->generateUrl('user_savePractForm')));
 
 		return $this->render(':default/practitionner:updatePractProfile.html.twig',array(
-			'form' => $form->createView()
+			'form' => $form->createView(),
+			'user' => $this->getUser(),
+			'proImg' => $oldImg
 		));
 	}
 
@@ -60,6 +73,15 @@ class PractitionerController extends Controller
 		$this->checkPractAuth();
 		
 		$practInfos = $this->getUser()->getPractinfos();
+		$oldFile = $practInfos->getImgPro();
+
+		$filePath = $this->getParameter('user_directory').'/'.$this->getUser()->getId().'/'.$practInfos->getImgPro();
+		if(is_string($practInfos->getImgPro()) && $practInfos->getImgPro() != "" && file_exists($filePath))
+		{
+			$practInfos->setImgPro(
+				new File($filePath)
+			);
+		}
 
 		$form = $this->createForm(PractInfosType::class,$practInfos);
 
@@ -67,6 +89,33 @@ class PractitionerController extends Controller
 
 		if ($form->isSubmitted() && $form->isValid())
 		{
+			if($practInfos->getImgPro() !== null)
+			{
+				/** @var UploadedFile $file */
+				$file = $practInfos->getImgPro();
+
+				$fileName = md5(uniqid()).'.'.$file->guessExtension();
+
+				$file->move(
+					$this->getParameter('user_directory').'/'.$this->getUser()->getId(),
+					$fileName
+				);
+			}
+			else if($form['keepImg']->getData() == 1)
+			{
+				$fileName = $oldFile;
+			}
+			else
+			{
+				if($oldFile != null && $oldFile != "")
+				{
+					unlink($filePath);
+				}
+				$fileName = "";
+			}
+
+			$practInfos->setImgPro($fileName);
+
 			$this->getDoctrine()->getManager()->persist($practInfos);
 			$this->getDoctrine()->getManager()->flush();
 
@@ -74,7 +123,9 @@ class PractitionerController extends Controller
 		}
 
 		return $this->render(':default/practitionner:updatePractProfile.html.twig',array(
-			
+			'form' => $form->createView(),
+			'user' => $this->getUser(),
+			'proImg' => $oldFile
 		));
 	}
 

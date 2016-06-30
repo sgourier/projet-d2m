@@ -6,6 +6,12 @@
         <div class="container-formulaire">
             {{ form_start(form) }}
             {{ form_widget(form) }}
+            {% if proImg != "" %}
+                <div id="proImgContainer" class="avatarProfile">
+                    <img id="proImg" src="{{ asset('uploads/users/'~user.id~'/'~proImg) }}">
+                    <span title="supprimer l'image" id="deleteProImg">X</span>
+                </div>
+            {% endif %}
         </div>
         <div>
             <input type="submit" value="Enregistrer" />
@@ -14,3 +20,17 @@
     </div>
 
 {% endblock body %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $(document).ready(function ()
+        {
+            $('#deleteProImg').on('click',function ()
+            {
+                $('#pract_infos_keepImg').val(0);
+                $('#proImgContainer').remove();
+            });
+        })
+    </script>
+{% endblock %}

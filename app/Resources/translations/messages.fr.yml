@@ -14,6 +14,7 @@ practInfos:
     description: 'Description de vos méthodes, de votre approche de la médecine'
     degrees: 'Liste de vos diplômes, formations'
     practDomains: 'Le (ou les) domaine(s) que vous pratiquez'
+    proImg: 'Bandeau de votre page pro (1000px de large minimum)'
 subscribe:
     choose:
         title: 'Choisissez une option d''abonnement'

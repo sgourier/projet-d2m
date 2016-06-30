@@ -69,7 +69,7 @@ class ProfileController extends Controller
         /** @var $formFactory \FOS\UserBundle\Form\Factory\FactoryInterface */
         $formFactory = $this->get('fos_user.profile.form.factory');
 
-        $filePath = $this->getParameter('avatar_directory').'/'.$user->getId().'/'.$user->getAvatarPath();
+        $filePath = $this->getParameter('user_directory').'/'.$user->getId().'/'.$user->getAvatarPath();
         if(is_string($user->getAvatarPath()) && $user->getAvatarPath() != "" && file_exists($filePath))
         {
             $user->setAvatarPath(
@@ -95,7 +95,7 @@ class ProfileController extends Controller
                 $fileName = md5(uniqid()).'.'.$file->guessExtension();
 
                 $file->move(
-                    $this->getParameter('avatar_directory').'/'.$user->getId(),
+                    $this->getParameter('user_directory').'/'.$user->getId(),
                     $fileName
                 );
             }
