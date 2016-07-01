@@ -58,6 +58,11 @@
             .container-profile .container-informations .informations-profile{
                 margin-bottom: 15px;
             }
+                .container-profile .container-informations .informations-profile img{
+                    border-radius: 360px;
+                    height:70px;
+                    margin: 10px auto 10px;
+                }
                 .container-profile .container-informations .informations-profile .button{
                     max-width: 10000px !important;
                 }
