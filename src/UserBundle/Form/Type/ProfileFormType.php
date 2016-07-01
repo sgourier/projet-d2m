@@ -9,77 +9,82 @@
  * file that was distributed with this source code.
  */
 
-namespace FOS\UserBundle\Form\Type;
+namespace UserBundle\Form\Type;
 
-use FOS\UserBundle\Util\LegacyFormHelper;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Component\Security\Core\Validator\Constraints\UserPassword;
 
 class ProfileFormType extends AbstractType
 {
-    private $class;
-
-    /**
-     * @param string $class The User class name
-     */
-    public function __construct($class)
-    {
-        $this->class = $class;
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $this->buildUserForm($builder, $options);
-
-        $builder->add('current_password', LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\PasswordType'), array(
-            'label' => 'form.current_password',
+        $builder->add('name','Symfony\Component\Form\Extension\Core\Type\TextType',array(
+            'label' => 'form.name',
             'translation_domain' => 'FOSUserBundle',
-            'mapped' => false,
-            'constraints' => new UserPassword(),
-        ));
+            'required' => true
+        ))
+                ->add('firstname','Symfony\Component\Form\Extension\Core\Type\TextType',array(
+                    'label' => 'form.firstname',
+                    'translation_domain' => 'FOSUserBundle',
+                    'required' => true
+                ))
+                ->add('birthdate','Symfony\Component\Form\Extension\Core\Type\BirthdayType',array(
+                    'label' => 'form.birthdate',
+                    'translation_domain' => 'FOSUserBundle',
+                    'required' => true,
+                    'attr' => array(
+                        'class' => 'datepicker'
+                    )
+                ))
+                ->add('address','Symfony\Component\Form\Extension\Core\Type\TextType',array(
+                    'label' => 'form.address',
+                    'translation_domain' => 'FOSUserBundle',
+                    'required' => true
+                ))
+                ->add('addressPlus','Symfony\Component\Form\Extension\Core\Type\TextType',array(
+                    'label' => 'form.addressPlus',
+                    'translation_domain' => 'FOSUserBundle',
+                    'required' => false
+                ))
+                ->add('zipCode','Symfony\Component\Form\Extension\Core\Type\IntegerType',array(
+                    'label' => 'form.zipCode',
+                    'translation_domain' => 'FOSUserBundle',
+                    'required' => true
+                ))
+                ->add('city','Symfony\Component\Form\Extension\Core\Type\TextType',array(
+                    'label' => 'form.city',
+                    'translation_domain' => 'FOSUserBundle',
+                    'required' => true
+                ))
+                ->add('phone','Symfony\Component\Form\Extension\Core\Type\TextType',array(
+                    'label' => 'form.phone',
+                    'translation_domain' => 'FOSUserBundle',
+                    'required' => false
+                ))
+                ->add('cellPhone','Symfony\Component\Form\Extension\Core\Type\TextType',array(
+                    'label' => 'form.cellPhone',
+                    'translation_domain' => 'FOSUserBundle',
+                    'required' => false
+                ))
+                ->add('avatarPath','Symfony\Component\Form\Extension\Core\Type\FileType',array(
+                    'label' => 'form.avatar',
+                    'translation_domain' => 'FOSUserBundle',
+                    'required' => false
+                ))
+                ->add('keepImg','Symfony\Component\Form\Extension\Core\Type\HiddenType',array(
+                    'required' => true,
+                    'empty_data' => 1,
+                    'mapped' => false
+                ));
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function getParent()
     {
-        $resolver->setDefaults(array(
-            'data_class' => $this->class,
-            'csrf_token_id' => 'profile',
-            // BC for SF < 2.8
-            'intention'  => 'profile',
-        ));
-    }
-
-    // BC for SF < 2.7
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $this->configureOptions($resolver);
-    }
-
-    // BC for SF < 3.0
-    public function getName()
-    {
-        return $this->getBlockPrefix();
+        return 'FOS\UserBundle\Form\Type\ProfileFormType';
     }
 
     public function getBlockPrefix()
     {
-        return 'fos_user_profile';
-    }
-
-    /**
-     * Builds the embedded form representing the user.
-     *
-     * @param FormBuilderInterface $builder
-     * @param array                $options
-     */
-    protected function buildUserForm(FormBuilderInterface $builder, array $options)
-    {
-        $builder
-            ->add('username', null, array('label' => 'form.username', 'translation_domain' => 'FOSUserBundle'))
-            ->add('email', LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\EmailType'), array('label' => 'form.email', 'translation_domain' => 'FOSUserBundle'))
-        ;
+        return 'app_user_profile';
     }
 }

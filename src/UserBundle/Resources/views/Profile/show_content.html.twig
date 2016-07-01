@@ -1,20 +1,69 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-<div class="fos_user_user_show">
+<div class="fos_user_user_show container-profile">
     {% if is_granted('ROLE_PRACTITIONER') and user.practValid == false %}
-        <div class="alert alert-danger" role="alert">
-            {{ "profile.show.errorPractValid"|trans }}<br>
-            {{ "profile.show.errorPractValid2"|trans }}
-        </div>
+    <div class="alert alert-danger" role="alert">
+        {{ "profile.show.errorPractValid"|trans }}<br>
+        {{ "profile.show.errorPractValid2"|trans }}
+    </div>
     {% elseif is_granted('ROLE_PRACTITIONER') %}
+        {% if user.getLastSub == false or user.getLastSub.endDate < date() %}
+            <div class="alert alert-danger" role="alert">
+                {{ "profile.show.noSub"|trans }}
+            </div>
+        {% elseif user.getLastSub != false and user.getLastSub.endDate.diff(date()).days <= 7 %}
+            <div class="alert alert-warning" role="alert">
+                {{ "profile.show.soonNoSub"|trans }}
+            </div>
+        {% endif %}
+    {% endif %}
+    <div class="container-white profile-nav">
         <nav>
             <ul>
-                <li><a href="#">{{ "profile.show.practMenu.promotions"|trans }}</a></li>
-                <li><a href="#">{{ "profile.show.practMenu.questions"|trans }}</a></li>
-                <li><a href="#">{{ "profile.show.practMenu.myPage"|trans }}</a></li>
+                {% if is_granted('ROLE_PRACTITIONER') %}
+                    <li class="practicien"><a href="#" class="button">{{ "profile.show.practMenu.promotions"|trans }}</a></li>
+                    <li class="practicien"><a href="#" class="button">{{ "profile.show.practMenu.myPage"|trans }}</a></li>
+                    <li class="practicien"><a href="{{ path('user_chooseSubscribe') }}" class="button">{{ "profile.show.practMenu.subscribe"|trans }}</a></li>
+                {% endif %}
+                <li><a href="#" class="button">{{ "profile.show.practMenu.questions"|trans }}</a></li>
+                <li><a href="{{ path('fos_user_profile_edit') }}" class="button">{{ "profile.show.edit"|trans }}</a></li>
             </ul>
         </nav>
+    </div>
+    {% if is_granted('ROLE_PRACTITIONER') and user.getLastSub != false and user.getLastSub.endDate > date() %}
+        <p>
+            {{ 'profile.show.subscribeUntil'|trans }} {{ user.getLastSub.endDate|localizeddate('full','none') }}
+        </p>
     {% endif %}
-    <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
-    <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
+    <div class="container-informations">
+        <div class="left">
+            <div class="container-white informations-profile">
+                <div class="title-part">Vos informations</div>
+                <p>{{ user.username }} - {{ user.email }}</p>
+                <a target="_blank" href="{{ path('user_proPage',{"id":user.id}) }}" class="button">
+                    Votre page publique
+                </a>
+            </div>
+            <div class="container-white last-discussion">
+                <div class="title-part">Votre dernière discussion</div>
+                <div class="item-last-discussion">
+                    <div class="question">
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit ?"
+                    </div>
+                    <div class="membre">
+                        ThiboJ2
+                    </div>
+                    <div class="button">
+                        Voir la discussion
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            <div class="container-white discussion-evol">
+                <div class="title-part">Evolution de vos consultations</div>
+                <img src="{{ asset('img/profile/graphique.jpg') }}" alt="graphique">
+            </div>
+        </div>
+    </div>
 </div>

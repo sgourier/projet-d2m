@@ -12,6 +12,9 @@
             <link rel="stylesheet" type="text/css" href="{{ asset('css/contactus.css') }}">
             <link rel="stylesheet" type="text/css" href="{{ asset('css/registration.css') }}">
             <link rel="stylesheet" type="text/css" href="{{ asset('css/questions.css') }}">
+            <link rel="stylesheet" type="text/css" href="{{ asset('css/profile.css') }}">
+            <link rel="stylesheet" type="text/css" href="{{ asset('css/practicionners.css') }}">
+            <link rel="stylesheet" type="text/css" href="{{ asset('css/lib/component.css') }}">
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
@@ -25,7 +28,7 @@
             <ul class="nav">
                 <li id="thumb-webtv"><a> Web TV</a></li>
                 <li><a href="{{ path("questions") }}"> Questions  </a></li>
-                <li><a href="{{ path("practiciens") }}"> Praticiens </a> </li>
+                <li><a href="{{ path("user_practList") }}"> Praticiens </a> </li>
                 <li><a href="{{ path("contactus") }}"> Contactez-nous </a></li>
                 <li><a href="{{ path("informations") }}"> Informations </a></li>
             </ul>
@@ -89,8 +92,6 @@
         {% block javascripts %}
             <script src="{{ asset('js/jquery-2.2.4.min.js') }}"></script>
             <script src="{{ asset('js/jquery-ui/jquery-ui.js') }}"></script>
-            <script src="{{ asset('js/homepage/video-youtube.js') }}"></script>
-            <script src="{{ asset('js/nav/sous-menu-webtv.js') }}"></script>
         {% endblock %}
     </body>
 </html>

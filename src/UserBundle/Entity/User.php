@@ -2,6 +2,7 @@
 
 namespace UserBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -10,7 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * User
  *
  * @ORM\Table(name="user", indexes={@ORM\Index(name="fk_User_PractInfos1_idx", columns={"PractInfos_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="UserBundle\Entity\UserRepository")
  */
 class User extends BaseUser
 {
@@ -97,8 +98,9 @@ class User extends BaseUser
      * @var string
      *
      * @ORM\Column(name="avatarPath", type="string", length=500, nullable=true)
+     * @Assert\File(mimeTypes={ "image/jpeg","image/jpeg", "image/png" })
      */
-    private $avatarpath;
+    private $avatarPath;
 
     /**
      * @var boolean
@@ -125,6 +127,12 @@ class User extends BaseUser
     private $practinfos;
 
     /**
+     * @ORM\OneToMany(targetEntity="VimoliaBundle\Entity\Subscribe", mappedBy="idUser")
+     * @ORM\OrderBy({"endDate" = "DESC"})
+     */
+    private $subscribes;
+
+    /**
      * User constructor.
      *
      */
@@ -133,8 +141,8 @@ class User extends BaseUser
         parent::__construct();
         $this->birthdate = new \DateTime();
         $this->practValid = false;
+        $this->subscribes = new ArrayCollection();
     }
-
 
     /**
      * Set name
@@ -377,27 +385,27 @@ class User extends BaseUser
     }
 
     /**
-     * Set avatarpath
+     * Set avatarPath
      *
-     * @param string $avatarpath
+     * @param string $avatarPath
      *
      * @return User
      */
-    public function setAvatarpath($avatarpath)
+    public function setAvatarPath($avatarPath)
     {
-        $this->avatarpath = $avatarpath;
+        $this->avatarPath = $avatarPath;
 
         return $this;
     }
 
     /**
-     * Get avatarpath
+     * Get avatarPath
      *
      * @return string
      */
-    public function getAvatarpath()
+    public function getAvatarPath()
     {
-        return $this->avatarpath;
+        return $this->avatarPath;
     }
 
     /**
@@ -470,5 +478,44 @@ class User extends BaseUser
     public function getPractValid()
     {
         return $this->practValid;
+    }
+
+    /**
+     * Get subscribes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSubscribes()
+    {
+        return $this->subscribes;
+    }
+
+    public function getLastSub()
+    {
+        return $this->getSubscribes()->first();
+    }
+
+    /**
+     * Add subscribe
+     *
+     * @param \VimoliaBundle\Entity\Subscribe $subscribe
+     *
+     * @return User
+     */
+    public function addSubscribe(\VimoliaBundle\Entity\Subscribe $subscribe)
+    {
+        $this->subscribes[] = $subscribe;
+
+        return $this;
+    }
+
+    /**
+     * Remove subscribe
+     *
+     * @param \VimoliaBundle\Entity\Subscribe $subscribe
+     */
+    public function removeSubscribe(\VimoliaBundle\Entity\Subscribe $subscribe)
+    {
+        $this->subscribes->removeElement($subscribe);
     }
 }

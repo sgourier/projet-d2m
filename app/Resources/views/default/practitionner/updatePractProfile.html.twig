@@ -1,14 +1,36 @@
 {% extends "base.html.twig" %}
 {% block body %}
 
-    <div>
-        <h2>{{ "practInfos.new.title"|trans }}</h2>
-        {{ form_start(form) }}
-        {{ form_widget(form) }}
+    <div class="container-white">
+        <div class="title">{{ "practInfos.new.title"|trans }}</div>
+        <div class="container-formulaire">
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            {% if proImg != "" %}
+                <div id="proImgContainer" class="avatarProfile">
+                    <img id="proImg" src="{{ asset('uploads/users/'~user.id~'/'~proImg) }}">
+                    <span title="supprimer l'image" id="deleteProImg">X</span>
+                </div>
+            {% endif %}
+        </div>
         <div>
-            <input type="submit" value="{{ 'practInfos.toSubscribe'|trans }}" />
+            <input type="submit" value="Enregistrer" />
         </div>
         {{ form_end(form) }}
     </div>
 
 {% endblock body %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $(document).ready(function ()
+        {
+            $('#deleteProImg').on('click',function ()
+            {
+                $('#pract_infos_keepImg').val(0);
+                $('#proImgContainer').remove();
+            });
+        })
+    </script>
+{% endblock %}

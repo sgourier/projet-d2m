@@ -20,6 +20,13 @@ class Article
     private $text;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="title", type="text", length=1500, nullable=false)
+     */
+    private $title;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="dateAdd", type="datetime", nullable=true)
@@ -155,5 +162,21 @@ class Article
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param string $title
+     */
+    public function setTitle( $title )
+    {
+        $this->title = $title;
     }
 }

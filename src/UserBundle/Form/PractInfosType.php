@@ -16,43 +16,61 @@ class PractInfosType extends AbstractType
     {
         $builder
             ->add('siret','Symfony\Component\Form\Extension\Core\Type\TextType',array(
-                'label' => 'practInfos.siret'
+                'label' => 'practInfos.siret',
+                'required' => true
             ))
             ->add('proaddress','Symfony\Component\Form\Extension\Core\Type\TextType',array(
-                'label' => 'practInfos.proAddress'
+                'label' => 'practInfos.proAddress',
+                'required' => true
             ))
             ->add('proaddressplus','Symfony\Component\Form\Extension\Core\Type\TextType',array(
-                'label' => 'practInfos.proAddressPlus'
+                'label' => 'practInfos.proAddressPlus',
+                'required' => false
             ))
             ->add('procity','Symfony\Component\Form\Extension\Core\Type\TextType',array(
-                'label' => 'practInfos.proCity'
+                'label' => 'practInfos.proCity',
+                'required' => true
             ))
             ->add('prozipcode','Symfony\Component\Form\Extension\Core\Type\TextType',array(
-                'label' => 'practInfos.proZipCode'
+                'label' => 'practInfos.proZipCode',
+                'required' => true
             ))
             ->add('prophone','Symfony\Component\Form\Extension\Core\Type\TextType',array(
-                'label' => 'practInfos.proPhone'
+                'label' => 'practInfos.proPhone',
+                'required' => false
             ))
             ->add('procellphone','Symfony\Component\Form\Extension\Core\Type\TextType',array(
-                'label' => 'practInfos.proCellPhone'
+                'label' => 'practInfos.proCellPhone',
+                'required' => false
             ))
             ->add('url','Symfony\Component\Form\Extension\Core\Type\TextType',array(
-                'label' => 'practInfos.proUrl'
+                'label' => 'practInfos.proUrl',
+                'required' => false
             ))
             ->add('description','Symfony\Component\Form\Extension\Core\Type\TextareaType',array(
-                'label' => 'practInfos.description'
+                'label' => 'practInfos.description',
+                'required' => false
             ))
             ->add('degrees','Symfony\Component\Form\Extension\Core\Type\TextareaType',array(
-                'label' => 'practInfos.degrees'
+                'label' => 'practInfos.degrees',
+                'required' => false
             ))
-            ->add('idPractdomains','Symfony\Bridge\Doctrine\Form\Type\EntityType',array(
+            ->add('practDomains','Symfony\Bridge\Doctrine\Form\Type\EntityType',array(
                 'label' => 'practInfos.practDomains',
                 'class' => 'VimoliaBundle\Entity\Practdomains',
                 'multiple' => true,
                 'expanded' => true,
                 'choice_label' => 'name'
             ))
-        ;
+            ->add('imgPro','Symfony\Component\Form\Extension\Core\Type\FileType',array(
+                'label' => 'practInfos.proImg',
+                'required' => false
+            ))
+            ->add('keepImg','Symfony\Component\Form\Extension\Core\Type\HiddenType',array(
+                'required' => true,
+                'empty_data' => 1,
+                'mapped' => false
+            ));
     }
     
     /**

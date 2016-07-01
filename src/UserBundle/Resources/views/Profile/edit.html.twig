@@ -3,3 +3,17 @@
 {% block body %}
 {% include "FOSUserBundle:Profile:edit_content.html.twig" %}
 {% endblock body %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $(document).ready(function ()
+        {
+            $('#deleteImgProfile').on('click',function ()
+            {
+                $('#fos_user_profile_form_keepImg').val(0);
+                $('#profilePictContainer').remove();
+            });
+        })
+    </script>
+{% endblock %}

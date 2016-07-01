@@ -1,0 +1,122 @@
+
+
+/****************************************************************************************/
+/*                                    DASHBOARD                                         */
+/****************************************************************************************/
+
+
+.container-profile{
+
+}
+    .container-profile .alert{
+        text-align: center;
+    }
+    .container-profile .profile-nav{
+
+    }
+        .container-profile .profile-nav nav{
+            color: black;
+        }
+            .container-profile .profile-nav nav ul{
+                list-style: none;
+                padding:0;
+                margin: 0;
+                overflow: hidden;
+            }
+                .container-profile .profile-nav nav ul li{
+                    float:left;
+                    width:50%;
+                }
+                    .container-profile .profile-nav nav ul li.practicien{
+                        width:33%;
+                        margin-bottom: 20px;
+                    }
+                    .container-profile .profile-nav nav ul li a{
+                        font-size: 14px;
+                        width:95% !important;
+                        max-width: 1000px;
+                        margin-top:0px;border-radius:3px;
+                    }
+    .container-profile .container-informations{
+        overflow: hidden;
+        margin-top:15px;
+    }
+        .container-profile .container-informations .title-part{
+            font-size:12px;
+            text-align: center;
+        }
+        .container-profile .container-informations .left{
+            float: left;
+            width: 40%;
+        }
+        .container-profile .container-informations .right{
+            float: left;
+            width: 58%;
+            margin-left: 2%;
+        }
+
+            .container-profile .container-informations .informations-profile{
+                margin-bottom: 15px;
+            }
+                .container-profile .container-informations .informations-profile .button{
+                    max-width: 10000px !important;
+                }
+            .container-profile .container-informations .item-last-discussion{
+
+            }
+                .container-profile .container-informations .item-last-discussion{
+                    text-align: center;
+                }
+                    .container-profile .container-informations .item-last-discussion .question{
+                        width: 90%;
+                        color:#838383;
+                        margin:10px auto 10px;
+                        font-style: italic;
+                    }
+                    .container-profile .container-informations .item-last-discussion .membre{
+                        font-size:10px;
+                        color:#a6366b;
+                    }
+                    .container-profile .container-informations .item-last-discussion .button{
+                        font-size: 14px;
+                        max-width: 1000px;
+                    }
+
+            .container-profile .container-informations  .discussion-evol{
+
+            }
+                .container-profile .container-informations .discussion-evol img{
+                    width:100%;
+                }
+
+
+/****************************************************************************************/
+/*                          PAGE PUBLIQUE PRACTICIEN                                    */
+/****************************************************************************************/
+.container-white.container-pract-profile{
+    padding:0px;
+    overflow: hidden;
+}
+    .container-white.container-pract-profile .banner{
+        max-height: 200px;
+        overflow: hidden;
+    }
+        .container-white.container-pract-profile .banner img{
+            width:100%;
+        }
+    .container-white.container-pract-profile .pract-type{
+        padding:15px;
+        background-color:#a6366b;
+        width:250px;
+        margin:0px auto -50px;
+        color:white;
+        position: relative;
+        top:-125px;
+    }
+
+
+
+    .container-white.container-pract-profile #map{
+        width: 100%;
+        height: 250px;
+    }

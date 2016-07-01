@@ -21,3 +21,4 @@ parameters:
     paypal_client_secret: ELUQZqCfMNa7n2suSzBwrfVuI1quRa4Q0bMwCyzKuIF8WULnB4iosigoAizpRk1wPGDbBosWjJIcnwjk
     paypal_mode: sandbox
     paypal_taxe_percent: 20
+    user_directory: '%kernel.root_dir%/../web/uploads/users'

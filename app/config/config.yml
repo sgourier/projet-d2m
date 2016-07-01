@@ -75,6 +75,9 @@ fos_user:
     registration:
         form:
             type: UserBundle\Form\Type\RegistrationType
+    profile:
+        form:
+            type: UserBundle\Form\Type\ProfileFormType
 
 sonata_block:
     default_contexts: [cms]
@@ -148,3 +151,13 @@ sonata_admin:
                     content: >
                         <h2>Test Block droite en dessous</h2>
                         <p>Admin Dashboard</p>
+services:
+  twig.extension.date:
+       class: Twig_Extensions_Extension_Date
+       tags:
+           - { name: twig.extension }
+
+  twig.extension.intl:
+      class: Twig_Extensions_Extension_Intl
+      tags:
+          - { name: twig.extension }

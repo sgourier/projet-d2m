@@ -17,9 +17,11 @@ use FOS\UserBundle\Event\FilterUserResponseEvent;
 use FOS\UserBundle\Event\GetResponseUserEvent;
 use FOS\UserBundle\Model\UserInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Controller managing the user profile
@@ -49,6 +51,7 @@ class ProfileController extends Controller
     public function editAction(Request $request)
     {
         $user = $this->getUser();
+        $oldFile = $user->getAvatarPath();
         if (!is_object($user) || !$user instanceof UserInterface) {
             throw new AccessDeniedException('This user does not have access to this section.');
         }
@@ -66,14 +69,50 @@ class ProfileController extends Controller
         /** @var $formFactory \FOS\UserBundle\Form\Factory\FactoryInterface */
         $formFactory = $this->get('fos_user.profile.form.factory');
 
+        $filePath = $this->getParameter('user_directory').'/'.$user->getId().'/'.$user->getAvatarPath();
+        if(is_string($user->getAvatarPath()) && $user->getAvatarPath() != "" && file_exists($filePath))
+        {
+            $user->setAvatarPath(
+                new File($filePath)
+            );
+        }
+
         $form = $formFactory->createForm();
         $form->setData($user);
+
 
         $form->handleRequest($request);
 
         if ($form->isValid()) {
             /** @var $userManager \FOS\UserBundle\Model\UserManagerInterface */
             $userManager = $this->get('fos_user.user_manager');
+
+            if($user->getAvatarPath() !== null)
+            {
+                /** @var UploadedFile $file */
+                $file = $user->getAvatarPath();
+
+                $fileName = md5(uniqid()).'.'.$file->guessExtension();
+
+                $file->move(
+                    $this->getParameter('user_directory').'/'.$user->getId(),
+                    $fileName
+                );
+            }
+            else if($form['keepImg']->getData() == 1)
+            {
+                $fileName = $oldFile;
+            }
+            else
+            {
+                if($oldFile != null && $oldFile != "")
+                {
+                    unlink($filePath);
+                }
+                $fileName = "";
+            }
+
+            $user->setAvatarPath($fileName);
 
             $event = new FormEvent($form, $request);
             $dispatcher->dispatch(FOSUserEvents::PROFILE_EDIT_SUCCESS, $event);
@@ -91,7 +130,9 @@ class ProfileController extends Controller
         }
 
         return $this->render('FOSUserBundle:Profile:edit.html.twig', array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'user' => $user,
+            'avatar' => $oldFile
         ));
     }
 }
