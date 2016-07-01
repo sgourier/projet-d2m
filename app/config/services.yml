@@ -51,6 +51,8 @@ services:
             arguments: [~, VimoliaBundle\Entity\Video, ~]
             tags:
               - { name: sonata.admin, manager_type: orm, label: Vidéos }
+            calls:
+              - [ setTemplate, [list, SonataAdminBundle:VideoAdmin:list_outer_rows_mosaic.html.twig]]
 
     admin.article:
             class: VimoliaBundle\Admin\ArticleAdmin

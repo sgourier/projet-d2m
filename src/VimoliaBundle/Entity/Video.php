@@ -73,7 +73,12 @@ class Video
      */
     private $idVideocategory;
 
-
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="thumbnail", type="string", length=1500, nullable=true)
+     */
+    private $thumbnail;
 
     /**
      * Set title
@@ -251,5 +256,29 @@ class Video
     public function getIdVideocategory()
     {
         return $this->idVideocategory;
+    }
+
+    /**
+     * Set title
+     *
+     * @param string $thumbnail
+     *
+     * @return string
+     */
+    public function setThumbnail($thumbnail)
+    {
+        $this->title = $thumbnail;
+
+        return $this;
+    }
+
+    /**
+     * Get thumbnail
+     *
+     * @return string
+     */
+    public function getThumbnail()
+    {
+        return $this->thumbnail;
     }
 }

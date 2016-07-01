@@ -17,6 +17,7 @@ class UserAdmin extends AbstractAdmin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
+
         $formMapper->add('username', 'text', array('label' => 'Pseudo', 'required' => true))
             ->add('name', 'text', array('label' => 'Nom', 'required' => true))
             ->add('firstname', 'text', array('label' => 'Prénom', 'required' => true))
@@ -36,7 +37,9 @@ class UserAdmin extends AbstractAdmin
                     'Amis' => 'amis',
                     'Pub' => 'pub',
                     'Autre' => 'autre')
-            ));
+            ))
+         #   ->add('avatarpath', 'sonata_type_model', $avatarpath)
+            ->add('id', 'sonata_type_model_hidden');
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)

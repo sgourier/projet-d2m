@@ -22,6 +22,6 @@ class AboutUsAdmin extends AbstractAdmin
 
     protected function configureListFields(ListMapper $listMapper)
     {
-        $listMapper->addIdentifier('description', array('label' => 'Description'));
+        $listMapper->addIdentifier('description', 'textarea', array('label' => 'Description'));
     }
 }

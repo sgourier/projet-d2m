@@ -17,6 +17,20 @@ class VideoAdmin extends AbstractAdmin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
+        $formMapper->add('title', 'text', array('label' => 'Titre', 'required' => true))
+            ->add('description', 'textarea', array('label' => 'Description', 'required' => true))
+            ->add('url', 'text', array('label' => 'Url', 'required' => true));
+    }
 
+    protected function configureDatagridFilters(DatagridMapper $datagridMapper)
+    {
+        $datagridMapper->add('title');
+    }
+
+    protected function configureListFields(ListMapper $listMapper)
+    {
+        $listMapper->addIdentifier('thumbnail', 'string', array('label' => 'Thumbnail'))
+            ->addIdentifier('title', 'text', array('label' => 'Titre'))
+            ->addIdentifier('url', 'text', array('label' => 'Url'));
     }
 }

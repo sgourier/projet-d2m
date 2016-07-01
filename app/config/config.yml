@@ -86,11 +86,12 @@ sonata_block:
 sonata_admin:
     templates:
         dashboard: SonataAdminBundle:Core:dashboard.html.twig
+        action: SonataAdminBundle:CRUD:action.html.twig
     dashboard:
         groups:
             User:
                 on_top:               false
-                label:                User
+                label:                Utilisateurs
                 label_catalogue:      ~
                 items:
                     - admin.user
@@ -101,7 +102,7 @@ sonata_admin:
                 label_catalogue:      ~
                 items:
                     - admin.article
-            Parenaires:
+            Partenaires:
                 on_top:               true
                 label:                Partenaires
                 label_catalogue:      ~
@@ -113,6 +114,8 @@ sonata_admin:
                 label_catalogue:      ~
                 items:
                     - admin.video
+                #    - admin.media
+
             A propos de nous:
                 on_top:               false
                 label:                A propos de nous
@@ -120,50 +123,28 @@ sonata_admin:
                 items:
                     - admin.aboutus
                     - admin.cgu
-
-
-
-    #    sonata.block.service.text:
-    #        contexts: [admin]
-    #    sonata.block.service.rss:
-    #        contexts: [admin]
-    #    sonata.news.admin.post:
-    #        contexts: [admin]
-
-
-#sonata_admin:
-#  dashboard:
-
-
-  #    blocks:
-  #        -
-  #            position: left
-  #            type: sonata.Admin.block.admin_list
- #        -
-   #           position: left
-   #           type: sonata.block.service.text
-   #           settings:
-   #               content: >
-   #                   <h2>Welcome to the Admin Block</h2>
-  ##                    <p>Admin Dashboard</p>
-          #  -
-          #      position: right
-          #      type: sonata.block.service.rss
-          #     roles: [POST_READER]
-          #      settings:
-          #          title: Sonata Project's Feeds
-          #          url: https://sonata-project.org/blog/archive.rss
-        #groups:
-        #            news:
-        #               label:                ~
-        #               label_catalogue:      ~
-        #               items:
-        #                    - sonata.news.Admin.cgu
-        #                   - route:        content_home
-        #                     label:        Content
-        #           news:
-        #               on_top:               true
-        #               label:                ~
-        #               label_catalogue:      ~
-        #               items:
-        #                   - sonata.news.Admin.cgu
+        blocks:
+            -
+                position: center
+                type: sonata.admin.block.admin_list
+                settings:
+                    groups: [User, A propos de nous]
+            -
+                position: right
+                type: sonata.admin.block.admin_list
+                settings:
+                    groups: [Partners, Article, Video]
+            -
+                position: left
+                type: sonata.block.service.text
+                settings:
+                    content: >
+                        <h2>Welcome to the Admin Page</h2>
+                        <p>Admin Dashboard</p>
+            -
+                position: right
+                type: sonata.block.service.text
+                settings:
+                    content: >
+                        <h2>Test Block droite en dessous</h2>
+                        <p>Admin Dashboard</p>
