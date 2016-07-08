@@ -1,15 +1,27 @@
-#contactus{
+.contactForm
+{
 
 }
-    #contactus label{
-        display: block;
-        margin-top:30px;
-    }
-    #contactus input[type=text],textarea,select{
-        width:50%;
-    }
-        #contactus textarea{
-            min-height: 200px;
-            resize: none;
-            font-family: "opensans";
-        }
+
+.contactForm label
+{
+    display: block;
+    margin-top:30px;
+}
+
+.contactForm input[type=text],textarea,select
+{
+    width:50%;
+}
+
+.contactForm input[type=email],textarea,select
+{
+    width:50%;
+}
+
+.contactForm textarea
+{
+    min-height: 200px;
+    resize: none;
+    font-family: "opensans";
+}

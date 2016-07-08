@@ -3,24 +3,20 @@
     <div class="container-white" xmlns="http://www.w3.org/1999/html">
         <img class="icone" src="{{ asset('img/contactus/icone.png') }}" alt="">
         <div class="title">
-            Contactez nous
+            {{ "contactUs.title"|trans }}
         </div>
-        <form action="{{ path("fos_user_security_check") }}" method="post" id="contactus">
-            <select>
-                <option value="0">Je vous contacte à propos...</option>
-                <option value="1">...d'une question en particulier</option>
-                <option value="2">...d'un praticien</option>
-                <option value="3">...d'un problème rencontré sur le site</option>
-                <option value="4">...d'autre chose</option>
-            </select>
-
-            <label>Votre email :</label>
-            <input type="text" id="password" name="_password" required="required" />
-
-            <label>Votre message :</label>
-            <textarea name="content" required="required"></textarea>
-
-            <input type="submit" value="Envoyer" >
-        </form>
+        {% for flash_message in app.session.flashBag.get('notice') %}
+            <div class="alert alert-success" role="alert">
+                {{ flash_message|trans }}
+            </div>
+        {% endfor %}
+        {% for flash_message in app.session.flashBag.get('error') %}
+            <div class="alert alert-danger" role="alert">
+                {{ flash_message|trans }}
+            </div>
+        {% endfor %}
+        {{ form_start(form, { 'action': path('send_contact'), 'attr': { 'class': 'contactForm' }, 'method': 'post' }) }}
+        {{ form_rest(form) }}
+        {{ form_end(form) }}
     </div>
 {% endblock body %}
