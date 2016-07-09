@@ -115,6 +115,37 @@
             margin-left: 0px;
         }
 
+        .container-formulaire .profile-picture{
+            margin-top:15px;
+            background-color: #ededed;
+            border-radius: 4px;
+            width:80%;
+            margin:15px auto 0;
+        }
+            .container-formulaire .profile-picture label{
+                display: block;
+                width: 100%;
+                text-align: center;
+                padding-top:15px;
+                margin-bottom: 15px;
+            }
+            .container-formulaire .profile-picture img{
+                border-radius: 360px;
+                height:70px;
+                margin: 10px auto 10px;
+            }
+            .container-formulaire .profile-picture #deleteImgProfile{
+                padding:10px;
+                margin-left:20px;
+                background-color:#e16464;
+                border-radius: 4px;
+                color:white;
+                cursor: pointer;
+            }
+                .container-formulaire .profile-picture #deleteImgProfile:hover{
+                    background-color:#cd4848;
+                }
+
 
 
 

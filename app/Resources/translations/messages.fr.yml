@@ -30,6 +30,26 @@ practList:
     altAvatar: 'Image de profil'
     seeProPage: 'Voir la page pro'
     noPract: 'Aucun praticien trouvé'
+<<<<<<< HEAD
 errorTitle: 'Une erreur est survenue !'
 notFoundError: 'La page que vous avez demandée n''existe pas ou à été renomée. Si l''erreur persiste merci de nous contacter via le formulaire prévue.'
 defaultError: 'Le serveur à rencontré une erreur, merci de réessayer. Si l''erreur persiste merci de nous contacter via le formulaire prévue.'
+=======
+contactUs:
+    title: 'Contactez nous'
+    subject: 'Sujet :'
+    name: 'Votre nom :'
+    email: 'Votre email :'
+    message: 'Votre message :'
+    contact: 'Contact : '
+    send: 'Envoyer'
+    subjectQuestion: 'Une question'
+    subjectVideo: 'Une vidéo'
+    subjectSubscribe: 'Un abonnement (Praticiens)'
+    subjectValid: 'Validation du compte (Praticiens)'
+    subjectOther: 'Autre'
+    mailSended: 'Mail envoyé'
+    mailNotSended: 'Une erreur est survenue lors de l''envoi du mail, merci de réessayer'
+mails:
+    from: 'De :'
+>>>>>>> origin/master

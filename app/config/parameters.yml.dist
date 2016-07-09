@@ -11,9 +11,12 @@ parameters:
     # database_path: "%kernel.root_dir%/data.db3"
 
     mailer_transport:  smtp
-    mailer_host:       127.0.0.1
-    mailer_user:       ~
-    mailer_password:   ~
+    mailer_host: macroprog.com
+    mailer_user: vimolia.contact@macroprog.com
+    mailer_name: Vimolia contact
+    mailer_password: 9hSns6&8
+    mailer_port: 465
+    mailer_encryption: ssl
 
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
