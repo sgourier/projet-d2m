@@ -30,4 +30,6 @@ practList:
     altAvatar: 'Image de profil'
     seeProPage: 'Voir la page pro'
     noPract: 'Aucun praticien trouvé'
-
+errorTitle: 'Une erreur est survenue !'
+notFoundError: 'La page que vous avez demandée n''existe pas ou à été renomée. Si l''erreur persiste merci de nous contacter via le formulaire prévue.'
+defaultError: 'Le serveur à rencontré une erreur, merci de réessayer. Si l''erreur persiste merci de nous contacter via le formulaire prévue.'

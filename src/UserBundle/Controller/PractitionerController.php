@@ -30,17 +30,8 @@ class PractitionerController extends Controller
 	public function updatePractFormAction()
 	{
 		$this->checkPractAuth();
-		
-		$practInfos = $this->getUser()->getPractinfos();
-		$oldImg = $practInfos->getImgPro();
 
-		$filePath = $this->getParameter('user_directory').'/'.$this->getUser()->getId().'/'.$practInfos->getImgPro();
-		if(is_string($practInfos->getImgPro()) && $practInfos->getImgPro() != "" && file_exists($filePath))
-		{
-			$practInfos->setImgPro(
-				new File($filePath)
-			);
-		}
+		$practInfos = $this->getUser()->getPractinfos();
 		
 		if($practInfos == null)
 		{
@@ -50,6 +41,16 @@ class PractitionerController extends Controller
 			$this->getDoctrine()->getManager()->persist($practInfos);
 			$this->getDoctrine()->getManager()->persist($user);
 			$this->getDoctrine()->getManager()->flush();
+		}
+
+		$oldImg = $practInfos->getImgPro();
+
+		$filePath = $this->getParameter('user_directory').'/'.$this->getUser()->getId().'/'.$practInfos->getImgPro();
+		if(is_string($practInfos->getImgPro()) && $practInfos->getImgPro() != "" && file_exists($filePath))
+		{
+			$practInfos->setImgPro(
+				new File($filePath)
+			);
 		}
 
 		$form = $this->createForm(PractInfosType::class,$practInfos,array('method'=>'POST', 'action' => $this->generateUrl('user_savePractForm')));
