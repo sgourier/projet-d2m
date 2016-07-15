@@ -110,6 +110,16 @@ class Discussion
      */
     private $idAdvancedinfos;
 
+	/**
+	 * @var \VimoliaBundle\Entity\Practdomains
+	 *
+	 * @ORM\ManyToOne(targetEntity="VimoliaBundle\Entity\Practdomains")
+	 * @ORM\JoinColumns({
+	 *   @ORM\JoinColumn(name="id_domain", referencedColumnName="id")
+	 * })
+	 */
+	private $domain;
+
     public $question;
     public $reponse;
 
@@ -447,4 +457,28 @@ class Discussion
     {
         return $this->reponse;
     }
+
+	/**
+	 * Set domain
+	 *
+	 * @param \VimoliaBundle\Entity\Practdomains $domain
+	 *
+	 * @return Discussion
+	 */
+	public function setDomain(\VimoliaBundle\Entity\Practdomains $domain = null)
+	{
+		$this->domain = $domain;
+
+		return $this;
+	}
+
+	/**
+	 * Get domain
+	 *
+	 * @return \VimoliaBundle\Entity\Practdomains
+	 */
+	public function getDomain()
+	{
+		return $this->domain;
+	}
 }
