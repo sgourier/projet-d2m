@@ -1,0 +1,16 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <div class="container-white">
+        <img class="icone" src="{{ asset('img/questions/icone.png') }}" alt="">
+        <div class="title">
+            Merci d'avoir remplis le formulaire !
+        </div>
+        <p>Un expert ou un practicien va étudier votre dossier et reviendra vers vous.</p>
+        <p>Vous receverez un e-mail vous informant de sa réponse.</p>
+
+        <p>Cordialment,<br>
+        L'équipe Vimolia.</p>
+
+        <a href="{{ path("homepage") }}" class="button">Retour à l'accueil</a>
+    </div>
+{% endblock body %}

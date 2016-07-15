@@ -1,0 +1,15 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <div id="container-newquestions" class="container-white">
+        <img class="icone" src="{{ asset('img/questions/icone.png') }}" alt="">
+        <div class="title">
+            Nous avons besoin de plus de détails sur votre question.
+        </div>
+        <p>Merci de remplir ce questionnaire qui nous permettra d'avoir tous les éléments nécessaires pour répondre au mieux à votre question.</p>
+        <div>
+            {{ form_start(form)}}
+                {{ form_widget(form) }}
+            {{form_end(form)}}
+        </div>
+    </div>
+{% endblock body %}

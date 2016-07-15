@@ -1,0 +1,33 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <div id="container-discussion" class="container-white">
+        <div class="title">
+            Liste de vos questions
+        </div>
+
+		{% if discussions|length != 0 %}
+			<table>
+				<thead>
+					<th>Date</th>
+					<th>Question</th>
+					<th></th>
+				</thead>
+				<tbody>			
+					{% for discussion in discussions %}
+						<tr>
+							<td>{{discussion.question.dateupd|date('d m Y')}}</td>
+							<td>{{discussion.question.text}}</td>
+							<td><a href="{{ path('own_question', {'idDiscussion': discussion.id}) }}">Voir</a></td>
+						</tr>
+				    {% endfor %}
+			    </tbody>
+			</table>
+		{% else %}
+		    Vous n'avez posé aucune question pour le moment.<br>
+		    <div class="button">
+	    		Posez votre première question
+	    	</div>
+		{% endif %}
+
+    </div>
+{% endblock body %}

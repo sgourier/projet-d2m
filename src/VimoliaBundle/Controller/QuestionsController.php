@@ -47,6 +47,65 @@ class QuestionsController extends Controller
         ));
     }
 
+    /**
+     * @Route("/profile/questions", name="own_questions")
+     */
+    public function displayOwnQuestionsAction()
+    {
+        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            throw $this->createAccessDeniedException();
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $discussions = $em->getRepository('VimoliaBundle:Discussion')
+                          ->findBy(array("idMember" => $this->getUser()), array("dateupd" => "DESC"));
+
+        foreach($discussions as $discussion) {
+            $question = $em->getRepository('VimoliaBundle:Message')
+                           ->findOneBy(array("idDiscussion" => $discussion->getId(),
+                                          "idOwner" => $discussion->getIdMember(),
+                                          "active" => true
+                                    ));
+            $discussion->setQuestion($question);
+        }
+
+        return $this->render('default/questions/displayOwnQuestions.html.twig', array(
+            'discussions' => $discussions
+        ));
+    }
+
+    /**
+     * @Route("/profile/questions/{idDiscussion}", name="own_question")
+     */
+    public function displayOwnQuestionAction($idDiscussion)
+    {
+        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            throw $this->createAccessDeniedException();
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $discussion = $em->getRepository('VimoliaBundle:Discussion')
+                          ->findOneBy(array("idMember" => $this->getUser(), "id" => $idDiscussion), array("dateupd" => "DESC"));
+
+        $question = $em->getRepository('VimoliaBundle:Message')
+                       ->findOneBy(array("idDiscussion" => $discussion->getId(),
+                                      "idOwner" => $discussion->getIdMember(),
+                                      "active" => true
+                                ));
+        $discussion->setQuestion($question);
+
+        $reponse = $em->getRepository('VimoliaBundle:Message')
+                      ->findOneBy(array("idDiscussion" => $discussion->getId(),
+                                     "idOwner" => $discussion->getIdExpert(),
+                                     "active" => true
+                                ));
+        $discussion->setReponse($reponse);
+
+        return $this->render('default/questions/displayOwnQuestion.html.twig', array(
+            'discussion' => $discussion
+        ));
+    }
+
 
     /**
      * @Route("/questions/new", name="questions_new")
@@ -81,8 +140,6 @@ class QuestionsController extends Controller
      */
     public function saveMessageFormAction(Request $request)
     {
-        /* To Do save id_owner in $newMessage and $id_member in $newDiscussion */
-
         $newDiscussion = new Discussion();
         $newDiscussion->setIdMember($this->getUser());
 
