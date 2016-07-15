@@ -147,3 +147,26 @@ input[type=file]{
     display: none;
 }
 
+/****************************************************************************************/
+/*                                    RESET PASSWORD FORMS                              */
+/****************************************************************************************/
+
+.resetContent input[type=submit]
+{
+    max-width: none;
+}
+
+.resetContent label
+{
+    width: 175px;
+}
+
+.resetContent #fos_user_resetting_form div
+{
+    margin-bottom: 15px;
+}
+
+.resetContent #fos_user_resetting_form div:last-child
+{
+    margin-bottom: 0;
+}

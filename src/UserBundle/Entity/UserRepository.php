@@ -10,7 +10,7 @@ namespace UserBundle\Entity;
  */
 class UserRepository extends \Doctrine\ORM\EntityRepository
 {
-	public function findPracts($domain = null)
+	public function findPracts($paginator,$domain = null,$page = 1)
 	{
 		$qb = $this->createQueryBuilder('ac');
 		$query = $this->createQueryBuilder('a')
@@ -26,7 +26,8 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
 				->setParameter('d', $domain);
 			}
 
-		return $query->getQuery()
-		             ->getResult();
+		return $paginator->paginate(
+			$query, $page,1
+		);
 	}
 }

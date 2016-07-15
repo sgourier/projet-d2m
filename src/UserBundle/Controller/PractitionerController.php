@@ -155,12 +155,15 @@ class PractitionerController extends Controller
 	 * @ParamConverter("domain", class="VimoliaBundle:Practdomains", options={"id" = "id_domain"})
 	 *
 	 * @param Practdomains $domain domaine d'expertise sur lequel filtrer
-	 * 
+	 * @param Request $request
+	 *
 	 * @return Response
 	 */
-	public function proListAction(Practdomains $domain = null)
+	public function proListAction(Request $request, Practdomains $domain = null)
 	{
-		$practs = $this->getDoctrine()->getRepository("UserBundle:User")->findPracts($domain);
+		$page = $request->query->getInt('page', 1);
+
+		$practs = $this->getDoctrine()->getRepository("UserBundle:User")->findPracts($this->get('knp_paginator'),$domain,$page);
 
 		return $this->render(":default/practitionner:displayPractitionners.html.twig",array(
 			"domains" => $this->getDoctrine()->getRepository("VimoliaBundle:Practdomains")->findAll(),
