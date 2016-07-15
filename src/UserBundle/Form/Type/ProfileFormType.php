@@ -18,11 +18,19 @@ class ProfileFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name','Symfony\Component\Form\Extension\Core\Type\TextType',array(
-            'label' => 'form.name',
-            'translation_domain' => 'FOSUserBundle',
-            'required' => true
-        ))
+        $builder->add('plainPassword', 'Symfony\Component\Form\Extension\Core\Type\RepeatedType', array(
+			        'type' => 'Symfony\Component\Form\Extension\Core\Type\PasswordType',
+			        'options' => array('translation_domain' => 'FOSUserBundle'),
+			        'first_options' => array('label' => 'form.new_password'),
+			        'second_options' => array('label' => 'form.new_password_confirmation'),
+			        'invalid_message' => 'fos_user.password.mismatch',
+			        'required' => false
+		        ))
+		        ->add('name','Symfony\Component\Form\Extension\Core\Type\TextType',array(
+		            'label' => 'form.name',
+		            'translation_domain' => 'FOSUserBundle',
+		            'required' => true
+                ))
                 ->add('firstname','Symfony\Component\Form\Extension\Core\Type\TextType',array(
                     'label' => 'form.firstname',
                     'translation_domain' => 'FOSUserBundle',

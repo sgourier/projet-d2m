@@ -14,6 +14,8 @@ parameters:
     mailer_host: macroprog.com
     mailer_user: vimolia.contact@macroprog.com
     mailer_name: Vimolia contact
+    mailer_registration_name: Vimolia inscription
+    mailer_resetting_name: Vimolia reset
     mailer_password: 9hSns6&8
     mailer_port: 465
     mailer_encryption: ssl
