@@ -105,7 +105,8 @@
 		      <div class="modal-body">
 		        <div>
 		        	<label for="note">Donnez une note à cette réponse :</label>
-		        	<input type="number" name="note" id="note" required>
+		        	<span id="note" class="c-rating"></span>
+		        	<input type="hidden" name="note" id="inputNote" required>
 		        </div>
 		        <div>
 		        	<label for="public">Souhaitez-vous rendre votre question publique?</label>
@@ -125,5 +126,5 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script src="{{ asset('js/questions/satisfactionModal.js')}}"></script>
+    <script src="{{ asset('js/note.js')}}"></script>
 {% endblock javascripts %}

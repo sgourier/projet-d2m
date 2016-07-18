@@ -25,7 +25,7 @@ class QuestionsController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $discussions = $em->getRepository('VimoliaBundle:Discussion')
-                          ->findBy(array("public" => true, "status" => "expertResponded", "active" => true),array("dateupd" => "DESC"));
+                          ->findBy(array("public" => true, "status" => ["expertResponded", "finished"], "active" => true),array("dateupd" => "DESC"));
 
         foreach($discussions as $discussion) {
             $question = $em->getRepository('VimoliaBundle:Message')
@@ -119,10 +119,31 @@ class QuestionsController extends Controller
      *
      * @return Response
      */
-    public function ownQuestionFeedbackSave() {
+    public function ownQuestionFeedbackSave(Request $request, Discussion $discussion = null) {
         if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
             throw $this->createAccessDeniedException();
         }
+
+        $note = $request->request->get('note');
+        $discussion->setFeedback($note);
+        $isPublic = $request->request->get('public');
+        $isPublic = $isPublic === 'on' ? 1 : 0;
+        $discussion->setPublic($isPublic);
+        $discussion->setStatus('finished');
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($discussion);
+        $em->flush();
+
+        return $this->redirectToRoute('ownQuestionFeedbackConfirm');
+    }
+
+    /**
+    * @Route("/profile/confirm_feedback", name="ownQuestionFeedbackConfirm")
+    */
+    public function displayConfirmFeedback()
+    {
+        return $this->render('default/questions/displayConfirmFeedback.html.twig');
     }
 
 
