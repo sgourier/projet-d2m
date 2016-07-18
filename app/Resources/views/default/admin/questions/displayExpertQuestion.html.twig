@@ -1,0 +1,58 @@
+{% extends "baseAdmin.html.twig" %}
+{% block body %}
+    <div id="container-discussion" class="container-white">
+    	
+        <div class="personne">
+            <div class="col-xs-4 container_img">
+                <img src="{{ asset('img/homepage/discussion/membre.jpg') }}" alt="">
+            </div>
+            <div class="col-xs-8">
+                <div class="nom">
+                    {{discussion.idMember}}
+                </div>
+            </div>
+        </div>
+
+        <div class="dialogue">
+            <div class="nom">
+                Question posée par le membre :
+            </div>
+            <div class="text">
+            	<strong>Le {{discussion.question.dateupd|date('d m Y')}}</strong><br>
+                {{discussion.question.text}}
+            </div>
+        </div>
+
+        {% if discussion.status == 'expertAssociated' %}
+            <div>
+                {{ form_start(reponseForm)}}
+                    {{ form_widget(reponseForm) }}
+                {{form_end(reponseForm)}}
+            </div>
+
+            <div>
+                Demander des informations supplémentaires à l'utilisateur 
+                <a href="{{ path('adminExpertQuestion_update_waiting', {'idDiscussion': discussion.id}) }}">
+                    <button>Demander</button>
+                </a>
+            </div>
+        {% endif %}
+
+        {% if discussion.status == 'advancedInfosFilled' %}
+            <div>
+                Informations supplémentaires
+            </div>
+            <p>Symptomes : {{discussion.advancedInfos.symptoms}}</p>
+            <p>Douleurs particulières : {{discussion.advancedInfos.particularpains}}</p>
+            <p>Antécédents : {{discussion.advancedInfos.antecedents}}</p>
+            <p>Autres informations utiles : {{discussion.advancedInfos.otherinformations}}</p>
+
+            <div>
+                {{ form_start(reponseForm)}}
+                    {{ form_widget(reponseForm) }}
+                {{form_end(reponseForm)}}
+            </div>
+        {% endif %}
+
+    </div>
+{% endblock body %}

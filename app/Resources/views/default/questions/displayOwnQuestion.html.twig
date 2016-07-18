@@ -2,19 +2,21 @@
 {% block body %}
     <div id="container-discussion" class="container-white">
     	
-        <div class="personne">
-	        <div class="col-xs-4 container_img">
-	            <img src="{{ asset('img/homepage/discussion/expert.jpg') }}" alt="">
-	        </div>
-	        <div class="col-xs-8">
-	            <div class="nom">
-	                {{discussion.idExpert}}
-	            </div>
-	            <div class="description">
-	                Lorem Ipsum Delor
-	            </div>
-	        </div>
-	    </div>
+    	{% if discussion.idExpert %}
+	        <div class="personne">
+		        <div class="col-xs-4 container_img">
+		            <img src="{{ asset('img/homepage/discussion/expert.jpg') }}" alt="">
+		        </div>
+		        <div class="col-xs-8">
+		            <div class="nom">
+		                {{discussion.idExpert}}
+		            </div>
+		            <div class="description">
+		                Lorem Ipsum Delor
+		            </div>
+		        </div>
+		    </div>
+	    {% endif %}
 	    <div class="personne">
 	        <div class="col-xs-4 container_img">
 	            <img src="{{ asset('img/homepage/discussion/membre.jpg') }}" alt="">
@@ -35,15 +37,93 @@
 	            {{discussion.question.text}}
 	        </div>
 	    </div>
-	    <div class="dialogue expert">
-	        <div class="nom">
-	            La réponse de notre expert :
+	    {% if discussion.status == 'new' or discussion.status == 'expertAssociated'  or discussion.status == 'advancedInfosFilled' %}
+			<p>
+				Un expert va bientôt vous répondre.
+			</p>
+		{% endif %}
+		
+	    {% if discussion.reponse %}
+		    <div class="dialogue expert">
+		        <div class="nom">
+		            La réponse de notre expert :
+		        </div>
+		        <div class="text">
+		        	<strong>Le {{discussion.reponse.dateupd|date('d m Y')}}</strong><br>
+		            {{discussion.reponse.text}}
+		        </div>
+		    </div>
+		{% endif %}
+
+		{% if discussion.status == 'waitingAdvancedInfos' %}
+		    <div>
+                Nous avons besoin d'informations supplémentaires pour répondre à votre question :
+                <a href="{{ path('advancedInfos', {'idDiscussion': discussion.id}) }}">
+                    <button>Répondre</button>
+                </a>
+            </div>
+		{% endif %}
+
+		{% if discussion.advancedInfos %}
+			<div>
+	            Vos informations supplémentaires
 	        </div>
-	        <div class="text">
-	        	<strong>Le {{discussion.reponse.dateupd|date('d m Y')}}</strong><br>
-	            {{discussion.reponse.text}}
-	        </div>
-	    </div>
+	        <p>Symptomes : {{discussion.advancedInfos.symptoms}}</p>
+	        <p>Douleurs particulières : {{discussion.advancedInfos.particularpains}}</p>
+	        <p>Antécédents : {{discussion.advancedInfos.antecedents}}</p>
+	        <p>Autres informations utiles : {{discussion.advancedInfos.otherinformations}}</p>
+	    {% endif %}
+
+		{% if discussion.status == 'expertResponded' %}
+		    <div>
+		    	{% if discussion.advancedInfos is null %}
+	                <a href="{{ path('advancedInfos', {'idDiscussion': discussion.id}) }}">
+	                    <button>Je souhaite plus de détails</button>
+	                </a>
+	                <button type="button" data-toggle="modal" data-target="#modal">
+	                	Cette réponse me convient
+	                </button>
+	            {% else %}
+                    <button type="button" data-toggle="modal" data-target="#modal">
+					  Noter cette réponse
+					</button>
+                </a>
+                {% endif %}
+            </div>
+		{% endif %}
 
     </div>
+
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="satisfactionModal">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="satisfactionModal">Votre retour</h4>
+	      </div>
+	      <form method="post" action="{{ path('own_question_feedback_save', {'idDiscussion': discussion.id}) }}">
+		      <div class="modal-body">
+		        <div>
+		        	<label for="note">Donnez une note à cette réponse :</label>
+		        	<input type="number" name="note" id="note" required>
+		        </div>
+		        <div>
+		        	<label for="public">Souhaitez-vous rendre votre question publique?</label>
+		        	<input type="checkbox" name="public" id="public" required>
+		        </div>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+		        <button type="submit" class="btn btn-primary">Enregistrer</button>
+		      </div>
+	      </form>
+	    </div>
+	  </div>
+	</div>
+
 {% endblock body %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/questions/satisfactionModal.js')}}"></script>
+{% endblock javascripts %}

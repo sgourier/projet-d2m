@@ -1,0 +1,30 @@
+{% extends "baseAdmin.html.twig" %}
+{% block body %}
+	<div id="container-discussion" class="container-white">
+	    <div class="title">
+	        Liste de vos questions en attentes
+	    </div>
+
+		{% if discussions|length != 0 %}
+			<table>
+				<thead>
+					<th>Date</th>
+					<th>Question</th>
+					<th></th>
+				</thead>
+				<tbody>			
+					{% for discussion in discussions %}
+						<tr>
+							<td>{{discussion.question.dateupd|date('d m Y')}}</td>
+							<td>{{discussion.question.text}}</td>
+							<td><a href="{{ path('adminExpertQuestion', {'idDiscussion': discussion.id}) }}">Voir</a></td>
+						</tr>
+				    {% endfor %}
+			    </tbody>
+			</table>
+		{% else %}
+		    Il n'y a pas de questions en attente pour le moment.
+		{% endif %}
+
+	</div>
+{% endblock body %}

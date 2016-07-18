@@ -8,6 +8,7 @@
 
 namespace VimoliaBundle\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -101,9 +102,27 @@ class QuestionsController extends Controller
                                 ));
         $discussion->setReponse($reponse);
 
+        $advancedInfos = $em->getRepository('VimoliaBundle:AdvancedInfos')
+                       ->findOneBy(array("id" => $discussion->getIdAdvancedinfos()));
+        $discussion->setAdvancedInfos($advancedInfos);
+
         return $this->render('default/questions/displayOwnQuestion.html.twig', array(
             'discussion' => $discussion
         ));
+    }
+
+    /**
+     * @Route("/profile/questions/{idDiscussion}/feedbackSave", name="own_question_feedback_save", defaults={"idDiscussion" = -1})
+     * @ParamConverter("discussion", class="VimoliaBundle:Discussion", options={"id" = "idDiscussion"})
+     * @param Discussion $discussion
+     * @param Request $request
+     *
+     * @return Response
+     */
+    public function ownQuestionFeedbackSave() {
+        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            throw $this->createAccessDeniedException();
+        }
     }
 
 

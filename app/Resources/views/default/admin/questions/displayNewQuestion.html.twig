@@ -1,0 +1,47 @@
+{% extends "baseAdmin.html.twig" %}
+{% block body %}
+	<div id="container-discussion" class="container-white">
+		
+	    <div class="personne">
+	        <div class="col-xs-4 container_img">
+	            <img src="{{ asset('img/homepage/discussion/membre.jpg') }}" alt="">
+	        </div>
+	        <div class="col-xs-8">
+	            <div class="nom">
+	                {{discussion.idMember}}
+	            </div>
+	        </div>
+	    </div>
+
+	    <div class="dialogue">
+	        <div class="nom">
+	            Question posée par le membre :
+	        </div>
+	        <div class="text">
+	        	<strong>Le {{discussion.question.dateupd|date('d m Y')}}</strong><br>
+	            {{discussion.question.text}}
+	        </div>
+	    </div>
+
+	    <form method="post" action="{{ path('adminNewQuestion_update', {'idDiscussion': discussion.id}) }}">
+	    	<div>
+		    	<label for="domain">Attribuer un domaine :</label>
+		    	<select name="domain" id="domain" required>
+			    	{% for domaine in domaines %}
+						<option value="{{domaine.id}}">{{domaine.name}}</option>
+			    	{% endfor %}
+			    </select>
+		    </div>
+		    <div>
+			    <label for="expert">Attribuer un expert :</label>
+			    <select name="expert" id="expert" required>
+			    	{% for expert in experts %}
+						<option value="{{expert.id}}">{{expert.username}}</option>
+			    	{% endfor %}
+			    </select>
+		    </div>
+		    <button type="submit">Enregistrer</button>
+	    </form>
+
+	</div>
+{% endblock body %}

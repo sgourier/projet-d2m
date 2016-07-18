@@ -122,6 +122,7 @@ class Discussion
 
     public $question;
     public $reponse;
+    public $advancedInfos;
 
     /**
      * Message constructor.
@@ -456,6 +457,30 @@ class Discussion
     public function getReponse()
     {
         return $this->reponse;
+    }
+
+    /**
+     * Set advancedInfos
+     *
+     * @param $advancedInfos
+     *
+     * @return Discussion
+     */
+    public function setAdvancedInfos($advancedInfos = null)
+    {
+        $this->advancedInfos = $advancedInfos;
+
+        return $this;
+    }
+
+    /**
+     * Get advancedInfos
+     *
+     * @return advancedInfos
+     */
+    public function getAdvancedInfos()
+    {
+        return $this->advancedInfos;
     }
 
 	/**
