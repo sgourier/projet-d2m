@@ -31,7 +31,12 @@ class Videocategory
      */
     private $idVideocategory;
 
-
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="name", type="string", length=1000, nullable=true)
+	 */
+	private $name;
 
     /**
      * Get id
@@ -66,4 +71,20 @@ class Videocategory
     {
         return $this->idVideocategory;
     }
+
+	/**
+	 * @return string
+	 */
+	public function getName()
+	{
+		return $this->name;
+	}
+
+	/**
+	 * @param string $name
+	 */
+	public function setName( $name )
+	{
+		$this->name = $name;
+	}
 }
