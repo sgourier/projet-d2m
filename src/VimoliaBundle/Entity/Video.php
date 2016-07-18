@@ -19,12 +19,7 @@ class Video
      */
     private $title;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="youtubeId", type="string", length=1500, nullable=true)
-     */
-    private $youtubeId;
+
 
     /**
      * @var string
@@ -85,7 +80,7 @@ class Video
      *
      * @ORM\Column(name="thumbnail", type="string", length=1500, nullable=true)
      */
-    private $thumbnail;
+    private $Thumbnail;
 
     /**
      * Set title
@@ -272,9 +267,9 @@ class Video
      *
      * @return string
      */
-    public function setThumbnail($thumbnail)
+    public function setThumbnail($Thumbnail)
     {
-        $this->title = $thumbnail;
+        $this->title = $Thumbnail;
     }
     /**
      * Get thumbnail
@@ -283,28 +278,6 @@ class Video
      */
     public function getThumbnail()
     {
-        return $this->thumbnail;
-    }
-
-    /**
-     * Set youtubeId
-     *
-     * @param string $youtubeId
-     *
-     * @return Video
-     */
-    public function setYoutubeId($youtubeId)
-    {
-        $this->youtubeId = $youtubeId;
-        return $this;
-    }
-    /**
-     * Get youtubeId
-     *
-     * @return string
-     */
-    public function getYoutubeId()
-    {
-        return $this->youtubeId;
+        return $this->Thumbnail;
     }
 }

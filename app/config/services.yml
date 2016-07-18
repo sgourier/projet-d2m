@@ -56,11 +56,27 @@ services:
             arguments: [~, VimoliaBundle\Entity\Video, ~]
             tags:
               - { name: sonata.admin, manager_type: orm, label: Vidéos }
-            calls:
-              - [ setTemplate, [list, SonataAdminBundle:VideoAdmin:list_outer_rows_mosaic.html.twig]]
+           # calls:
+            #  - [ setTemplate, [list, SonataAdminBundle:VideoAdmin:youtube.html.twig]]
 
     admin.article:
             class: VimoliaBundle\Admin\ArticleAdmin
             arguments: [~, VimoliaBundle\Entity\Article, ~]
             tags:
               - { name: sonata.admin, manager_type: orm, label: Article }
+
+    admin.discussion:
+                class: VimoliaBundle\Admin\DiscussionAdmin
+                arguments: [~, VimoliaBundle\Entity\Discussion, ~]
+                tags:
+                  - { name: sonata.admin, manager_type: orm, label: Discussion }
+    admin.message:
+                class: VimoliaBundle\Admin\MessageAdmin
+                arguments: [~, VimoliaBundle\Entity\Message, ~]
+                tags:
+                  - { name: sonata.admin, manager_type: orm, label: Message }
+    admin.practdomains:
+                class: VimoliaBundle\Admin\PractDomaineAdmin
+                arguments: [~, VimoliaBundle\Entity\Practdomains, ~]
+                tags:
+                  - { name: sonata.admin, manager_type: orm, label: Domaines }

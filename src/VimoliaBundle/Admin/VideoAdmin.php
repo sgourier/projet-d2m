@@ -29,7 +29,7 @@ class VideoAdmin extends AbstractAdmin
 
     protected function configureListFields(ListMapper $listMapper)
     {
-        $listMapper->addIdentifier('thumbnail', 'string', array('label' => 'Thumbnail'))
+        $listMapper
             ->addIdentifier('title', 'text', array('label' => 'Titre'))
             ->addIdentifier('url', 'text', array('label' => 'Url'));
     }

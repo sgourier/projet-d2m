@@ -110,12 +110,25 @@ sonata_admin:
                 items:
                     - admin.user
                     - admin.certifications
+            Discussion:
+                on_top:               false
+                label:                Discussions
+                label_catalogue:      ~
+                items:
+                    - admin.discussion
+                    - admin.message
             Article:
                 on_top:               true
                 label:                Articles
                 label_catalogue:      ~
                 items:
                     - admin.article
+            Domaines:
+                on_top:               true
+                label:                Domaines
+                label_catalogue:      ~
+                items:
+                    - admin.practdomains
             Partenaires:
                 on_top:               true
                 label:                Partenaires
@@ -128,7 +141,6 @@ sonata_admin:
                 label_catalogue:      ~
                 items:
                     - admin.video
-                #    - admin.media
 
             A propos de nous:
                 on_top:               false
@@ -153,15 +165,8 @@ sonata_admin:
                 type: sonata.block.service.text
                 settings:
                     content: >
-                        <h2>Welcome to the Admin Page</h2>
-                        <p>Admin Dashboard</p>
-            -
-                position: right
-                type: sonata.block.service.text
-                settings:
-                    content: >
-                        <h2>Test Block droite en dessous</h2>
-                        <p>Admin Dashboard</p>
+                        <h2>Bienvenue sur la page d'administration du site</h2>
+                        <p>Dashboard Admin</p>
 services:
   twig.extension.date:
        class: Twig_Extensions_Extension_Date
