@@ -129,6 +129,21 @@
                 padding-top:15px;
                 margin-bottom: 15px;
             }
+            .container-formulaire .profile-picture ul{
+                list-style: none;
+                padding:0;
+                margin:0;
+                margin-bottom: 15px;
+                width:100%;
+            }
+                .container-formulaire .profile-picture ul li{
+                    background-color:#ffb3b3;
+                    border-radius: 4px;
+                    padding:10px;
+                    width:70%;
+                    margin:auto;
+                    border:1px solid #de5b5b;
+                }
             .container-formulaire .profile-picture img{
                 border-radius: 360px;
                 height:70px;
