@@ -1,0 +1,8 @@
+
+.bg-aqua, .callout.callout-info, .alert-info, .label-info, .modal-info .modal-body{
+    background-color: #a6366b !important;
+}
+
+a{
+    color:#b65281 !important;
+}

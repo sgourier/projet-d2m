@@ -9,6 +9,11 @@
 			{% for discussion in discussions %}
 				<div class="last-question-cont">
 					<div class="last-question">
+						<!-- discussion.user.avatarPath -->
+						<img class="image-user" src="{{ asset("uploads/users/membre.jpg") }}" alt="">
+						<div class="name">
+							{{discussion.user.name}}
+						</div>
 						<div class="date">
 							{{discussion.question.dateupd|date('d/m/Y')}}
 						</div>

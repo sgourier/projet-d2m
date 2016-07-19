@@ -49,13 +49,13 @@ li a:hover
     text-align: center;
 }
     .container-white .icone{
-        max-height: 100px;
+        max-height: 50px;
     }
     .container-white .title{
         font-size: 180%;
         text-transform: uppercase;
         border-bottom: 1px solid silver;
-        width:50%;
+        width:70%;
         margin: 0 auto 20px;
         padding:20px;
     }
@@ -80,9 +80,15 @@ input[type=submit],.button,button
         background-color: #740e3e;
         cursor: pointer;
         text-decoration: none;
+        color:white !important;
     }
-    input[type=submit]:hover,.button:hover,button:active{
-        color:white;
+    input[type=submit]:active,.button:active,button:active{
+        color:white !important;
+        text-decoration: none;
+    }
+    input[type=submit]:focus,.button:focus,button:focus{
+        color:white !important;
+        text-decoration: none;
     }
 
 input[type=text],input[type=email],input[type=password],input[type=number],select,textarea{
