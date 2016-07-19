@@ -70,11 +70,6 @@ services:
                 arguments: [~, VimoliaBundle\Entity\Discussion, ~]
                 tags:
                   - { name: sonata.admin, manager_type: orm, label: Discussion }
-    admin.message:
-                class: VimoliaBundle\Admin\MessageAdmin
-                arguments: [~, VimoliaBundle\Entity\Message, ~]
-                tags:
-                  - { name: sonata.admin, manager_type: orm, label: Message }
     admin.practdomains:
                 class: VimoliaBundle\Admin\PractDomaineAdmin
                 arguments: [~, VimoliaBundle\Entity\Practdomains, ~]

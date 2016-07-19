@@ -1,14 +1,8 @@
 {% extends "base.html.twig" %}
 {% block body %}
-    <div class="container-white">
-        <div class="title">
-            Interviews
-        </div>
-        <div class="title">
-            Emissions
-        </div>
-        <div class="title">
-            Conférence
-        </div>
-    </div>
+    {% for video in videos %}
+        <h2>{{ video.title }}</h2>
+        <iframe width="420" height="315" src="http://www.youtube.com/embed/{{ video.id }}" frameborder="0" allowfullscreen value="{{ 'http://www.youtube.com/v/' ~  video.id }}"></iframe>
+        <p>{{ video.description }}</p>
+    {% endfor %}
 {% endblock body %}

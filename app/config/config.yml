@@ -111,12 +111,11 @@ sonata_admin:
                     - admin.user
                     - admin.certifications
             Discussion:
-                on_top:               false
+                on_top:               true
                 label:                Discussions
                 label_catalogue:      ~
                 items:
                     - admin.discussion
-                    - admin.message
             Article:
                 on_top:               true
                 label:                Articles
@@ -149,24 +148,24 @@ sonata_admin:
                 items:
                     - admin.aboutus
                     - admin.cgu
-        blocks:
-            -
-                position: center
-                type: sonata.admin.block.admin_list
-                settings:
-                    groups: [User, A propos de nous]
-            -
-                position: right
-                type: sonata.admin.block.admin_list
-                settings:
-                    groups: [Partners, Article, Video]
-            -
-                position: left
-                type: sonata.block.service.text
-                settings:
-                    content: >
-                        <h2>Bienvenue sur la page d'administration du site</h2>
-                        <p>Dashboard Admin</p>
+      # blocks:
+      #     -
+      #         position: center
+      #         type: sonata.admin.block.admin_list
+      #         settings:
+      #             groups: [User, A propos de nous]
+      #     -
+      #         position: right
+      #         type: sonata.admin.block.admin_list
+      #         settings:
+      #             groups: [Partners, Article, Video]
+      #     -
+      #         position: left
+      #         type: sonata.block.service.text
+      #         settings:
+      #             content: >
+      #                 <h2>Bienvenue sur la page d'administration du site</h2>
+      #                 <p>Dashboard Admin</p>
 services:
   twig.extension.date:
        class: Twig_Extensions_Extension_Date

@@ -13,14 +13,11 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
-class VideoAdmin extends AbstractAdmin
+class VideoCategoryAdmin extends AbstractAdmin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
-        $formMapper->add('title', 'text', array('label' => 'Titre', 'required' => true))
-            ->add('description', 'textarea', array('label' => 'Description', 'required' => true))
-            ->add('url', 'text', array('label' => 'Url', 'required' => true));
-           // ->add('idVideocategory', 'sonata_type_model_list', array());
+        $formMapper->add('name', 'text', array('label' => 'Nom', 'required' => true));
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
