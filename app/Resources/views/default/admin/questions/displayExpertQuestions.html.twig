@@ -1,5 +1,6 @@
-{% extends "baseAdmin.html.twig" %}
-{% block body %}
+{% extends 'SonataAdminBundle::standard_layout.html.twig' %}
+
+{% block sonata_admin_content %}
 	<div id="container-discussion" class="container-white">
 	    <div class="title">
 	        Liste de vos questions en attentes
@@ -16,7 +17,7 @@
 					{% for discussion in discussions %}
 						<tr>
 							<td>{{discussion.question.dateupd|date('d m Y')}}</td>
-							<td>{{discussion.question.text}}</td>
+							<td>{{discussion.question.text|truncate(200)}}</td>
 							<td><a href="{{ path('adminExpertQuestion', {'idDiscussion': discussion.id}) }}">Voir</a></td>
 						</tr>
 				    {% endfor %}
@@ -27,4 +28,4 @@
 		{% endif %}
 
 	</div>
-{% endblock body %}
+{% endblock %}

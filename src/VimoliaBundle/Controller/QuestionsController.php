@@ -41,10 +41,57 @@ class QuestionsController extends Controller
                                          "active" => true
                                     ));
             $discussion->setReponse($reponse);
+
+            $expert = $em->getRepository('UserBundle:User')
+                          ->findOneBy(array("id" => $discussion->getIdExpert()));
+            $discussion->setExpert($expert);
+
+            $user = $em->getRepository('UserBundle:User')
+                          ->findOneBy(array("id" => $discussion->getIdMember()));
+            $discussion->setUser($user);
         }
 
         return $this->render('default/questions/displayQuestions.html.twig', array(
             'discussions' => $discussions
+        ));
+    }
+
+    /**
+     * @Route("/questions/{idDiscussion}", name="question", defaults={"idDiscussion" = -1})
+     * @ParamConverter("discussion", class="VimoliaBundle:Discussion", options={"id" = "idDiscussion"})
+     * @param Discussion $discussion
+     * @param Request $request
+     *
+     * @return Response
+     */
+    public function displayQuestionAction(Request $request, Discussion $discussion = null)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $question = $em->getRepository('VimoliaBundle:Message')
+                       ->findOneBy(array("idDiscussion" => $discussion->getId(),
+                                      "idOwner" => $discussion->getIdMember(),
+                                      "active" => true
+                                ));
+        $discussion->setQuestion($question);
+
+        $reponse = $em->getRepository('VimoliaBundle:Message')
+                      ->findOneBy(array("idDiscussion" => $discussion->getId(),
+                                     "idOwner" => $discussion->getIdExpert(),
+                                     "active" => true
+                                ));
+        $discussion->setReponse($reponse);
+
+        $expert = $em->getRepository('UserBundle:User')
+                      ->findOneBy(array("id" => $discussion->getIdExpert()));
+        $discussion->setExpert($expert);
+
+        $user = $em->getRepository('UserBundle:User')
+                      ->findOneBy(array("id" => $discussion->getIdMember()));
+        $discussion->setUser($user);
+
+        return $this->render('default/questions/displayQuestion.html.twig', array(
+            'discussion' => $discussion
         ));
     }
 
@@ -68,6 +115,14 @@ class QuestionsController extends Controller
                                           "active" => true
                                     ));
             $discussion->setQuestion($question);
+
+            $expert = $em->getRepository('UserBundle:User')
+                          ->findOneBy(array("id" => $discussion->getIdExpert()));
+            $discussion->setExpert($expert);
+
+            $user = $em->getRepository('UserBundle:User')
+                          ->findOneBy(array("id" => $discussion->getIdMember()));
+            $discussion->setUser($user);
         }
 
         return $this->render('default/questions/displayOwnQuestions.html.twig', array(
@@ -105,6 +160,14 @@ class QuestionsController extends Controller
         $advancedInfos = $em->getRepository('VimoliaBundle:AdvancedInfos')
                        ->findOneBy(array("id" => $discussion->getIdAdvancedinfos()));
         $discussion->setAdvancedInfos($advancedInfos);
+
+        $expert = $em->getRepository('UserBundle:User')
+                      ->findOneBy(array("id" => $discussion->getIdExpert()));
+        $discussion->setExpert($expert);
+
+        $user = $em->getRepository('UserBundle:User')
+                      ->findOneBy(array("id" => $discussion->getIdMember()));
+        $discussion->setUser($user);
 
         return $this->render('default/questions/displayOwnQuestion.html.twig', array(
             'discussion' => $discussion
@@ -148,7 +211,7 @@ class QuestionsController extends Controller
 
 
     /**
-     * @Route("/questions/new", name="questions_new")
+     * @Route("/questions_new", name="questions_new")
      */
     public function displayNewQuestionAction()
     {
@@ -164,7 +227,7 @@ class QuestionsController extends Controller
     }
 
     /**
-     * @Route("/questions/confirm", name="questions_confirm")
+     * @Route("/questions_confirm", name="questions_confirm")
      */
     public function displayConfirmQuestions()
     {
@@ -172,7 +235,7 @@ class QuestionsController extends Controller
     }
 
     /**
-     * @Route("/questions/save", name="questions_saveMessageForm")
+     * @Route("/questions_save", name="questions_saveMessageForm")
      *
      * @param Request $request
      *

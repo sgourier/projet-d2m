@@ -123,6 +123,8 @@ class Discussion
     public $question;
     public $reponse;
     public $advancedInfos;
+    public $expert;
+    public $user;
 
     /**
      * Message constructor.
@@ -481,6 +483,54 @@ class Discussion
     public function getAdvancedInfos()
     {
         return $this->advancedInfos;
+    }
+
+    /**
+     * Set expert
+     *
+     * @param $expert
+     *
+     * @return Discussion
+     */
+    public function setExpert($expert = null)
+    {
+        $this->expert = $expert;
+
+        return $this;
+    }
+
+    /**
+     * Get expert
+     *
+     * @return expert
+     */
+    public function getExpert()
+    {
+        return $this->expert;
+    }
+
+    /**
+     * Set user
+     *
+     * @param $user
+     *
+     * @return Discussion
+     */
+    public function setUser($user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return user
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 
 	/**

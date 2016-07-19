@@ -7,22 +7,27 @@
         <div class="pract-type">
             Type du practitien
         </div>
-        <p>{{ user.name }} {{ user.firstname }}</p>
-        <p>SIRET : {{ user.practInfos.siret }}</p>
-        <div id="map"></div>
-        <script>
+        <div class="informations">
+            <div class="left">
+                <img src="{{ asset("uploads/users/membre.jpg") }}" alt="">
+            </div>
+            <div class="right">
+                <div class="name">
+                    {{ user.name }}
+                    <div class="second">
+                        {{ user.firstname }}
+                    </div>
+                </div>
+                <div class="siret">
+                    SIRET : 0101000000000000
+                </div>
+                <div class="adresse">
+                    ADRESSE : {{ user.address }} - {{ user.city }} - {{ user.zipCode }}
+                </div>
+            </div>
+        </div>
+        <a target="_blank" href="https://www.google.fr/maps/place/{{ user.address~" "~user.city~" "~user.zipCode }}" id="map">
 
-            function initMap() {
-                var mapDiv = document.getElementById('map');
-                var map = new google.maps.Map(mapDiv, {
-                    center: {lat: 44.540, lng: -78.546},
-                    zoom: 8
-                });
-            }
-        </script>
-
-        <script async defer
-                src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
-        </script>
+        </a>
     </div>
 {% endblock %}

@@ -39,7 +39,8 @@
         <div class="left">
             <div class="container-white informations-profile">
                 <div class="title-part">Vos informations</div>
-                <img src="{{ asset("uploads/users/"~user.id~"/"~user.avatarPath) }}" alt="">
+                    <!--<img src="{{ asset("uploads/users/"~user.id~"/"~user.avatarPath) }}" alt="">-->
+                    <img src="{{ asset("uploads/users/membre.jpg") }}" alt="">
                 <br/>
                 <p>{{ user.username }} - {{ user.email }}</p>
                 <a target="_blank" href="{{ path('user_proPage',{"id":user.id}) }}" class="button">

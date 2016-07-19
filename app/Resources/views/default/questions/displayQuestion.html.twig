@@ -1,0 +1,49 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <div id="container-discussion" class="container-white">
+
+		<div class="personne">
+	        <div class="col-xs-4 container_img">
+	            <img src="{{ asset('img/homepage/discussion/expert.jpg') }}" alt="">
+	        </div>
+	        <div class="col-xs-8">
+	            <div class="nom">
+	                {{discussion.idExpert}}
+	            </div>
+	            <div class="description">
+	                Lorem Ipsum Delor
+	            </div>
+	        </div>
+	    </div>
+	    <div class="personne">
+	        <div class="col-xs-4 container_img">
+	            <img src="{{ asset('img/homepage/discussion/membre.jpg') }}" alt="">
+	        </div>
+	        <div class="col-xs-8">
+	            <div class="nom">
+	                {{discussion.idMember}}
+	            </div>
+	        </div>
+	    </div>
+    
+        <div class="dialogue">
+	        <div class="nom">
+	            Question posée par le membre :
+	        </div>
+	        <div class="text">
+	        	<strong>Le {{discussion.question.dateupd|date('d/m/Y')}}</strong><br>
+	            {{discussion.question.text}}
+	        </div>
+	    </div>
+	    <div class="dialogue expert">
+	        <div class="nom">
+	            La réponse de notre expert :
+	        </div>
+	        <div class="text">
+	        	<strong>Le {{discussion.reponse.dateupd|date('d/m/Y')}}</strong><br>
+	            {{discussion.reponse.text}}
+	        </div>
+	    </div>
+
+    </div>
+{% endblock body %}

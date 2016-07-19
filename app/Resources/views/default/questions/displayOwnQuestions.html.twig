@@ -16,7 +16,7 @@
 					{% for discussion in discussions %}
 						<tr>
 							<td>{{discussion.question.dateupd|date('d m Y')}}</td>
-							<td>{{discussion.question.text}}</td>
+							<td>{{discussion.question.text|truncate(200)}}</td>
 							<td><a href="{{ path('own_question', {'idDiscussion': discussion.id}) }}">Voir</a></td>
 						</tr>
 				    {% endfor %}

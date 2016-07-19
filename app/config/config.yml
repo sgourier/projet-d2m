@@ -116,6 +116,7 @@ sonata_admin:
                 label_catalogue:      ~
                 items:
                     - admin.discussion
+
             Article:
                 on_top:               true
                 label:                Articles
