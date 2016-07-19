@@ -36,6 +36,14 @@ class AdminQuestionsController extends Controller
                                           "active" => true
                                     ));
             $discussion->setQuestion($question);
+
+            $expert = $em->getRepository('UserBundle:User')
+                          ->findOneBy(array("id" => $discussion->getIdExpert()));
+            $discussion->setExpert($expert);
+
+            $user = $em->getRepository('UserBundle:User')
+                          ->findOneBy(array("id" => $discussion->getIdMember()));
+            $discussion->setUser($user);
         }
 
         return $this->render('default/admin/questions/displayNewQuestions.html.twig', array(
@@ -61,6 +69,14 @@ class AdminQuestionsController extends Controller
                                         "active" => true
                                   ));
         $discussion->setQuestion($question);
+
+        $expert = $em->getRepository('UserBundle:User')
+                      ->findOneBy(array("id" => $discussion->getIdExpert()));
+        $discussion->setExpert($expert);
+
+        $user = $em->getRepository('UserBundle:User')
+                      ->findOneBy(array("id" => $discussion->getIdMember()));
+        $discussion->setUser($user);
 
         $experts = $this->getDoctrine()->getRepository("UserBundle:User")->findByRole('ROLE_EXPERT');
 
@@ -136,6 +152,14 @@ class AdminQuestionsController extends Controller
                                           "active" => true
                                     ));
             $discussion->setQuestion($question);
+
+            $expert = $em->getRepository('UserBundle:User')
+                          ->findOneBy(array("id" => $discussion->getIdExpert()));
+            $discussion->setExpert($expert);
+
+            $user = $em->getRepository('UserBundle:User')
+                          ->findOneBy(array("id" => $discussion->getIdMember()));
+            $discussion->setUser($user);
         }
 
         return $this->render('default/admin/questions/displayExpertQuestions.html.twig', array(
@@ -169,6 +193,14 @@ class AdminQuestionsController extends Controller
                                       "active" => true
                                 ));
         $discussion->setQuestion($question);
+
+        $expert = $em->getRepository('UserBundle:User')
+                      ->findOneBy(array("id" => $discussion->getIdExpert()));
+        $discussion->setExpert($expert);
+
+        $user = $em->getRepository('UserBundle:User')
+                      ->findOneBy(array("id" => $discussion->getIdMember()));
+        $discussion->setUser($user);
 
         $advancedInfos = $em->getRepository('VimoliaBundle:AdvancedInfos')
                        ->findOneBy(array("id" => $discussion->getIdAdvancedinfos()));

@@ -41,6 +41,14 @@ class QuestionsController extends Controller
                                          "active" => true
                                     ));
             $discussion->setReponse($reponse);
+
+            $expert = $em->getRepository('UserBundle:User')
+                          ->findOneBy(array("id" => $discussion->getIdExpert()));
+            $discussion->setExpert($expert);
+
+            $user = $em->getRepository('UserBundle:User')
+                          ->findOneBy(array("id" => $discussion->getIdMember()));
+            $discussion->setUser($user);
         }
 
         return $this->render('default/questions/displayQuestions.html.twig', array(
@@ -59,7 +67,7 @@ class QuestionsController extends Controller
     public function displayQuestionAction(Request $request, Discussion $discussion = null)
     {
         $em = $this->getDoctrine()->getManager();
-        
+
         $question = $em->getRepository('VimoliaBundle:Message')
                        ->findOneBy(array("idDiscussion" => $discussion->getId(),
                                       "idOwner" => $discussion->getIdMember(),
@@ -73,6 +81,14 @@ class QuestionsController extends Controller
                                      "active" => true
                                 ));
         $discussion->setReponse($reponse);
+
+        $expert = $em->getRepository('UserBundle:User')
+                      ->findOneBy(array("id" => $discussion->getIdExpert()));
+        $discussion->setExpert($expert);
+
+        $user = $em->getRepository('UserBundle:User')
+                      ->findOneBy(array("id" => $discussion->getIdMember()));
+        $discussion->setUser($user);
 
         return $this->render('default/questions/displayQuestion.html.twig', array(
             'discussion' => $discussion
@@ -99,6 +115,14 @@ class QuestionsController extends Controller
                                           "active" => true
                                     ));
             $discussion->setQuestion($question);
+
+            $expert = $em->getRepository('UserBundle:User')
+                          ->findOneBy(array("id" => $discussion->getIdExpert()));
+            $discussion->setExpert($expert);
+
+            $user = $em->getRepository('UserBundle:User')
+                          ->findOneBy(array("id" => $discussion->getIdMember()));
+            $discussion->setUser($user);
         }
 
         return $this->render('default/questions/displayOwnQuestions.html.twig', array(
@@ -136,6 +160,14 @@ class QuestionsController extends Controller
         $advancedInfos = $em->getRepository('VimoliaBundle:AdvancedInfos')
                        ->findOneBy(array("id" => $discussion->getIdAdvancedinfos()));
         $discussion->setAdvancedInfos($advancedInfos);
+
+        $expert = $em->getRepository('UserBundle:User')
+                      ->findOneBy(array("id" => $discussion->getIdExpert()));
+        $discussion->setExpert($expert);
+
+        $user = $em->getRepository('UserBundle:User')
+                      ->findOneBy(array("id" => $discussion->getIdMember()));
+        $discussion->setUser($user);
 
         return $this->render('default/questions/displayOwnQuestion.html.twig', array(
             'discussion' => $discussion
