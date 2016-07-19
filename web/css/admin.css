@@ -6,3 +6,10 @@
 a{
     color:#b65281 !important;
 }
+
+.btn.btn-success{
+    background-color:#b65281 !important;
+    border:none;
+    width:280px;
+    max-width: 500px;
+}
