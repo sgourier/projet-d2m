@@ -49,6 +49,37 @@ class QuestionsController extends Controller
     }
 
     /**
+     * @Route("/questions/{idDiscussion}", name="question", defaults={"idDiscussion" = -1})
+     * @ParamConverter("discussion", class="VimoliaBundle:Discussion", options={"id" = "idDiscussion"})
+     * @param Discussion $discussion
+     * @param Request $request
+     *
+     * @return Response
+     */
+    public function displayQuestionAction(Request $request, Discussion $discussion = null)
+    {
+        $em = $this->getDoctrine()->getManager();
+        
+        $question = $em->getRepository('VimoliaBundle:Message')
+                       ->findOneBy(array("idDiscussion" => $discussion->getId(),
+                                      "idOwner" => $discussion->getIdMember(),
+                                      "active" => true
+                                ));
+        $discussion->setQuestion($question);
+
+        $reponse = $em->getRepository('VimoliaBundle:Message')
+                      ->findOneBy(array("idDiscussion" => $discussion->getId(),
+                                     "idOwner" => $discussion->getIdExpert(),
+                                     "active" => true
+                                ));
+        $discussion->setReponse($reponse);
+
+        return $this->render('default/questions/displayQuestion.html.twig', array(
+            'discussion' => $discussion
+        ));
+    }
+
+    /**
      * @Route("/profile/questions", name="own_questions")
      */
     public function displayOwnQuestionsAction()
@@ -148,7 +179,7 @@ class QuestionsController extends Controller
 
 
     /**
-     * @Route("/questions/new", name="questions_new")
+     * @Route("/questions_new", name="questions_new")
      */
     public function displayNewQuestionAction()
     {
@@ -164,7 +195,7 @@ class QuestionsController extends Controller
     }
 
     /**
-     * @Route("/questions/confirm", name="questions_confirm")
+     * @Route("/questions_confirm", name="questions_confirm")
      */
     public function displayConfirmQuestions()
     {
@@ -172,7 +203,7 @@ class QuestionsController extends Controller
     }
 
     /**
-     * @Route("/questions/save", name="questions_saveMessageForm")
+     * @Route("/questions_save", name="questions_saveMessageForm")
      *
      * @param Request $request
      *

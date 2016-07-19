@@ -110,13 +110,6 @@ sonata_admin:
                 items:
                     - admin.user
                     - admin.certifications
-            Discussion:
-                on_top:               false
-                label:                Discussions
-                label_catalogue:      ~
-                items:
-                    - admin.discussion
-                    - admin.message
             Article:
                 on_top:               true
                 label:                Articles

@@ -1,5 +1,6 @@
-{% extends "baseAdmin.html.twig" %}
-{% block body %}
+{% extends 'SonataAdminBundle::standard_layout.html.twig' %}
+
+{% block sonata_admin_content %}
     <div id="container-discussion" class="container-white">
     	
         <div class="personne">
@@ -55,4 +56,4 @@
         {% endif %}
 
     </div>
-{% endblock body %}
+{% endblock %}
