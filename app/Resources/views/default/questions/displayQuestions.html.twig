@@ -1,27 +1,26 @@
 {% extends "base.html.twig" %}
 {% block body %}
-    <div id="container-discussion" class="container-white">
+    <div id="container-list-questions" class="container-white">
         <div class="title">
             Liste des questions
         </div>
 
 		{% if discussions|length != 0 %}
-			<table>
-				<thead>
-					<th>Date</th>
-					<th>Question</th>
-					<th></th>
-				</thead>
-				<tbody>			
-					{% for discussion in discussions %}
-						<tr>
-							<td>{{discussion.question.dateupd|date('d m Y')}}</td>
-							<td>{{discussion.question.text|truncate(200)}}</td>
-							<td><a href="{{ path('question', {'idDiscussion': discussion.id}) }}">Voir</a></td>
-						</tr>
-				    {% endfor %}
-			    </tbody>
-			</table>
+			{% for discussion in discussions %}
+				<div class="last-question-cont">
+					<div class="last-question">
+						<div class="date">
+							{{discussion.question.dateupd|date('d/m/Y')}}
+						</div>
+						<div class="question">
+							{{discussion.question.text|truncate(200)}}
+						</div>
+						<a class="button" href="{{ path('question', {'idDiscussion': discussion.id}) }}">
+							En savoir plus
+						</a>
+					</div>
+				</div>
+			{% endfor %}
 		{% else %}
 		    Aucune questions publiques pour le moment.<br>
 		    Soyer le premier à poser la votre.
