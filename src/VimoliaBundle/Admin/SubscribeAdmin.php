@@ -18,8 +18,8 @@ class SubscribeAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper->add('name', 'text', array('label' => 'Nom', 'required' => true))
-        ->add('price', 'number', array('label' => 'Prix', 'required' => true))
-        ->add('time', 'number', array('label' => 'Durée', 'required' => true))
+        ->add('price', 'number', array('label' => 'Prix (en €)', 'required' => true))
+        ->add('time', 'number', array('label' => 'Durée (Mois)', 'required' => true))
         ->add('description', 'textarea', array('label' => 'Description', 'required' => true))
         ->add('active', 'choice', array(
         'choices' => array(
@@ -38,8 +38,8 @@ class SubscribeAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper->addIdentifier('name', 'text', array('label' => 'Nom'))
-        ->addIdentifier('price', 'number', array('label' => 'Prix'))
-        ->addIdentifier('time', 'number', array('label' => 'Durée'))
+        ->addIdentifier('price', 'number', array('label' => 'Prix (en €)'))
+        ->addIdentifier('time', 'number', array('label' => 'Durée (Mois)'))
         ->addIdentifier('description', 'textarea', array('label' => 'Description'))
         ->addIdentifier('active', 'boolean', array('label' => 'active'));
     }
