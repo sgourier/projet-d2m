@@ -34,6 +34,13 @@ class UserAdmin extends AbstractAdmin
             ->add('phone', 'number', array('label' => 'Téléphone', 'required' => false))
             ->add('cellPhone', 'number', array('label' => 'Téléphone Portable', 'required' => false))
             ->add('email', 'text', array('label' => 'Adresse Email', 'required' => true))
+            ->add('roles', 'choice', array(
+                'choices' => array(
+                    'Membre' => 'ROLE_EXPERT',
+                    'Expert' => 'ROLE_MEMBER',
+                    'Super Admin' => 'ROLE_SUPER_ADMIN'),
+                'choices_as_values' => true,
+            ))
             ->add('discoveryType', 'choice', array(
                 'choices' => array(
                     'Amis' => 'amis',

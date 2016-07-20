@@ -64,10 +64,11 @@ class AdminVideoController extends Controller
    //        'youtube_videos' => $videos,
    //    );
 
-
+        $api_key = "AIzaSyDzEQH3YSAz-xFzfthnjr__KX1K3pxHi4o";
+        $channel_id = "UCDg53Em9AHmMlpdlL9j7svw";
 
         $ch = curl_init();
-        curl_setopt($ch,CURLOPT_URL,"https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&channelId=UCDg53Em9AHmMlpdlL9j7svw&maxResults=50&key=AIzaSyDzEQH3YSAz-xFzfthnjr__KX1K3pxHi4o");
+        curl_setopt($ch,CURLOPT_URL,"https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&channelId=$channel_id&maxResults=50&key=$api_key");
         curl_setopt($ch,CURLOPT_HTTPHEADER,array("Accept: application/json","Accept-Language: fr_FR"));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt ($ch, CURLOPT_SSL_VERIFYHOST, false);

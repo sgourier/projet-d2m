@@ -135,12 +135,12 @@ sonata_admin:
                 label_catalogue:      ~
                 items:
                     - admin.partners
-            Video:
-                on_top:               true
-                label:                Vidéo
-                label_catalogue:      ~
-                items:
-                    - admin.video
+         #  Video:
+         #      on_top:               true
+         #      label:                Vidéo
+         #      label_catalogue:      ~
+         #      items:
+         #          - admin.video
 
             A propos de nous:
                 on_top:               false
