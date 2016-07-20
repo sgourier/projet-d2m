@@ -19,9 +19,9 @@ class UserAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
 
-        $RoleSuperAdmin = 'a:1:{i:0;s:16:"ROLE_SUPER_ADMIN";}';
-        $RoleExpert = 'a:2:{i:0;s:11:"ROLE_MEMBER";i:1;s:11:"ROLE_EXPERT";}';
-        $RoleMembre = 'a:1:{i:0;s:11:"ROLE_MEMBER";}';
+        # $RoleSuperAdmin = 'a:1:{i:0;s:16:"ROLE_SUPER_ADMIN";}';
+        # $RoleExpert = 'a:2:{i:0;s:11:"ROLE_MEMBER";i:1;s:11:"ROLE_EXPERT";}';
+        # $RoleMembre = 'a:1:{i:0;s:11:"ROLE_MEMBER";}';
 
         $formMapper->add('username', 'text', array('label' => 'Pseudo', 'required' => true))
             ->add('name', 'text', array('label' => 'Nom', 'required' => true))

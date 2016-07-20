@@ -33,6 +33,7 @@ class SubscribeAdmin extends AbstractAdmin
         $datagridMapper->add('name')
             ->add('price')
             ->add('time');
+            // ->add('active', 'doctrine_orm_model_autocomplete');
     }
 
     protected function configureListFields(ListMapper $listMapper)
