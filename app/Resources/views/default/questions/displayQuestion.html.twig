@@ -2,19 +2,36 @@
 {% block body %}
     <div id="container-discussion" class="container-white">
 
-		<div class="personne">
-	        <div class="col-xs-4 container_img">
-	            <img src="{{ asset('img/homepage/discussion/expert.jpg') }}" alt="">
-	        </div>
-	        <div class="col-xs-8">
-	            <div class="nom">
-	                {{discussion.idExpert}}
-	            </div>
-	            <div class="description">
-	                Lorem Ipsum Delor
-	            </div>
-	        </div>
-	    </div>
+		{% if discussion.reponse %}
+			<div class="personne">
+		        <div class="col-xs-4 container_img">
+		            <img src="{{ asset('img/homepage/discussion/expert.jpg') }}" alt="">
+		        </div>
+		        <div class="col-xs-8">
+		            <div class="nom">
+		                {{discussion.idExpert}}
+		            </div>
+		            <div class="description">
+		                Lorem Ipsum Delor
+		            </div>
+		        </div>
+		    </div>
+		{% endif %}
+		{% if discussion.reponsePract %}
+			<div class="personne">
+		        <div class="col-xs-4 container_img">
+		            <img src="{{ asset('img/homepage/discussion/expert.jpg') }}" alt="">
+		        </div>
+		        <div class="col-xs-8">
+		            <div class="nom">
+		                {{discussion.idPract}}
+		            </div>
+		            <div class="description">
+		                Lorem Ipsum Delor
+		            </div>
+		        </div>
+		    </div>
+	    {% endif %}
 	    <div class="personne">
 	        <div class="col-xs-4 container_img">
 	            <img src="{{ asset('img/homepage/discussion/membre.jpg') }}" alt="">
@@ -35,15 +52,29 @@
 	            {{discussion.question.text}}
 	        </div>
 	    </div>
-	    <div class="dialogue expert">
+
+	    {% if discussion.idExpert and discussion.reponse %}
+		    <div class="dialogue expert">
+		        <div class="nom">
+		            La réponse de notre expert :
+		        </div>
+		        <div class="text">
+		        	<strong>Le {{discussion.reponse.dateupd|date('d/m/Y')}}</strong><br>
+		            {{discussion.reponse.text}}
+		        </div>
+		    </div>
+		{% endif %}
+		{% if discussion.idPract and discussion.reponsePract %}
+		<div class="dialogue expert">
 	        <div class="nom">
-	            La réponse de notre expert :
+	            La réponse de notre practicien :
 	        </div>
 	        <div class="text">
-	        	<strong>Le {{discussion.reponse.dateupd|date('d/m/Y')}}</strong><br>
-	            {{discussion.reponse.text}}
+	        	<strong>Le {{discussion.reponsePract.dateupd|date('d/m/Y')}}</strong><br>
+	            {{discussion.reponsePract.text}}
 	        </div>
 	    </div>
+	    {% endif %}
 
     </div>
 {% endblock body %}

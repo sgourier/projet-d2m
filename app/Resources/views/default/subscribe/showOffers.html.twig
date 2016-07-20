@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container-white container-abonnements">
+        <div class="title">
+            Nos abonnements
+        </div>
+        <div class="message-vide">
+            Vous souhaitez apparaitre en tant que practicien sur notre site et disposez de votre page personnelle?
+            <br/>
+            Rien de plus simple, choisissez votre durée d'abonnement et inscrivez vous tout de suite en quelques clics
+        </div>
+
+        <a class="button" href="{{ path("fos_user_registration_register") }}">
+            Je m'abonnement
+        </a>
+
+        <div class="container-offers">
+            {% for abo in abonnements %}
+            <div class="offer">
+                <div class="col-xs-4 number">
+                    {{ loop.index }}
+                </div>
+                <div class="col-xs-8">
+                    <div class="nom">
+                        {{ abo.name }}
+                    </div>
+                    <div class="duree">
+                        {{ abo.time }} mois
+                    </div>
+                    <div class="description">
+                        {{ abo.description }}
+                    </div>
+                    <div class="prix">
+                        {{ abo.price }} €
+                    </div>
+                </div>
+            </div>
+            {% endfor%}
+        </div>
+    </div>
+
+{% endblock body %}

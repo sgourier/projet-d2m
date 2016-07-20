@@ -15,4 +15,19 @@ use Symfony\Component\HttpFoundation\Request;
 class SubscribeController extends Controller
 {
 
+    /**
+     * @Route("/subscribe", name="abonnements_infos")
+     */
+    public function indexAction() {
+
+        $em = $this->getDoctrine()->getManager();
+        $abonnements = $em->getRepository('VimoliaBundle:Subscribetype')
+            ->findAll();
+
+
+
+        return $this->render('default/subscribe/showOffers.html.twig', [
+            "abonnements" => $abonnements
+        ]);
+    }
 }

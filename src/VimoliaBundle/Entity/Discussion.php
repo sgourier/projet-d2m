@@ -126,6 +126,7 @@ class Discussion
     public $expert;
     public $user;
     public $domainText;
+    public $reponsePract;
 
     /**
      * Message constructor.
@@ -581,4 +582,29 @@ class Discussion
     {
         return $this->domainText;
     }
+
+    /**
+     * Set reponsePract
+     *
+     * @param $reponsePract
+     *
+     * @return Discussion
+     */
+    public function setReponsePract($reponsePract = null)
+    {
+        $this->reponsePract = $reponsePract;
+
+        return $this;
+    }
+
+    /**
+     * Get reponsePract
+     *
+     * @return reponsePract
+     */
+    public function getReponsePract()
+    {
+        return $this->reponsePract;
+    }
+
 }

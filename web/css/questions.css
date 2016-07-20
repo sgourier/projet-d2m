@@ -62,3 +62,20 @@
                 #container-list-questions .last-question-cont .last-question .question:after{
                     content:'"';
                 }
+
+
+
+
+
+
+                .infos-sup{
+                    width:100%;
+                }
+                    .infos-sup .titres{
+                        text-align: right;
+                        font-weight: bold;
+                    }
+                    .infos-sup .data{
+                        text-indent: 15px;
+                        text-align: left;
+                    }

@@ -176,3 +176,49 @@
         #container-domaines .cont-domaines img{
             height:50px;
         }
+
+
+
+/****************************************************************************************/
+/*                                      LES ABONNEMENTS                                 */
+/****************************************************************************************/
+.container-abonnements-hp{
+    margin:50px auto 30px;
+    width:80%;
+    overflow: hidden;
+    background-color:#333;
+}
+
+    .container-abonnements-hp .image{
+        height:400px;
+        background-image: url('../img/homepage/abonnements/image.jpg');
+        background-position: center;
+        background-size: 100% auto;
+    }
+    .container-abonnements-hp .types-abos{
+        padding-left:15px;
+        color:white;
+    }
+        .container-abonnements-hp .types-abos .titre{
+            font-size:30px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+        .container-abonnements-hp .types-abos{
+            margin-top:5px;
+        }
+            .container-abonnements-hp .types-abos table{
+                width:100%;
+            }
+                .container-abonnements-hp .types-abos table tr{
+                    border-bottom: 1px solid #6e6e6e;
+                }
+                    .container-abonnements-hp .types-abos table .nom{
+                        text-indent: 15px;
+                    }
+                    .container-abonnements-hp .types-abos table .duree{
+                        color:silver;
+                    }
+                    .container-abonnements-hp .types-abos table .prix{
+                        font-size:150%;
+                    }
