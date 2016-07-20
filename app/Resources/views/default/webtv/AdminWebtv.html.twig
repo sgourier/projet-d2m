@@ -1,6 +1,8 @@
 {% extends 'SonataAdminBundle::standard_layout.html.twig' %}
 {% block sonata_admin_content %}
     <div class="container-white container-webtv">
+    </div>
+    <div class="container-white container-webtv">
         <div class="title">
             Web TV
         </div>
@@ -18,7 +20,9 @@
                     </div>
                 {% else %}
                     <div class="video autre-video">
-                        <img width="90%" src="{{ video.thumbnails.high.url }}" style="cursor:pointer" />
+                        <a target="_blank" href="tps://www.youtube.com/watch?v={{ video.id }}">
+                            <img width="90%" src="{{ video.thumbnails.high.url }}" style="cursor:pointer" />
+                        </a>
                         <div class="titre">
                             {{ video.title }}
                         </div>
