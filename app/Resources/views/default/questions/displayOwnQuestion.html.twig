@@ -38,9 +38,9 @@
 	        </div>
 	    </div>
 	    {% if discussion.status == 'new' or discussion.status == 'expertAssociated'  or discussion.status == 'advancedInfosFilled' %}
-			<p>
+			<div class="message-vide">
 				Un expert va bientôt vous répondre.
-			</p>
+			</div>
 		{% endif %}
 		
 	    {% if discussion.reponse %}
@@ -57,7 +57,9 @@
 
 		{% if discussion.status == 'waitingAdvancedInfos' %}
 		    <div>
-                Nous avons besoin d'informations supplémentaires pour répondre à votre question :
+				<div class="message-vide">
+					Nous avons besoin d'informations supplémentaires pour répondre à votre question
+				</div>
                 <a href="{{ path('advancedInfos', {'idDiscussion': discussion.id}) }}">
                     <button>Répondre</button>
                 </a>
