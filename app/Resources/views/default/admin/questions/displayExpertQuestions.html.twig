@@ -21,6 +21,16 @@
 				width:30%;
 				padding-bottom:10px;
 			}
+			table .question{
+				font-style: italic;
+				font-size: 13px;
+			}
+			table .question:before{
+				content:'"';
+			}
+			table .question:after{
+				content:'"';
+			}
 		</style>
 
 		{% if discussions|length != 0 %}
@@ -28,20 +38,22 @@
 				<thead>
 				<th class="grey">Date</th>
 				<th>Question</th>
-				<th class="grey td-button"></th>
+				<th></th>
 				</thead>
 				<tbody>
 				{% for discussion in discussions %}
 					<tr>
 						<td class="grey">{{discussion.question.dateupd|date('d/m/Y')}}</td>
-						<td>{{discussion.question.text|truncate(200)}}</td>
+						<td class="question">{{discussion.question.text|truncate(200)}}</td>
 						<td class="grey td-button"><a class="button" href="{{ path('adminExpertQuestion', {'idDiscussion': discussion.id}) }}">Voir</a></td>
 					</tr>
 				{% endfor %}
 				</tbody>
 			</table>
 		{% else %}
-		    Il n'y a pas de questions en attente pour le moment.
+			<div class="message-vide">
+		    	Il n'y a pas de questions en attente pour le moment.
+			</div>
 		{% endif %}
 
 	</div>

@@ -74,6 +74,13 @@ class ProfileFormType extends AbstractType
                     'translation_domain' => 'FOSUserBundle',
                     'required' => false
                 ))
+		        ->add('sex','Symfony\Component\Form\Extension\Core\Type\ChoiceType',array(
+			        'label' => 'Sexe',
+			        'required' => false,
+			        'choices' => array(
+				        "Homme" => "H",
+				        "Femme" => "F"
+			        ),		        ))
                 ->add('avatarPath','Symfony\Component\Form\Extension\Core\Type\FileType',array(
                     'label' => 'form.avatar',
                     'translation_domain' => 'FOSUserBundle',

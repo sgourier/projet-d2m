@@ -1,26 +1,55 @@
 {% extends "base.html.twig" %}
 {% block body %}
     <div id="container-discussion" class="container-white">
-        <div class="title">
-            Liste de vos questions
-        </div>
+		<style>
+			table{
+				width:100%;
+				text-align: center !important;
+			}
+			table .grey{
+				background-color: rgba(0,0,0,0.02);
+			}
+			table  .td-button{
+				width:30%;
+				padding-bottom:10px;
+			}
+			table td,table th{
+				padding:5px;
+				text-align: center;
+			}
+			table .question{
+				font-style: italic;
+				font-size: 13px;
+			}
+			table .question:before{
+				content:'"';
+			}
+			table .question:after{
+				content:'"';
+			}
+		</style>
 
-		{% if discussions|length != 0 %}
-			<table>
+	{% if is_granted('ROLE_PRACTITIONER') %}
+
+		<div class="title">
+            Liste de vos discussions
+        </div>
+        {% if discussions|length != 0 %}
+			<table style="">
 				<thead>
-					<th>Date</th>
-					<th>Question</th>
-					<th></th>
+				<th class="grey">Date</th>
+				<th>Question</th>
+				<th></th>
 				</thead>
-				<tbody>			
-					{% for discussion in discussions %}
-						<tr>
-							<td>{{discussion.question.dateupd|date('d m Y')}}</td>
-							<td>{{discussion.question.text|truncate(200)}}</td>
-							<td><a href="{{ path('own_question', {'idDiscussion': discussion.id}) }}">Voir</a></td>
+				<tbody>
+				{% for discussion in discussions %}
+					<tr>
+						<td class="grey">{{discussion.question.dateupd|date('d/m/Y')}}</td>
+						<td class="question">{{discussion.question.text|truncate(200)}}</td>
+						<td class="grey td-button"><a class="button" href="{{ path('own_question', {'idDiscussion': discussion.id}) }}">Voir</a></td>
 						</tr>
-				    {% endfor %}
-			    </tbody>
+				{% endfor %}
+				</tbody>
 			</table>
 		{% else %}
 		    Vous n'avez posé aucune question pour le moment.<br>
@@ -28,6 +57,37 @@
 	    		Posez votre première question
 	    	</div>
 		{% endif %}
+
+	{% else %}
+
+		<div class="title">
+            Liste de vos questions
+        </div>
+		{% if discussions|length != 0 %}
+			<table style="">
+				<thead>
+				<th class="grey">Date</th>
+				<th>Question</th>
+				<th></th>
+				</thead>
+				<tbody>
+				{% for discussion in discussions %}
+					<tr>
+						<td class="grey">{{discussion.question.dateupd|date('d/m/Y')}}</td>
+						<td class="question">{{discussion.question.text|truncate(200)}}</td>
+						<td class="grey td-button"><a class="button" href="{{ path('own_question', {'idDiscussion': discussion.id}) }}">Voir</a></td>
+						</tr>
+				{% endfor %}
+				</tbody>
+			</table>
+		{% else %}
+		    Vous n'avez posé aucune question pour le moment.<br>
+		    <div class="button">
+	    		Posez votre première question
+	    	</div>
+		{% endif %}
+		
+	{% endif %}
 
     </div>
 {% endblock body %}

@@ -62,17 +62,27 @@
                 </div>
                 <div class="col-xs-8">
                     <div class="nom">
-                        {{ lastQuestion.idExpert.firstname }} {{ lastQuestion.idExpert.name }} (Expert Vimolia)
+                        {{ lastQuestion.idExpert.firstname }} {{ lastQuestion.idExpert.name }}
+                    </div>
+                    <div class="description">
+                        Expert Vimolia
                     </div>
                 </div>
             </div>
             <div class="personne">
                 <div class="col-xs-4 container_img">
-                    <img src="{{ asset('img/homepage/discussion/membre.jpg') }}" alt="">
+                    {% if lastQuestion.idMember.avatarPath != "" and lastQuestion.idMember.avatarPath != null %}
+                        <img src="{{ asset('uploads/users/'~user.id~'/'~lastQuestion.idMember.avatarPath) }}" alt="">
+                    {% else %}
+                        <img src="{{ asset('img/profile/nobody_m.original.jpg') }}" alt="">
+                    {% endif %}
                 </div>
                 <div class="col-xs-8">
                     <div class="nom">
-                        {{ lastQuestion.idMember.firstname }} {{ lastQuestion.idMember.name }} (Membre Vimolia)
+                        {{ lastQuestion.idMember.firstname }} {{ lastQuestion.idMember.name }}
+                    </div>
+                    <div class="description">
+                        Membre Vimolia
                     </div>
                 </div>
             </div>
@@ -94,7 +104,7 @@
             </div>
         {% else %}
             Aucune question n'as été posée récemment, venez poser la votre !<br>
-            <a href="{{ path('questions_new') }}" class="button button-new">Poser ma question</a>
+            <a href="{{ path('questions_new') }}" class="button button-new" style="max-width: none;width: 75%;">Poser ma question</a>
         {% endif %}
     </div>
     <div id="container-domaines">
