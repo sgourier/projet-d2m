@@ -56,7 +56,7 @@ class DefaultController extends Controller
 
         $em = $this->getDoctrine()->getManager();
 
-        $domaines = $em->getRepository('VimoliaBundle:PractDomains')
+        $domaines = $em->getRepository('VimoliaBundle:Practdomains')
             ->findAll();
 
 
@@ -64,15 +64,17 @@ class DefaultController extends Controller
 
 
         /*******************************************************************************************************************/
-        /*                                              VIEW                                                               */
+        /*                                              LAST QUESTION                                                      */
         /*******************************************************************************************************************/
 
 
+        $lastQuestion = $this->getDoctrine()->getRepository('VimoliaBundle:Discussion')->findOneBy(array('public'=>1),array('dateupd'=>'DESC'));
+
         // replace this example code with whatever you need
         return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..'),
             "videos" => $videos,
-            "domaines" => $domaines
+            "domaines" => $domaines,
+            "lastQuestion" => $lastQuestion
         ]);
     }
 }

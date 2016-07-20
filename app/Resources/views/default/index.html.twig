@@ -52,48 +52,50 @@
         </div>
     </div>
     <div id="container-discussion" class="container-white">
-        <div class="title">
-            Dernière discussion publique
-        </div>
-        <div class="personne">
-            <div class="col-xs-4 container_img">
-                <img src="{{ asset('img/homepage/discussion/expert.jpg') }}" alt="">
+        {% if lastQuestion != null %}
+            <div class="title">
+                Dernière discussion publique
             </div>
-            <div class="col-xs-8">
+            <div class="personne">
+                <div class="col-xs-4 container_img">
+                    <img src="{{ asset('img/homepage/discussion/expert.jpg') }}" alt="">
+                </div>
+                <div class="col-xs-8">
+                    <div class="nom">
+                        {% if lastQuestion.idPract != null %}
+                            {{ lastQuestion.idPract.firstname }} {{ lastQuestion.idPract.name }}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="personne">
+                <div class="col-xs-4 container_img">
+                    <img src="{{ asset('img/homepage/discussion/membre.jpg') }}" alt="">
+                </div>
+                <div class="col-xs-8">
+                    <div class="nom">
+                        Membre
+                    </div>
+                </div>
+            </div>
+            <div class="dialogue">
                 <div class="nom">
-                    Expert 1
+                    Question posée par le membre :
                 </div>
-                <div class="description">
-                    Lorem Ipsum Delor
+                <div class="text">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua?
                 </div>
             </div>
-        </div>
-        <div class="personne">
-            <div class="col-xs-4 container_img">
-                <img src="{{ asset('img/homepage/discussion/membre.jpg') }}" alt="">
-            </div>
-            <div class="col-xs-8">
+            <div class="dialogue expert">
                 <div class="nom">
-                    Membre
+                    La réponse de notre expert :
+                </div>
+                <div class="text">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                 </div>
             </div>
-        </div>
-        <div class="dialogue">
-            <div class="nom">
-                Question posée par le membre :
-            </div>
-            <div class="text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua?
-            </div>
-        </div>
-        <div class="dialogue expert">
-            <div class="nom">
-                La réponse de notre expert :
-            </div>
-            <div class="text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </div>
-        </div>
+        {% else %}
+        {% endif %}
     </div>
     <div id="container-domaines">
         {% for domaine in domaines %}
