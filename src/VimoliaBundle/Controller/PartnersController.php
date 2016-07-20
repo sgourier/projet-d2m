@@ -26,7 +26,7 @@ class PartnersController extends Controller
 
 
         return $this->render('default/Partners/displayPartners.html.twig', array(
-            'videos' => $partners
+            'partners' => $partners
         ));
     }
 }
