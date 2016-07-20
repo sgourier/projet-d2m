@@ -63,10 +63,10 @@ class PaypalInterface
 		$apiContext->setConfig(
 			array(
 				'mode' => $this->mode,
-				'log.LogEnabled' => true,
+				'log.LogEnabled' => false,
 				'log.FileName' => '../PayPal.log',
 				'log.LogLevel' => 'DEBUG', // PLEASE USE `INFO` LEVEL FOR LOGGING IN LIVE ENVIRONMENTS
-				'cache.enabled' => true,
+				'cache.enabled' => false,
 				// 'http.CURLOPT_CONNECTTIMEOUT' => 30
 				// 'http.headers.PayPal-Partner-Attribution-Id' => '123123123'
 				//'log.AdapterFactory' => '\PayPal\Log\DefaultLogFactory' // Factory class implementing \PayPal\Log\PayPalLogFactory
@@ -137,7 +137,6 @@ class PaypalInterface
 		} catch (Exception $ex) {
 			throw new BadRequestHttpException("Payment failed with message : ". $ex->getMessage());
 		}
-		var_dump(3);
 		return $payment->getApprovalLink();
 	}
 
