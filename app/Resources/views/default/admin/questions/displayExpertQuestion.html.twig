@@ -85,9 +85,9 @@
             <h3>Ou attribuer la question à un practicien</h3>
 
             <form method="post" action="{{ path('adminQuestion_attributeToPract', {'idDiscussion': discussion.id}) }}">
-                <div>
-                    <label for="expert">Attribuer un practicien :</label>
-                    <select name="practicien" id="practicien" required width="50%">
+                <div style="margin-top:30px;">
+                    <label for="expert">Attribuer un practicien :</label><br/>
+                    <select name="practicien" id="practicien" required style="width:50%;">
                         {% for practicien in practiciens %}
                             <option value="{{practicien.id}}">{{practicien.username}}</option>
                         {% endfor %}
