@@ -59,6 +59,14 @@ class DefaultController extends Controller
         $domaines = $em->getRepository('VimoliaBundle:Practdomains')
             ->findAll();
 
+        /*******************************************************************************************************************/
+        /*                                              ABONNEMENTS                                                         */
+        /*******************************************************************************************************************/
+
+        $abonnements = $em->getRepository('VimoliaBundle:Subscribetype')
+            ->findAll();
+
+
 
 
 
@@ -89,7 +97,8 @@ class DefaultController extends Controller
         return $this->render('default/index.html.twig', [
             "videos" => $videos,
             "domaines" => $domaines,
-            "lastQuestion" => $lastQuestion
+            "lastQuestion" => $lastQuestion,
+            "abonnements" => $abonnements
         ]);
     }
 }

@@ -119,6 +119,38 @@
             </div>
         {% endfor %}
     </div>
+    <div class="container-abonnements-hp">
+        <div class="col-xs-6 image">
+
+        </div>
+        <div class="col-xs-6 types-abos">
+            <div class="titre">
+                Nos abonnements
+            </div>
+            <table>
+            {% for abo in abonnements %}
+                <tr>
+                    <td class="nom">
+                        {{ abo.name }}
+                    </td>
+                    <td class="duree">
+                        {{ abo.time }} mois
+                    </td>
+                    <td class="prix">
+                        {{ abo.price }}€
+                    </td>
+                </tr>
+            {% endfor%}
+            </table>
+            <a class="button" href="{{ path("abonnements_infos") }}">
+                En savoir plus
+            </a>
+            <a  class="button" href="{{ path("fos_user_registration_register") }}">
+                Je m'inscris
+            </a>
+        </div>
+
+    </div>
 {% endblock %}
 
 {% block javascripts %}

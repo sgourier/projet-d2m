@@ -119,13 +119,28 @@
 			{% endif %}
 
 			{% if discussion.advancedInfos %}
-				<div>
-		            Vos informations supplémentaires
-		        </div>
-		        <p>Symptomes : {{discussion.advancedInfos.symptoms}}</p>
-		        <p>Douleurs particulières : {{discussion.advancedInfos.particularpains}}</p>
-		        <p>Antécédents : {{discussion.advancedInfos.antecedents}}</p>
-		        <p>Autres informations utiles : {{discussion.advancedInfos.otherinformations}}</p>
+
+				Vos informations supplémentaires
+				<div class="message-vide">
+					<table class="infos-sup">
+						<tr>
+							<td class="titres">Symptomes :</td>
+							<td class="data">{{discussion.advancedInfos.symptoms}}</td>
+						</tr>
+						<tr>
+							<td class="titres">Douleurs particulières :</td>
+							<td class="data">{{discussion.advancedInfos.particularpains}}</td>
+						</tr>
+						<tr>
+							<td class="titres">Antécédents :</td>
+							<td class="data">{{discussion.advancedInfos.antecedents}}</td>
+						</tr>
+						<tr>
+							<td class="titres">Autres informations utiles :</td>
+							<td class="data">{{discussion.advancedInfos.otherinformations}}</td>
+						</tr>
+					</table>
+				</div>
 		    {% endif %}
 
 			{% if discussion.status == 'expertResponded' %}
