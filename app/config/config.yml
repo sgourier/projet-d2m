@@ -118,7 +118,6 @@ sonata_admin:
                 label_catalogue:      ~
                 items:
                     - admin.partners
-<<<<<<< HEAD
             Suscribe:
                 on_top:               true
                 label:                Abonnements
@@ -139,8 +138,7 @@ sonata_admin:
                 items:
                     - admin.aboutus
                     - admin.cgu
-=======
->>>>>>> 4db7052410385fe4dbd422d22163a59b513d390a
+
       # blocks:
       #     -
       #         position: center
