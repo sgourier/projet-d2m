@@ -30,11 +30,16 @@
                 </a>
             </div>
             <ul class="nav">
-                <li><a href="{{ path("youtube") }}"> Web TV</a></li>
+                <li><a href="{{ path("youtube") }}" id="thumb-webtv"> Web TV</a></li>
                 <li><a href="{{ path("questions") }}"> Questions  </a></li>
                 <li><a href="{{ path("user_practList") }}"> Praticiens </a> </li>
                 <li><a href="{{ path("contactus") }}"> Contactez-nous </a></li>
                 <li><a href="{{ path("partners") }}"> Partenaires </a></li>
+            </ul>
+            <ul class="sous-menu-webtv">
+                <li><a href="{{ path("webtv_interviews") }}"> Interviews </a></li>
+                <li><a href="{{ path("webtv_emissions") }}"> Emissions </a></li>
+                <li><a href="{{ path("webtv_conferences") }}"> Conferences </a></li>
             </ul>
             <a href="{{ path("questions_new") }}" class="button button-new">Je pose <br/> ma question</a>
             <div class="reseaux_sociaux">
@@ -111,6 +116,7 @@
             <script src="{{ asset('js/jquery-ui/jquery-ui.js') }}"></script>
             <script src="{{ asset('js/bootstrap.min.js') }}"></script>
             <script src="{{ asset('js/rating.min.js') }}"></script>
+            <script src="{{ asset('js/nav/nav-sous-menu.js') }}"></script>
         {% endblock %}
     </body>
 </html>

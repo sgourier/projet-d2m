@@ -1,0 +1,45 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <div class="container-white container-webtv">
+        <img class="icone" src="{{ asset('img/webtv/icone.png') }}" alt="">
+        <div class="title">
+            Chaine Youtube - Emissions
+        </div>
+        <div class="message-youtube">
+            Abonnez vous à notre chaine et profitez de tous nos conseils santé
+            <br/>
+            <a target="_blank" class="button" href="https://www.youtube.com/user/DesMauxDesMots?sub_confirmation=1">
+                Je m'abonne
+            </a>
+        </div>
+    </div>
+    <div class="container-white container-webtv">
+        <div class="title">
+            Web TV
+        </div>
+        <div class="videos">
+            {% for video in videos %}
+                {% if loop.index == 1 %}
+                    <div class="video video-principale">
+                        <iframe width="420" height="315" src="http://www.youtube.com/embed/{{ video.id }}" frameborder="0" allowfullscreen value="{{ 'http://www.youtube.com/v/' ~  video.id }}"></iframe>
+                        <div class="titre">
+                            {{ video.title }}
+                        </div>
+                        <div class="description">
+                            {{ video.description }}
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="video autre-video">
+                        <a target="_blank" href="https://www.youtube.com/watch?v={{ video.id }}">
+                            <img width="90%" src="{{ video.thumbnails.high.url }}" style="cursor:pointer" />
+                        </a>
+                        <div class="titre">
+                            {{ video.title }}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock body %}
