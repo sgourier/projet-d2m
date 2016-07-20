@@ -56,7 +56,7 @@
                     Votre page publique
                 </a>
             </div>
-            {% if lastQuestion != null and (is_granted('ROLE_PRACTITIONER') and user.getLastSub.endDate > date()) or is_granted('ROLE_MEMBER') %}
+            {% if lastQuestion != null and ((is_granted('ROLE_PRACTITIONER') and user.getLastSub.endDate > date()) or is_granted('ROLE_MEMBER')) %}
                 <div class="container-white last-discussion">
                     <div class="title-part">Votre dernière discussion</div>
                     <div class="item-last-discussion">
