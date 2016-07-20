@@ -126,6 +126,13 @@ class QuestionsController extends Controller
                       ->findOneBy(array("id" => $discussion->getIdMember()));
         $discussion->setUser($user);
 
+        $reponsePract = $em->getRepository('VimoliaBundle:Message')
+                      ->findOneBy(array("idDiscussion" => $discussion->getId(),
+                                     "idOwner" => $discussion->getIdPract(),
+                                     "active" => true
+                                ));
+        $discussion->setReponsePract($reponsePract);
+
         return $this->render('default/questions/displayQuestion.html.twig', array(
             'discussion' => $discussion
         ));
@@ -240,6 +247,13 @@ class QuestionsController extends Controller
                                   ));
           $discussion->setReponse($reponse);
 
+          $reponsePract = $em->getRepository('VimoliaBundle:Message')
+                        ->findOneBy(array("idDiscussion" => $discussion->getId(),
+                                       "idOwner" => $discussion->getIdPract(),
+                                       "active" => true
+                                  ));
+          $discussion->setReponsePract($reponsePract);
+
           $advancedInfos = $em->getRepository('VimoliaBundle:AdvancedInfos')
                          ->findOneBy(array("id" => $discussion->getIdAdvancedinfos()));
           $discussion->setAdvancedInfos($advancedInfos);
@@ -256,6 +270,46 @@ class QuestionsController extends Controller
         return $this->render('default/questions/displayOwnQuestion.html.twig', array(
             'discussion' => $discussion
         ));
+    }
+
+    /**
+     * @Route("/profile/questions/{idDiscussion}/practResponseSave", name="question_savePractReponse", defaults={"idDiscussion" = -1})
+     * @ParamConverter("discussion", class="VimoliaBundle:Discussion", options={"id" = "idDiscussion"})
+     * @param Discussion $discussion
+     * @param Request $request
+     *
+     * @return Response
+     */
+    public function question_savePractReponse(Request $request, Discussion $discussion = null) {
+      if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY') ||
+          !$this->get('security.authorization_checker')->isGranted('ROLE_PRACTITIONER')) {
+          throw $this->createAccessDeniedException();
+      }
+
+      $practReponse = $request->request->get('practReponse');
+
+      $newMessage = new Message();
+      $newMessage->setIdOwner($this->getUser());
+      $newMessage->setText($practReponse);
+      $newMessage->setIdDiscussion($discussion);
+
+      $discussion->setDateupd(new \DateTime());
+      $discussion->setStatus('practResponsded');
+
+      $em = $this->getDoctrine()->getManager();
+      $em->persist($newMessage);
+      $em->persist($discussion);
+      $em->flush();
+
+      return $this->redirectToRoute('ownQuestionFeedbackConfirm');
+    }
+
+    /**
+     * @Route("/response_confirm", name="response_confirm")
+     */
+    public function displayConfirmReponse()
+    {
+        return $this->render('default/questions/displayConfirmReponse.html.twig');
     }
 
     /**
@@ -277,6 +331,7 @@ class QuestionsController extends Controller
         $isPublic = $isPublic === 'on' ? 1 : 0;
         $discussion->setPublic($isPublic);
         $discussion->setStatus('finished');
+        $discussion->setDateupd(new \DateTime());
 
         $em = $this->getDoctrine()->getManager();
         $em->persist($discussion);

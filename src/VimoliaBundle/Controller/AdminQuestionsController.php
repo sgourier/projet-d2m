@@ -114,6 +114,7 @@ class AdminQuestionsController extends Controller
         $discussion->setIdExpert($expert);
 
         $discussion->setStatus('expertAssociated');
+        $discussion->setDateupd(new \DateTime());
 
         $em->persist($discussion);
         $em->flush();
@@ -264,6 +265,7 @@ class AdminQuestionsController extends Controller
         $newReponse = new Message();
         $newReponse->setIdOwner($this->getUser());
         $newReponse->setIdDiscussion($discussion);
+        $discussion->setDateupd(new \DateTime());
 
         $form = $this->createForm(ReponseType::class, $newReponse);
 
@@ -299,6 +301,7 @@ class AdminQuestionsController extends Controller
         $this->checkExpertAuth();
 
         $discussion->setStatus('waitingAdvancedInfos');
+        $discussion->setDateupd(new \DateTime());
 
         $em = $this->getDoctrine()->getManager();
 

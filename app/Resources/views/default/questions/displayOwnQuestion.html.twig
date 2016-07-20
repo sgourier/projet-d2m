@@ -46,9 +46,15 @@
 	        <p>Autres informations utiles : {{discussion.advancedInfos.otherinformations}}</p>
 	    {% endif %}
 
-	   
+	    <form method="post" action="{{ path('question_savePractReponse', {'idDiscussion': discussion.id}) }}">
+            <div>
+                <label for="practReponse">Votre reponse :</label>
+                <input type="text" name="practReponse" id="practReponse" required>
+            </div>
+            <button type="submit">Envoyer</button>
+        </form>
 	{% else %}
-		{% if discussion.idExpert %}
+		{% if discussion.idExpert and discussion.reponse %}
 		        <div class="personne">
 			        <div class="col-xs-4 container_img">
 			            <img src="{{ asset('img/homepage/discussion/expert.jpg') }}" alt="">
@@ -76,7 +82,7 @@
 	    
 	        <div class="dialogue">
 		        <div class="nom">
-		            Question posée par le membre :
+		            Votre question :
 		        </div>
 		        <div class="text">
 		        	<strong>Le {{discussion.question.dateupd|date('d m Y')}}</strong><br>
@@ -135,9 +141,40 @@
 	                    <button type="button" data-toggle="modal" data-target="#modal">
 						  Noter cette réponse
 						</button>
-	                </a>
 	                {% endif %}
 	            </div>
+			{% endif %}
+
+			{% if discussion.status == 'practResponsded' or discussion.status == 'finished'%}
+				<div class="personne">
+			        <div class="col-xs-4 container_img">
+			            <img src="{{ asset('img/homepage/discussion/expert.jpg') }}" alt="">
+			        </div>
+			        <div class="col-xs-8">
+			            <div class="nom">
+			                {{discussion.idPract}}
+			            </div>
+			            <div class="description">
+			                Lorem Ipsum Delor
+			            </div>
+			        </div>
+			    </div>
+				<div class="dialogue expert">
+			        <div class="nom">
+			            La réponse de notre practicien :
+			        </div>
+			        <div class="text">
+			        	<strong>Le {{discussion.reponsePract.dateupd|date('d/m/Y')}}</strong><br>
+			            {{discussion.reponsePract.text}}
+			        </div>
+			    </div>
+			    {% if discussion.status == 'practResponsded' %}
+				    <div>
+	                    <button type="button" data-toggle="modal" data-target="#modal">
+						  Noter cette réponse
+						</button>
+		            </div>
+		        {% endif %}
 			{% endif %}
 
 	    </div>
@@ -158,7 +195,7 @@
 			        </div>
 			        <div>
 			        	<label for="public">Souhaitez-vous rendre votre question publique?</label>
-			        	<input type="checkbox" name="public" id="public" required>
+			        	<input type="checkbox" name="public" id="public">
 			        </div>
 			      </div>
 			      <div class="modal-footer">
