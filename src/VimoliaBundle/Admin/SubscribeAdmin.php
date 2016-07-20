@@ -23,8 +23,8 @@ class SubscribeAdmin extends AbstractAdmin
         ->add('description', 'textarea', array('label' => 'Description', 'required' => true))
         ->add('active', 'choice', array(
         'choices' => array(
-            'activé' => 'true',
-            'désactivé' => 'false')
+            'activé' => '1',
+            'désactivé' => '0')
          ));
     }
 

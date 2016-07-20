@@ -12,6 +12,7 @@ use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use FOS\UserBundle\Model\UserManagerInterface;
 # use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class UserAdmin extends AbstractAdmin
@@ -23,7 +24,9 @@ class UserAdmin extends AbstractAdmin
         # $RoleExpert = 'a:2:{i:0;s:11:"ROLE_MEMBER";i:1;s:11:"ROLE_EXPERT";}';
         # $RoleMembre = 'a:1:{i:0;s:11:"ROLE_MEMBER";}';
 
-        $formMapper->add('username', 'text', array('label' => 'Pseudo', 'required' => true))
+        $formMapper
+          #  ->with('Utilisateurs')
+            ->add('username', 'text', array('label' => 'Pseudo', 'required' => true))
             ->add('name', 'text', array('label' => 'Nom', 'required' => true))
             ->add('firstname', 'text', array('label' => 'Prénom', 'required' => true))
             ->add('Password', 'password', array('label' => 'Password', 'required' => true))
@@ -44,7 +47,25 @@ class UserAdmin extends AbstractAdmin
                     'Amis' => 'amis',
                     'Pub' => 'pub',
                     'Autre' => 'autre')
-            ));
+            ))
+      #  ->end();
+
+      #  if (!$this->getSubject()->hasRole('ROLE_SUPER_ADMIN')) {
+      #      $formMapper
+      #          ->with('Management')
+      #          ->add('roles', 'sonata_security_roles', array(
+      #              'expanded' => true,
+      #              'multiple' => true,
+      #              'required' => false
+      #          ))
+      #          ->add('locked', null, array('required' => false))
+      #          ->add('expired', null, array('required' => false))
+      #          ->add('enabled', null, array('required' => false))
+      #          ->add('credentialsExpired', null, array('required' => false))
+      #          ->end()
+      #      ;
+      #  }
+    ;
 
 
             //->add('id', 'sonata_type_model_hidden');
