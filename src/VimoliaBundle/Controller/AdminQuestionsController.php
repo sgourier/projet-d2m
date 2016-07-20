@@ -209,15 +209,27 @@ class AdminQuestionsController extends Controller
         $messageForm = $this->createForm(ReponseType::class, new Message(),array('method'=>'POST', 'action' => $this->generateUrl('adminExpertQuestion_update', array('idDiscussion' => $discussion->getId()))));
 
         $domain = $em->getRepository('VimoliaBundle:Practdomains')
-                         ->findOneBy(array("id" => $discussion->getDomain()));
+                     ->findOneBy(array("id" => $discussion->getDomain()));
 
-        $practiciens = $this->getDoctrine()->getRepository("UserBundle:User")->findPracts($this->get('knp_paginator'),$domain->getName(), 1);
+        $practiciens = $this->getDoctrine()->getRepository("UserBundle:User")->findPracticiensByDomain($domain->getId());
 
         return $this->render('default/admin/questions/displayExpertQuestion.html.twig', array(
             'discussion' => $discussion,
             'reponseForm' => $messageForm->createView(),
             'practiciens' => $practiciens
         ));
+    }
+
+    /**
+     * @Route("/admin/myQuestions/{idDiscussion}/update", name="adminExpertQuestion_update", defaults={"idDiscussion" = -1})
+     * @ParamConverter("discussion", class="VimoliaBundle:Discussion", options={"id" = "idDiscussion"})
+     * @param Discussion $discussion à mettre à jour
+     * @param Request $request
+     *
+     * @return Response
+     */
+    public function adminQuestion_attributeToPract() {
+        
     }
 
     /**

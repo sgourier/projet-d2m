@@ -31,6 +31,22 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
 		);
 	}
 
+	public function findPracticiensByDomain($domain)
+	{
+		$qb = $this->createQueryBuilder('ac');
+		$query = $this->createQueryBuilder('a')
+		              ->select('a')
+		              ->where('a.enabled = 1')
+					  ->andWhere('a.practValid = 1');
+
+		$query->leftJoin('a.practinfos', 'c');
+		$query->leftJoin('c.practDomains', 'd')
+			  ->andWhere($qb->expr()->in('d', ':d'))
+			  ->setParameter('d', $domain);
+
+		return $query->getQuery()->execute();
+	}
+
 	public function findByRole($role)
 	{
 	    $qb = $this->_em->createQueryBuilder();
