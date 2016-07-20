@@ -87,6 +87,24 @@
             {% block body %}
 
             {% endblock %}
+            <div class="container-footer">
+                Copyright Vimolia 2016 -
+                <a href="{{ path("politique_conf") }}">
+                    Politique de confidentialité
+                </a>-
+                <a href="{{ path("contactus") }}">
+                    Contact
+                </a>-
+                <a href="{{ path("cgu") }}">
+                    CGU
+                </a>-
+                <a href="{{ path("fos_user_registration_register") }}">
+                    Inscription
+                </a>-
+                <a href="{{ path("youtube") }}">
+                    Web TV
+                </a>
+            </div>
         </div>
         {% block javascripts %}
             <script src="{{ asset('js/jquery-2.2.4.min.js') }}"></script>
