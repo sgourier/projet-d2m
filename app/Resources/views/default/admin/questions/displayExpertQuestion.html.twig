@@ -106,3 +106,8 @@
 
     </div>
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+{% endblock javascripts %}
