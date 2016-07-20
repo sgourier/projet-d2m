@@ -37,13 +37,15 @@
 		{% endif %}
 
 		{% if discussion.advancedInfos %}
-			<div>
-	            Vos informations supplémentaires
-	        </div>
-	        <p>Symptomes : {{discussion.advancedInfos.symptoms}}</p>
-	        <p>Douleurs particulières : {{discussion.advancedInfos.particularpains}}</p>
-	        <p>Antécédents : {{discussion.advancedInfos.antecedents}}</p>
-	        <p>Autres informations utiles : {{discussion.advancedInfos.otherinformations}}</p>
+			<h3>
+                Informations Complémentaire
+            </h3>
+            <div class="message-vide" style="text-align:center">
+                <p><strong>Symptomes :</strong><br>{{discussion.advancedInfos.symptoms}}</p>
+                <p><strong>Douleurs particulières :</strong><br>{{discussion.advancedInfos.particularpains}}</p>
+                <p><strong>Antécédents :</strong><br>{{discussion.advancedInfos.antecedents}}</p>
+                <p><strong>Autres informations utiles :</strong><br>{{discussion.advancedInfos.otherinformations}}</p>
+            </div>
 	    {% endif %}
 
 	    <form method="post" action="{{ path('question_savePractReponse', {'idDiscussion': discussion.id}) }}">
