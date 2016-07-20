@@ -4,9 +4,17 @@
         <div class="banner">
             <img src="{{ asset('img/profile/banners/banner_pract_1.jpg') }}" alt="">
         </div>
-        <div class="pract-type">
-            Type du practitien
-        </div>
+        {% if user.practinfos.practDomains|length > 0 %}
+            <div class="pract-type">
+                {% for domain in user.practinfos.practDomains %}
+                    {% if loop.last %}
+                        {{ domain.name }}
+                    {% else %}
+                        {{ domain.name }} -
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
         <div class="informations">
             <div class="left">
                 <img src="{{ asset("uploads/users/membre.jpg") }}" alt="">
@@ -19,14 +27,15 @@
                     </div>
                 </div>
                 <div class="siret">
-                    SIRET : 0101000000000000
+                    SIRET : {{ user.practinfos.siret }}
                 </div>
                 <div class="adresse">
-                    ADRESSE : {{ user.address }} - {{ user.city }} - {{ user.zipCode }}
+                    <p>ADRESSE : {{ user.practinfos.proAddress }} - {{ user.practinfos.procity }} - {{ user.practinfos.prozipCode }}</p>
+                    <p>Numéro de Tel : {{ user.practinfos.prophone }} - {{ user.practinfos.procellphone }}</p>
                 </div>
             </div>
         </div>
-        <a target="_blank" href="https://www.google.fr/maps/place/{{ user.address~" "~user.city~" "~user.zipCode }}" id="map">
+        <a target="_blank" href="https://www.google.fr/maps/place/{{ user.practinfos.proAddress~" "~user.practinfos.procity~" "~user.practinfos.prozipCode }}" id="map">
 
         </a>
     </div>

@@ -141,7 +141,7 @@ class PractitionerController extends Controller
 	 */
 	public function showProPage(User $pract = null)
 	{
-		if($pract === null || ((!$pract->getPractValid() || $pract->getLastSub()->getEndDate() < new \DateTime()) && $pract->getId() != $this->getUser()->getId() && !$this->get('security.authorization_checker')->isGranted('ROLE_SUPER_ADMIN')))
+		if($pract === null || ((!$pract->getPractValid() || $pract->getLastSub() != false && $pract->getLastSub()->getEndDate() < new \DateTime()) && $pract->getId() != $this->getUser()->getId() && !$this->get('security.authorization_checker')->isGranted('ROLE_SUPER_ADMIN')))
 		{
 			return $this->redirectToRoute('fos_user_profile_show');
 		}
