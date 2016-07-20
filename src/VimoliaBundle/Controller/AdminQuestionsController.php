@@ -221,15 +221,30 @@ class AdminQuestionsController extends Controller
     }
 
     /**
-     * @Route("/admin/myQuestions/{idDiscussion}/update", name="adminExpertQuestion_update", defaults={"idDiscussion" = -1})
+     * @Route("/admin/myQuestions/{idDiscussion}/attributePract", name="adminQuestion_attributeToPract", defaults={"idDiscussion" = -1})
      * @ParamConverter("discussion", class="VimoliaBundle:Discussion", options={"id" = "idDiscussion"})
      * @param Discussion $discussion à mettre à jour
      * @param Request $request
      *
      * @return Response
      */
-    public function adminQuestion_attributeToPract() {
-        
+    public function adminQuestion_attributeToPract(Request $request, Discussion $discussion = null) {
+        $this->checkExpertAuth();
+
+        $em = $this->getDoctrine()->getManager();
+
+        $idPract = $request->request->get('practicien');
+        $pract = $em->getRepository('UserBundle:User')
+                   ->findOneBy(array("id" => $idPract));
+
+        $discussion->setStatus('practAttributed');
+        $discussion->setDateupd(new \DateTime());
+        $discussion->setIdPract($pract);
+
+        $em->persist($discussion);
+        $em->flush();
+
+        return $this->redirectToRoute('adminExpertQuestions');
     }
 
     /**
