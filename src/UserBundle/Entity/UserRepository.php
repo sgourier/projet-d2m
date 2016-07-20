@@ -41,4 +41,13 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
 
 	    return $qb->getQuery()->getResult();
 	}
+
+	public function getInvalidPracts()
+	{
+		$qb = $this->createQueryBuilder('a')
+			->where('a.practValid = 0');
+			$qb->andWhere($qb->expr()->isNotNull('a.practinfos'));
+
+		return $qb->getQuery()->getResult();
+	}
 }

@@ -19,7 +19,8 @@ class PartnersAdmin extends AbstractAdmin
     {
         $formMapper->add('name', 'text', array('label' => 'Nom', 'required' => true))
                     ->add('description', 'textarea', array('label' => 'description', 'required' => true))
-                    ->add('url', 'url', array('label' => 'Lien internet', 'required' => true), array('placeholder' => 'http://'));
+                    ->add('url', 'url', array('label' => 'Lien internet', 'required' => true), array('placeholder' => 'http://'))
+                    ->add('imgpath', 'text', array('label' => 'Lien image', 'required' => true));
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)

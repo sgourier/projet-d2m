@@ -1,0 +1,22 @@
+
+
+
+.container-partners{
+
+}
+    .container-partners .partners{
+        overflow: hidden;
+        margin-top: 50px;
+    }
+        .container-partners .partners img{
+            max-height: 50px;
+            max-width: 50%;
+        }
+        .container-partners .partners .name{
+            font-size:20px;
+            margin-top:15px;
+        }
+        .container-partners .partners .description{
+            font-size: 11px;
+            color:grey;
+        }
