@@ -1,15 +1,41 @@
+.invalidPractItem
+{
+    height: 45px;
+    font-size: 18px;
+    border: 1px solid #1f1f1f;
+    border-bottom: none;
+    border-top: none;
+    padding: 5px 5px 5px 15px;
 
-.bg-aqua, .callout.callout-info, .alert-info, .label-info, .modal-info .modal-body{
-    background-color: #a6366b !important;
 }
 
-a{
-    color:#b65281 !important;
+.invalidPractItem:first-child
+{
+    border: 1px solid #1f1f1f;
+    border-bottom: none;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 
-.btn.btn-success{
-    background-color:#b65281 !important;
-    border:none;
-    width:280px;
-    max-width: 500px;
+.invalidPractItem:last-child
+{
+    border: 1px solid #1f1f1f;
+    border-top: none;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.invalidPractItem:nth-child(odd)
+{
+    background-color: #e3e3e3;
+}
+
+.invalidPractItem:nth-child(even)
+{
+    background-color: #abb4c1;
+}
+
+.invalidPractItem .practActions
+{
+    float: right;
 }

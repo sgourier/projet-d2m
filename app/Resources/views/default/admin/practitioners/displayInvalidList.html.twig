@@ -1,0 +1,33 @@
+{% extends 'SonataAdminBundle::standard_layout.html.twig' %}
+
+{% block sonata_admin_content %}
+    <div class="inactivePractList">
+        {% for flash_message in app.session.flashBag.get('notice') %}
+            <div class="alert alert-success" role="alert">
+                {{ flash_message }}
+            </div>
+        {% endfor %}
+        {% for pract in practs %}
+            <div class="invalidPractItem">
+                <span>{{ pract.firstname }} {{ pract.name }}</span>
+                {% for domain in pract.practInfos.practDomains %}
+                    {% if loop.last %}
+                        <span>{{ domain.name }}</span>
+                    {% elseif loop.index < 5 %}
+                        <span>{{ domain.name }}</span>, 
+                    {% endif %}
+                {% endfor %}
+                <div class="practActions">
+                    <a href="http://www.societe.com/cgi-bin/search?champs={{ pract.practinfos.siret }}" class="btn btn-info" target="_blank">Infos société</a>
+                    <a href="{{ path('user_proPage', {'id':pract.id}) }}" class="btn btn-info" target="_blank">Page Pro</a>
+                    <a href="{{ path('admin_practValid', {'id':pract.id}) }}" class="btn btn-success">Valider</a>
+                </div>
+
+            </div>
+        {% else %}
+            <div class="alert alert-info">
+                 Aucun praticiens en attente de validation
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
