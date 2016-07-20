@@ -64,7 +64,7 @@ class DefaultController extends Controller
         /*******************************************************************************************************************/
 
         $abonnements = $em->getRepository('VimoliaBundle:Subscribetype')
-            ->findAll();
+            ->findBy(array(),array('price'=>'ASC'));
 
 
 
@@ -100,5 +100,26 @@ class DefaultController extends Controller
             "lastQuestion" => $lastQuestion,
             "abonnements" => $abonnements
         ]);
+    }
+
+
+
+
+    /**
+     * @Route("/cgu", name="cgu")
+     */
+    public function cguAction(Request $request)
+    {
+
+        return $this->render('default/cgu/index.html.twig');
+    }
+
+    /**
+     * @Route("/politique", name="politique_conf")
+     */
+    public function politiqueconfAction(Request $request)
+    {
+
+        return $this->render('default/politiqueconf/index.html.twig');
     }
 }

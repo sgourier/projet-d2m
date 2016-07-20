@@ -30,7 +30,7 @@ class SubscribeController extends Controller
 
 		if($this->getUser()->getPractValid())
 		{
-			$offers = $this->getDoctrine()->getRepository("VimoliaBundle:Subscribetype")->findBy(array("active" => true));
+			$offers = $this->getDoctrine()->getRepository("VimoliaBundle:Subscribetype")->findBy(array("active" => true),array('price'=>'ASC'));
 
 			return $this->render(":default/subscribe:chooseOffer.html.twig",array(
 				"offers" => $offers,

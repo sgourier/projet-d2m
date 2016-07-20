@@ -18,3 +18,5 @@
 /bin/symfony_requirements
 /var/SymfonyRequirements.php
 /web/config.php
+PayPal.log
+composer.lock

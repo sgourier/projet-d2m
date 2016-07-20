@@ -185,3 +185,22 @@ input[type=file]{
 {
     margin-bottom: 0;
 }
+
+
+
+/****************************************************************************************/
+/*                                    FOOTER                                            */
+/****************************************************************************************/
+
+.container-footer{
+    text-align: center;
+    color:grey;
+}
+    .container-footer a{
+        color:grey;
+        text-decoration: none;
+    }
+        .container-footer a:hover{
+            color:silver;
+            text-decoration: none;
+        }
