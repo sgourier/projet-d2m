@@ -27,23 +27,23 @@ services:
             tags:
                 - { name: sonata.admin, manager_type: orm, label: Utilisateurs }
 
-    admin.cgu:
-            class: VimoliaBundle\Admin\CguAdmin
-            arguments: [~, VimoliaBundle\Entity\Cgu, ~]
-            tags:
-               - { name: sonata.admin, manager_type: orm, label: Cgu }
-
+   # admin.cgu:
+   #         class: VimoliaBundle\Admin\CguAdmin
+   #         arguments: [~, VimoliaBundle\Entity\Cgu, ~]
+   #         tags:
+   #            - { name: sonata.admin, manager_type: orm, label: Cgu }
+#
     admin.partners:
             class: VimoliaBundle\Admin\PartnersAdmin
             arguments: [~, VimoliaBundle\Entity\Partners, ~]
             tags:
               - { name: sonata.admin, manager_type: orm, label: Partenaires }
 
-    admin.aboutus:
-            class: VimoliaBundle\Admin\AboutUsAdmin
-            arguments: [~, VimoliaBundle\Entity\Aboutus, ~]
-            tags:
-              - { name: sonata.admin, manager_type: orm, label: AboutUs }
+   # admin.aboutus:
+   #         class: VimoliaBundle\Admin\AboutUsAdmin
+   #         arguments: [~, VimoliaBundle\Entity\Aboutus, ~]
+   #         tags:
+   #           - { name: sonata.admin, manager_type: orm, label: AboutUs }
 
     admin.certifications:
             class: VimoliaBundle\Admin\CertificationsAdmin

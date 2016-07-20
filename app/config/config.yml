@@ -132,13 +132,13 @@ sonata_admin:
          #      items:
          #          - admin.video
 
-            A propos de nous:
-                on_top:               false
-                label:                A propos de nous
-                label_catalogue:      ~
-                items:
-                    - admin.aboutus
-                    - admin.cgu
+         #   A propos de nous:
+         #       on_top:               false
+         #       label:                A propos de nous
+         #       label_catalogue:      ~
+         #       items:
+         #           - admin.aboutus
+         #           - admin.cgu
       # blocks:
       #     -
       #         position: center
