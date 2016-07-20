@@ -125,6 +125,7 @@ class Discussion
     public $advancedInfos;
     public $expert;
     public $user;
+    public $domainText;
 
     /**
      * Message constructor.
@@ -556,4 +557,28 @@ class Discussion
 	{
 		return $this->domain;
 	}
+
+    /**
+     * Set domainText
+     *
+     * @param \VimoliaBundle\Entity\Practdomains $domainText
+     *
+     * @return Discussion
+     */
+    public function setDomainText(\VimoliaBundle\Entity\Practdomains $domainText = null)
+    {
+        $this->domainText = $domainText;
+
+        return $this;
+    }
+
+    /**
+     * Get domainText
+     *
+     * @return \VimoliaBundle\Entity\Practdomains
+     */
+    public function getDomainText()
+    {
+        return $this->domainText;
+    }
 }

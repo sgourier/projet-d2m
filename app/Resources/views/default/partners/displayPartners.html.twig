@@ -1,0 +1,33 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <div class="container-white container-partners">
+        <img class="icone" src="{{ asset('img/partners/icone.png') }}" alt="">
+        <div class="title">
+            Retrouvez ici la liste de nos partenaires
+        </div>
+        <div class="details">
+            N'hésitez pas à visiter leur site internet pour en savoir plus
+        </div>
+
+        <div class="partners">
+            {% for partner in partners %}
+                <div class="col-xs-4 partner">
+                    <img src="{{ partner.imgPath }}" alt="{{ partner.name }}">
+                    <div class="name">
+                        {{ partner.name }}
+                    </div>
+                    <div class="description">
+                        {{ partner.description }}
+                    </div>
+                    <a class="button" target="_blank"  href="{{ partner.url }}">
+                        Site web
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock body %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock javascripts %}

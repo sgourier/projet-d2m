@@ -208,9 +208,15 @@ class AdminQuestionsController extends Controller
 
         $messageForm = $this->createForm(ReponseType::class, new Message(),array('method'=>'POST', 'action' => $this->generateUrl('adminExpertQuestion_update', array('idDiscussion' => $discussion->getId()))));
 
+        $domain = $em->getRepository('VimoliaBundle:Practdomains')
+                         ->findOneBy(array("id" => $discussion->getDomain()));
+
+        $practiciens = $this->getDoctrine()->getRepository("UserBundle:User")->findPracts($this->get('knp_paginator'),$domain->getName(), 1);
+
         return $this->render('default/admin/questions/displayExpertQuestion.html.twig', array(
             'discussion' => $discussion,
-            'reponseForm' => $messageForm->createView()
+            'reponseForm' => $messageForm->createView(),
+            'practiciens' => $practiciens
         ));
     }
 

@@ -24,8 +24,8 @@ class UserAdmin extends AbstractAdmin
             ->add('Password', 'password', array('label' => 'Password', 'required' => true))
             ->add('sex', 'choice', array(
                  'choices' => array(
-                     'Male' => 'm',
-                     'Female' => 'f')
+                     'Homme' => 'Homme',
+                     'Femme' => 'Femme')
                 ))
             ->add('birthdate', 'date', array('label' => 'Date de naissance', 'required' => false))
             ->add('address', 'text', array('label' => 'Adresse', 'required' => false))
@@ -34,13 +34,13 @@ class UserAdmin extends AbstractAdmin
             ->add('phone', 'number', array('label' => 'Téléphone', 'required' => false))
             ->add('cellPhone', 'number', array('label' => 'Téléphone Portable', 'required' => false))
             ->add('email', 'text', array('label' => 'Adresse Email', 'required' => true))
-            ->add('roles', 'choice', array(
-                'choices' => array(
-                    'Membre' => 'ROLE_EXPERT',
-                    'Expert' => 'ROLE_MEMBER',
-                    'Super Admin' => 'ROLE_SUPER_ADMIN'),
-                'choices_as_values' => true,
-            ))
+        #    ->add('roles', 'choice', array(
+        #        'choices' => array(
+        #            'Membre' => 'ROLE_EXPERT',
+        #            'Expert' => 'ROLE_MEMBER',
+        #            'Super Admin' => 'ROLE_SUPER_ADMIN'),
+        #        'choices_as_values' => true,
+        #    ))
             ->add('discoveryType', 'choice', array(
                 'choices' => array(
                     'Amis' => 'amis',
@@ -63,9 +63,7 @@ class UserAdmin extends AbstractAdmin
 
     protected function configureListFields(ListMapper $listMapper)
     {
-        $listMapper->add('avatarPath', 'text', array('label' => 'Lien avatar', 'required' => true))
-           # ->add('avatarPath', 'file', array('label' => 'Avatar', 'required' => true))
-            ->addIdentifier('username', 'text', array('label' => 'Pseudo'))
+        $listMapper->addIdentifier('username', 'text', array('label' => 'Pseudo'))
             ->addIdentifier('name', 'text', array('label' => 'Nom'))
             ->addIdentifier('firstname', 'text', array('label' => 'Prénom'))
             ->addIdentifier('sex', 'text', array('label' => 'Sexe'))

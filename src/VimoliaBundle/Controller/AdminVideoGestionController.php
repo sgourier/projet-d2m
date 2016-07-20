@@ -44,7 +44,8 @@ class AdminVideoGestionController extends Controller
             $video_tmp['id'] = get_object_vars($video->id)['videoId'];
             $video_tmp['title'] = get_object_vars($video->snippet)['title'];
             $video_tmp['description'] = get_object_vars($video->snippet)['description'];
-            #$video_tmp['thumbnails'] = get_object_vars($video->snippet)['thumbnails'];
+            $video_tmp['thumbnails'] = get_object_vars($video->snippet)['thumbnails'];
+
             $videos[] = $video_tmp;
             }
         }
