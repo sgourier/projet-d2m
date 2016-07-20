@@ -28,7 +28,7 @@ profile:
         edit: 'Modifier mes informations'
         practMenu:
             promotions: 'Promotions'
-            myPage: 'Ma page pro'
+            myPage: 'Modifier ma page pro'
             questions: 'Mes questions'
             subscribe: 'M''abonner'
     edit:
