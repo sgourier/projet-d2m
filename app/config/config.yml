@@ -129,6 +129,12 @@ sonata_admin:
                 label_catalogue:      ~
                 items:
                     - admin.partners
+            Suscribe:
+                on_top:               true
+                label:                Abonnements
+                label_catalogue:      ~
+                items:
+                    - admin.subscribe
          #  Video:
          #      on_top:               true
          #      label:                Vidéo
