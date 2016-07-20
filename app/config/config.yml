@@ -118,6 +118,29 @@ sonata_admin:
                 label_catalogue:      ~
                 items:
                     - admin.partners
+<<<<<<< HEAD
+            Suscribe:
+                on_top:               true
+                label:                Abonnements
+                label_catalogue:      ~
+                items:
+                    - admin.subscribe
+         #  Video:
+         #      on_top:               true
+         #      label:                Vidéo
+         #      label_catalogue:      ~
+         #      items:
+         #          - admin.video
+
+            A propos de nous:
+                on_top:               false
+                label:                A propos de nous
+                label_catalogue:      ~
+                items:
+                    - admin.aboutus
+                    - admin.cgu
+=======
+>>>>>>> 4db7052410385fe4dbd422d22163a59b513d390a
       # blocks:
       #     -
       #         position: center

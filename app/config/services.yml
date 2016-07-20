@@ -75,3 +75,8 @@ services:
                 arguments: [~, VimoliaBundle\Entity\Practdomains, ~]
                 tags:
                   - { name: sonata.admin, manager_type: orm, label: Domaines }
+    admin.subscribe:
+                class: VimoliaBundle\Admin\SubscribeAdmin
+                arguments: [~, VimoliaBundle\Entity\subscribetype, ~]
+                tags:
+                  - { name: sonata.admin, manager_type: orm, label: Abonnements }
