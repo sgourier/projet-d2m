@@ -107,12 +107,12 @@ sonata_admin:
                 label_catalogue:      ~
                 items:
                     - admin.user
-            Certification:
-                on_top:               true
-                label:                Certification
-                label_catalogue:      ~
-                items:
-                    - admin.certifications
+         #   Certification:
+         #       on_top:               true
+         #       label:                Certification
+         #       label_catalogue:      ~
+         #       items:
+         #           - admin.certifications
             Domaines:
                 on_top:               true
                 label:                Domaines

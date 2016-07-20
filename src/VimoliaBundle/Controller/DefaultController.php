@@ -64,7 +64,7 @@ class DefaultController extends Controller
         /*******************************************************************************************************************/
 
         $abonnements = $em->getRepository('VimoliaBundle:Subscribetype')
-            ->findAll();
+            ->findBy(array(),array('price'=>'ASC'));
 
 
 

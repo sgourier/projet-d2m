@@ -22,7 +22,7 @@ class SubscribeController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $abonnements = $em->getRepository('VimoliaBundle:Subscribetype')
-            ->findAll();
+            ->findBy(array(),array('price' => 'ASC'));
 
 
 

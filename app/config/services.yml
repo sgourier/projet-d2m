@@ -49,11 +49,11 @@ services:
    #         tags:
    #           - { name: sonata.admin, manager_type: orm, label: AboutUs }
 
-    admin.certifications:
-            class: VimoliaBundle\Admin\CertificationsAdmin
-            arguments: [~, VimoliaBundle\Entity\Certification, ~]
-            tags:
-              - { name: sonata.admin, manager_type: orm, label: Certifications }
+   # admin.certifications:
+   #         class: VimoliaBundle\Admin\CertificationsAdmin
+   #         arguments: [~, VimoliaBundle\Entity\Certification, ~]
+   #         tags:
+   #           - { name: sonata.admin, manager_type: orm, label: Certifications }
 
     admin.video:
             class: VimoliaBundle\Admin\VideoAdmin
