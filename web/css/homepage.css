@@ -165,10 +165,14 @@
     margin-top:50px;
     padding-bottom: 40px;
 }
-    #container-domaines .nom-domaine{
-        font-size:14px;
-        margin-top:15px;
+    #container-domaines .cont-domaines{
+        width:20%;
+        display: inline-block;
     }
-    #container-domaines img{
-        height:50px;
-    }
+        #container-domaines .cont-domaines .nom-domaine{
+            font-size:14px;
+            margin-top:15px;
+        }
+        #container-domaines .cont-domaines img{
+            height:50px;
+        }

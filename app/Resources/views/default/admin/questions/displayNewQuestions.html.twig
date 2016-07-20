@@ -1,24 +1,37 @@
 {% extends 'SonataAdminBundle::standard_layout.html.twig' %}
 
 {% block sonata_admin_content %}
-	<div id="container-discussion" class="container-white">
+	<div id="container-discussion" style="margin-top:0px;" class="container-white">
 	    <div class="title">
 	        Liste des nouvelles questions
 	    </div>
+		<style>
+			table{
+				width:100%;
+				text-align: center !important;
+			}
+				table .grey{
+					background-color: rgba(0,0,0,0.02);
+				}
+					table td,table th{
+						padding:5px;
+						text-align: center;
+					}
+		</style>
 
 		{% if discussions|length != 0 %}
-			<table>
+			<table style="">
 				<thead>
-					<th>Date</th>
+					<th class="grey">Date</th>
 					<th>Question</th>
-					<th></th>
+					<th class="grey"></th>
 				</thead>
-				<tbody>			
+				<tbody>
 					{% for discussion in discussions %}
 						<tr>
-							<td>{{discussion.question.dateupd|date('d m Y')}}</td>
+							<td class="grey">{{discussion.question.dateupd|date('d/m/Y')}}</td>
 							<td>{{discussion.question.text|truncate(200)}}</td>
-							<td><a href="{{ path('adminNewQuestion', {'idDiscussion': discussion.id}) }}">Voir</a></td>
+							<td class="grey"><a class="button" href="{{ path('adminNewQuestion', {'idDiscussion': discussion.id}) }}">Voir</a></td>
 						</tr>
 				    {% endfor %}
 			    </tbody>

@@ -22,7 +22,10 @@
             <ul>
                 {% if is_granted('ROLE_PRACTITIONER') and user.practValid != false %}
                     <li class="practicien"><a href="{{ path('user_chooseSubscribe') }}" class="button">{{ "profile.show.practMenu.subscribe"|trans }}</a></li>
-                    <li><a href="{{ path('own_questions') }}" class="button">{{ "profile.show.practMenu.questions"|trans }}</a></li>
+                    <li class="practicien"><a href="{{ path('user_updatePractForm') }}" class="button">{{ "profile.show.practMenu.myPage"|trans }}</a></li>
+                    {% if user.getLastSub != false and user.getLastSub.endDate > date() %}
+                        <li><a href="{{ path('own_questions') }}" class="button">{{ "profile.show.practMenu.questions"|trans }}</a></li>
+                    {% endif %}
                 {% elseif is_granted('ROLE_PRACTITIONER') %}
                     <li class="practicien"><a href="{{ path('user_updatePractForm') }}" class="button">{{ "profile.show.practMenu.myPage"|trans }}</a></li>
                 {% else %}

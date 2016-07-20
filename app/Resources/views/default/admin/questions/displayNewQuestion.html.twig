@@ -25,17 +25,17 @@
 	    </div>
 
 	    <form method="post" action="{{ path('adminNewQuestion_update', {'idDiscussion': discussion.id}) }}">
-	    	<div>
-		    	<label for="domain">Attribuer un domaine :</label>
-		    	<select name="domain" id="domain" required>
+	    	<div style="margin-top:30px;">
+		    	<label for="domain">Attribuer un domaine :</label><br/>
+		    	<select name="domain" id="domain" required style="width:50%;">
 			    	{% for domaine in domaines %}
 						<option value="{{domaine.id}}">{{domaine.name}}</option>
 			    	{% endfor %}
 			    </select>
 		    </div>
-		    <div>
-			    <label for="expert">Attribuer un expert :</label>
-			    <select name="expert" id="expert" required>
+			<div style="margin-top:30px;">
+			    <label for="expert">Attribuer un expert :</label><br/>
+			    <select name="expert" id="expert" required style="width:50%;">
 			    	{% for expert in experts %}
 						<option value="{{expert.id}}">{{expert.username}}</option>
 			    	{% endfor %}

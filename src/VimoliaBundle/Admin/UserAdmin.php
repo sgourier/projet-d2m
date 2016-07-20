@@ -18,6 +18,11 @@ class UserAdmin extends AbstractAdmin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
+
+        $RoleSuperAdmin = 'a:1:{i:0;s:16:"ROLE_SUPER_ADMIN";}';
+        $RoleExpert = 'a:2:{i:0;s:11:"ROLE_MEMBER";i:1;s:11:"ROLE_EXPERT";}';
+        $RoleMembre = 'a:1:{i:0;s:11:"ROLE_MEMBER";}';
+
         $formMapper->add('username', 'text', array('label' => 'Pseudo', 'required' => true))
             ->add('name', 'text', array('label' => 'Nom', 'required' => true))
             ->add('firstname', 'text', array('label' => 'Prénom', 'required' => true))
@@ -34,13 +39,6 @@ class UserAdmin extends AbstractAdmin
             ->add('phone', 'number', array('label' => 'Téléphone', 'required' => false))
             ->add('cellPhone', 'number', array('label' => 'Téléphone Portable', 'required' => false))
             ->add('email', 'text', array('label' => 'Adresse Email', 'required' => true))
-        #    ->add('roles', 'choice', array(
-        #        'choices' => array(
-        #            'Membre' => 'ROLE_EXPERT',
-        #            'Expert' => 'ROLE_MEMBER',
-        #            'Super Admin' => 'ROLE_SUPER_ADMIN'),
-        #        'choices_as_values' => true,
-        #    ))
             ->add('discoveryType', 'choice', array(
                 'choices' => array(
                     'Amis' => 'amis',
