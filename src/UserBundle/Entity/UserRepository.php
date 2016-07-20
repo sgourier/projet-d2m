@@ -27,7 +27,7 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
 			}
 
 		return $paginator->paginate(
-			$query, $page,1
+			$query, $page,10
 		);
 	}
 
