@@ -4,6 +4,18 @@
         <div class="title">
             Liste des questions
         </div>
+        <div id="menuFilterPract">
+            <form id="formFilterPract" method="post" action="{{ path('questions') }}">
+                <label for="selectDomain">{{ "practList.selectDomain"|trans }}</label>
+                <br/>
+                <select id="selectDomain" name="domain">
+                    <option value="-1" selected="selected">{{ "practList.defaultSelectDomain"|trans }}...</option>
+                    {% for domain in domains %}
+                        <option value="{{ domain.id }}" {% if sDomain is not null and sDomain.id == domain.id%}selected="selected"{% endif %}>{{ domain.name }}</option>
+                    {% endfor %}
+                </select>
+            </form>
+        </div>
 
 		{% if discussions|length != 0 %}
 			{% for discussion in discussions %}
@@ -30,6 +42,14 @@
 		    Aucune questions publiques pour le moment.<br>
 		    Soyer le premier à poser la votre.
 		{% endif %}
-
+		
+		<div class="navigation">
+            {{ knp_pagination_render(discussions) }}
+        </div>
     </div>
 {% endblock body %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/filterPracts.js')}}"></script>
+{% endblock javascripts %}
