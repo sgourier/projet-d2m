@@ -82,11 +82,11 @@
 			</table>
 		{% else %}
 		    Vous n'avez posé aucune question pour le moment.<br>
-		    <div class="button">
+		    <a href="{{ path("questions_new") }}" class="button button-new">
 	    		Posez votre première question
-	    	</div>
+	    	</a>
 		{% endif %}
-		
+
 	{% endif %}
 
     </div>
