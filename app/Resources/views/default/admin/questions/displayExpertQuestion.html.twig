@@ -83,7 +83,14 @@
                 </table>
             </div>
 
-            <div>
+            <style>
+                    .container-label label{
+                        display: block;
+                        width: 100%;
+                        text-align: center;
+                    }
+            </style>
+            <div class="container-label">
                 {{ form_start(reponseForm)}}
                     {{ form_widget(reponseForm) }}
                 {{form_end(reponseForm)}}
@@ -94,7 +101,7 @@
             <form method="post" action="{{ path('adminQuestion_attributeToPract', {'idDiscussion': discussion.id}) }}">
                 <div>
                     <label for="expert">Attribuer un practicien :</label>
-                    <select name="practicien" id="practicien" required>
+                    <select name="practicien" id="practicien" required width="50%">
                         {% for practicien in practiciens %}
                             <option value="{{practicien.id}}">{{practicien.username}}</option>
                         {% endfor %}
