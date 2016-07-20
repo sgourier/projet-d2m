@@ -45,34 +45,38 @@
         <div class="left">
             <div class="container-white informations-profile">
                 <div class="title-part">Vos informations</div>
-                    <!--<img src="{{ asset("uploads/users/"~user.id~"/"~user.avatarPath) }}" alt="">-->
-                    <img src="{{ asset("uploads/users/membre.jpg") }}" alt="">
+                    {% if user.avatarPath != "" and user.avatarPath != null %}
+                        <img src="{{ asset("uploads/users/"~user.id~"/"~user.avatarPath) }}" alt="">
+                    {% else %}
+                        <img src="{{ asset("uploads/users/membre.jpg") }}" alt="">
+                    {% endif %}
                 <br/>
                 <p>{{ user.username }} - {{ user.email }}</p>
                 <a target="_blank" href="{{ path('user_proPage',{"id":user.id}) }}" class="button">
                     Votre page publique
                 </a>
             </div>
-            <div class="container-white last-discussion">
-                <div class="title-part">Votre dernière discussion</div>
-                <div class="item-last-discussion">
-                    <div class="question">
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit ?"
-                    </div>
-                    <div class="membre">
-                        ThiboJ2
-                    </div>
-                    <div class="button">
-                        Voir la discussion
+            {% if lastQuestion != null and (is_granted('ROLE_PRACTITIONER') and user.getLastSub.endDate > date()) or is_granted('ROLE_MEMBER') %}
+                <div class="container-white last-discussion">
+                    <div class="title-part">Votre dernière discussion</div>
+                    <div class="item-last-discussion">
+                        <div class="question">
+                            {{ lastQuestion.question.text|truncate(250,'...') }}
+                        </div>
+                        <div class="button">
+                            <a href="{{ path('question', {'idDiscussion':lastQuestion.id}) }}">Voir la discussion</a>
+                        </div>
                     </div>
                 </div>
-            </div>
+            {% endif %}
         </div>
+        <!--
         <div class="right">
             <div class="container-white discussion-evol">
                 <div class="title-part">Evolution de vos consultations</div>
                 <img src="{{ asset('img/profile/graphique.jpg') }}" alt="graphique">
             </div>
         </div>
+        -->
     </div>
 </div>

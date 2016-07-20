@@ -40,8 +40,32 @@ class ProfileController extends Controller
             throw new AccessDeniedException('This user does not have access to this section.');
         }
 
+        $questionOpt = array();
+
+	    if($this->get('security.authorization_checker')->isGranted('ROLE_PRACTITIONER'))
+	    {
+	    	$questionOpt['idPract'] = $user->getId();
+	    }
+	    else
+	    {
+		    $questionOpt['idMember'] = $user->getId();
+	    }
+
+	    $em = $this->getDoctrine()->getManager();
+	    $lastQuestion = $this->getDoctrine()->getRepository('VimoliaBundle:Discussion')->findOneBy($questionOpt,array('dateupd'=>'DESC'));
+	    if(is_object($lastQuestion))
+	    {
+		    $question = $em->getRepository('VimoliaBundle:Message')
+		                   ->findOneBy(array("idDiscussion" => $lastQuestion->getId(),
+		                                     "idOwner" => $lastQuestion->getIdMember(),
+		                                     "active" => true
+		                   ));
+		    $lastQuestion->setQuestion($question);
+	    }
+
         return $this->render('FOSUserBundle:Profile:show.html.twig', array(
-            'user' => $user
+            'user' => $user,
+            'lastQuestion' => $lastQuestion
         ));
     }
 
