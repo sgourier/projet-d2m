@@ -28,10 +28,12 @@ class ApiController extends Controller
                           ->findBy(array("status" => ["expertAssociated", "advancedInfosFilled"], "active" => true));
         $userDiscussions = $em->getRepository('VimoliaBundle:Discussion')
                           ->findBy(array("status" => "waitingAdvancedInfos", "active" => true));
+        $practsDiscussions = $em->getRepository('VimoliaBundle:Discussion')
+                          ->findBy(array("status" => "practAttributed", "active" => true));
 
         $discussions = [
-        	"categories" => ["Administrateur", "Expert", "Utilisateur"],
-        	"data" => [count($adminDiscussions), count($expertDiscussions), count($userDiscussions)]
+        	"categories" => ["Administrateur", "Expert", "Utilisateur", "Praticien"],
+        	"data" => [count($adminDiscussions), count($expertDiscussions), count($userDiscussions), count($practsDiscussions)]
         ];
         return new JsonResponse($discussions);    
     }
@@ -46,9 +48,25 @@ class ApiController extends Controller
     	$admins = $this->getDoctrine()->getRepository("UserBundle:User")->findByRole('ROLE_SUPER_ADMIN');
 
     	$discussions = [
-        	"categories" => ["Membres", "Experts", "Practiciens", "Administrateurs"],
+        	"categories" => ["Membres", "Experts", "Praticiens", "Administrateurs"],
         	"data" => [count($memebres), count($experts), count($practionners), count($admins)]
         ];
         return new JsonResponse($discussions);
+    }
+
+    /**
+     * @Route("/admin/api/practiciensPerDomain", name="practiciensPerDomain")
+     */
+    public function displayPracticiensPerDomain() {
+      $em = $this->getDoctrine()->getManager();
+      $domains = $em->getRepository('VimoliaBundle:PractDomains')
+                    ->findAll();
+
+      $domainsCount = [];
+      foreach ($domains as $domain) {
+        $practs = $this->getDoctrine()->getRepository("UserBundle:User")->findPracticiensByDomain($domain->getId());
+        $domainsCount[] = ["name" =>$domain->getName(), "y" => count($practs)];
+      }
+      return new JsonResponse($domainsCount);
     }
 }

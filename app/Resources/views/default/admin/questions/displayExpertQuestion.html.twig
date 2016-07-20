@@ -59,28 +59,14 @@
         {% endif %}
 
         {% if discussion.status == 'advancedInfosFilled' %}
-            <div>
-                Informations supplémentaires
-            </div>
-            <div class="message-vide">
-                <table class="infos-sup">
-                    <tr>
-                        <td class="titres">Symptomes :</td>
-                        <td class="data">{{discussion.advancedInfos.symptoms}}</td>
-                    </tr>
-                    <tr>
-                        <td class="titres">Douleurs particulières :</td>
-                        <td class="data">{{discussion.advancedInfos.particularpains}}</td>
-                    </tr>
-                    <tr>
-                        <td class="titres">Antécédents :</td>
-                        <td class="data">{{discussion.advancedInfos.antecedents}}</td>
-                    </tr>
-                    <tr>
-                        <td class="titres">Autres informations utiles :</td>
-                        <td class="data">{{discussion.advancedInfos.otherinformations}}</td>
-                    </tr>
-                </table>
+            <h3>
+                Informations Complémentaire
+            </h3>
+            <div class="message-vide" style="text-align:center">
+                <p><strong>Symptomes :</strong><br>{{discussion.advancedInfos.symptoms}}</p>
+                <p><strong>Douleurs particulières :</strong><br>{{discussion.advancedInfos.particularpains}}</p>
+                <p><strong>Antécédents :</strong><br>{{discussion.advancedInfos.antecedents}}</p>
+                <p><strong>Autres informations utiles :</strong><br>{{discussion.advancedInfos.otherinformations}}</p>
             </div>
 
             <style>
@@ -99,9 +85,9 @@
             <h3>Ou attribuer la question à un practicien</h3>
 
             <form method="post" action="{{ path('adminQuestion_attributeToPract', {'idDiscussion': discussion.id}) }}">
-                <div>
-                    <label for="expert">Attribuer un practicien :</label>
-                    <select name="practicien" id="practicien" required width="50%">
+                <div style="margin-top:30px;">
+                    <label for="expert">Attribuer un practicien :</label><br/>
+                    <select name="practicien" id="practicien" required style="width:50%;">
                         {% for practicien in practiciens %}
                             <option value="{{practicien.id}}">{{practicien.username}}</option>
                         {% endfor %}

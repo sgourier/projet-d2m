@@ -37,19 +37,21 @@
 		{% endif %}
 
 		{% if discussion.advancedInfos %}
-			<div>
-	            Vos informations supplémentaires
-	        </div>
-	        <p>Symptomes : {{discussion.advancedInfos.symptoms}}</p>
-	        <p>Douleurs particulières : {{discussion.advancedInfos.particularpains}}</p>
-	        <p>Antécédents : {{discussion.advancedInfos.antecedents}}</p>
-	        <p>Autres informations utiles : {{discussion.advancedInfos.otherinformations}}</p>
+			<h3>
+                Informations Complémentaire
+            </h3>
+            <div class="message-vide" style="text-align:center">
+                <p><strong>Symptomes :</strong><br>{{discussion.advancedInfos.symptoms}}</p>
+                <p><strong>Douleurs particulières :</strong><br>{{discussion.advancedInfos.particularpains}}</p>
+                <p><strong>Antécédents :</strong><br>{{discussion.advancedInfos.antecedents}}</p>
+                <p><strong>Autres informations utiles :</strong><br>{{discussion.advancedInfos.otherinformations}}</p>
+            </div>
 	    {% endif %}
 
 	    <form method="post" action="{{ path('question_savePractReponse', {'idDiscussion': discussion.id}) }}">
             <div>
-                <label for="practReponse">Votre reponse :</label>
-                <input type="text" name="practReponse" id="practReponse" required>
+                <label for="practReponse">Votre reponse</label><br>
+                <input type="text" name="practReponse" id="practReponse" required style="width:50%; height:100px">
             </div>
             <button type="submit">Envoyer</button>
         </form>
@@ -120,27 +122,15 @@
 
 			{% if discussion.advancedInfos %}
 
-				Vos informations supplémentaires
-				<div class="message-vide">
-					<table class="infos-sup">
-						<tr>
-							<td class="titres">Symptomes :</td>
-							<td class="data">{{discussion.advancedInfos.symptoms}}</td>
-						</tr>
-						<tr>
-							<td class="titres">Douleurs particulières :</td>
-							<td class="data">{{discussion.advancedInfos.particularpains}}</td>
-						</tr>
-						<tr>
-							<td class="titres">Antécédents :</td>
-							<td class="data">{{discussion.advancedInfos.antecedents}}</td>
-						</tr>
-						<tr>
-							<td class="titres">Autres informations utiles :</td>
-							<td class="data">{{discussion.advancedInfos.otherinformations}}</td>
-						</tr>
-					</table>
-				</div>
+				<h3>
+	                Informations Complémentaire
+	            </h3>
+	            <div class="message-vide" style="text-align:center">
+	                <p><strong>Symptomes :</strong><br>{{discussion.advancedInfos.symptoms}}</p>
+	                <p><strong>Douleurs particulières :</strong><br>{{discussion.advancedInfos.particularpains}}</p>
+	                <p><strong>Antécédents :</strong><br>{{discussion.advancedInfos.antecedents}}</p>
+	                <p><strong>Autres informations utiles :</strong><br>{{discussion.advancedInfos.otherinformations}}</p>
+	            </div>
 		    {% endif %}
 
 			{% if discussion.status == 'expertResponded' %}

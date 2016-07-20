@@ -22,7 +22,7 @@
             {% for pract in practs %}
                 <div class="proContainer">
                     <div>
-                        <img src="{% if pract.avatarPath != "" %}{{ pract.avatarPath }}{% else %}{{ asset('img/defaultAvatar.png') }}{% endif %}" alt="{{ "practList.altAvatar"|trans }}">
+                        <img width="75" height="75" src="{% if pract.avatarPath != "" %}{{ pract.avatarPath }}{% else %}{{ asset('img/profile/nobody_m.original.jpg') }}{% endif %}" alt="{{ "practList.altAvatar"|trans }}">
                     </div>
                     <div>
                         <h2>{{ pract.name }} {{ pract.firstname }}</h2>
