@@ -116,7 +116,6 @@ file that was distributed with this source code.
     <link rel="stylesheet" type="text/css" href="{{ asset('css/lib/rating.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/charts/charts.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/webtv.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/AccessDenied.css') }}">
 </head>
 <body {% block body_attributes %}class="sonata-bc skin-black fixed"{% endblock %}>
 
@@ -370,8 +369,21 @@ file that was distributed with this source code.
 </html>
 
 {% else %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/AccessDenied.css') }}">
+
+
     <div id="NotAllowed">
+        <div class="entete">
+            <div class="logo">
+                <a href="{{ path("homepage") }}">
+                    <img src="/projet-d2m/web/img/nav/logo.png" alt="Logo des maux et des mots">
+                </a>
+            </div>
+        </div>
         <h1 style="text-align:center;">Cette section du site est privée</h1>
-        <a href="{{ path("homepage") }}"><button>Retourner à l'accueil</button></a>
+
+        <a class="button" href="{{ path("homepage") }}">
+            Retour à l'accueil
+        </a>
     </div>
 {% endif %}
