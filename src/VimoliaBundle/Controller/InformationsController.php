@@ -19,7 +19,18 @@ class InformationsController extends Controller
      */
     public function displayInformationsAction()
     {
-        // replace this example code with whatever you need
-        return $this->render('default/informations/displayInformations.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $aboutUs = $em->getRepository('VimoliaBundle:Aboutus')
+                          ->findAll();
+        $aboutUs = $aboutUs[0]->getDescription();
+        $cgu = $em->getRepository('VimoliaBundle:Cgu')
+                  ->findAll();
+        $cgu = $cgu[0]->getText();
+
+        return $this->render('default/informations/displayInformations.html.twig', array(
+        	'aboutUs' => $aboutUs,
+        	'cgu' => $cgu
+        ));
     }
+
 }

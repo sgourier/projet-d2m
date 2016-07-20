@@ -107,6 +107,13 @@ input[type=file]{
 
 
 
+.message-vide{
+    margin: 15px auto 15px;
+    text-align: center;
+    background-color: rgba(0,0,0,0.08);
+    padding:15px;
+    width:80%;
+}
 
 
 

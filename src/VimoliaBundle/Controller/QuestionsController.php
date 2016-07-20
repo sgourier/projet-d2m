@@ -14,19 +14,28 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use VimoliaBundle\Entity\Message;
 use VimoliaBundle\Entity\Discussion;
+use VimoliaBundle\Entity\Practdomains;
 use VimoliaBundle\Form\MessageType;
 
 class QuestionsController extends Controller
 {
     /**
-     * @Route("/questions", name="questions")
+     * @Route("/questions/{id_domain}", name="questions", defaults={"id_domain" = -1})
+     * @ParamConverter("domain", class="VimoliaBundle:Practdomains", options={"id" = "id_domain"})
+     *
+     * @param Practdomains $domain domaine d'expertise sur lequel filtrer
+     * @param Request $request
+     *
+     * @return Response
      */
-    public function displayQuestionsAction()
+    public function displayQuestionsAction(Request $request, Practdomains $domain = null)
     {
-        $em = $this->getDoctrine()->getManager();
-        $discussions = $em->getRepository('VimoliaBundle:Discussion')
-                          ->findBy(array("public" => true, "status" => ["expertResponded", "finished"], "active" => true),array("dateupd" => "DESC"));
+        $page = $request->query->getInt('page', 1);
 
+        $em = $this->getDoctrine()->getManager();
+
+        $discussions = $this->findQuestions($this->get('knp_paginator'),$domain,$page);
+        
         foreach($discussions as $discussion) {
             $question = $em->getRepository('VimoliaBundle:Message')
                            ->findOneBy(array("idDiscussion" => $discussion->getId(),
@@ -52,12 +61,39 @@ class QuestionsController extends Controller
         }
 
         return $this->render('default/questions/displayQuestions.html.twig', array(
-            'discussions' => $discussions
+            "domains" => $this->getDoctrine()->getRepository("VimoliaBundle:Practdomains")->findAll(),
+            'discussions' => $discussions,
+            "sDomain" => $domain
         ));
     }
 
+    private function findQuestions($paginator,$domain = null,$page = 1)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQueryBuilder()
+                      ->select('a')
+                      ->from('VimoliaBundle:Discussion', 'a')
+                      ->where('a.public = true')
+                      ->andWhere('a.status = :status1 OR a.status = :status2')
+                      ->setParameter('status1', 'expertResponded')
+                      ->setParameter('status2', 'finished')
+                      ->andWhere('a.active = true');                      
+
+        if($domain != null)
+        {
+            $query->andWhere('a.domain = :domain')
+                    ->setParameter('domain', $domain);
+        }
+
+        $query->addOrderBy('a.dateupd', 'DESC');
+
+        return $paginator->paginate(
+            $query, $page,10
+        );
+    }
+
     /**
-     * @Route("/questions/{idDiscussion}", name="question", defaults={"idDiscussion" = -1})
+     * @Route("/question/{idDiscussion}", name="question", defaults={"idDiscussion" = -1})
      * @ParamConverter("discussion", class="VimoliaBundle:Discussion", options={"id" = "idDiscussion"})
      * @param Discussion $discussion
      * @param Request $request

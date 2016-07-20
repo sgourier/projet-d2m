@@ -141,7 +141,7 @@ class PractitionerController extends Controller
 	 */
 	public function showProPage(User $pract = null)
 	{
-		if($pract === null)
+		if($pract === null || !$pract->getPractValid())
 		{
 			return $this->redirectToRoute('fos_user_profile_show');
 		}

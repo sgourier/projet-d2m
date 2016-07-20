@@ -20,10 +20,11 @@
     <div class="container-white profile-nav">
         <nav>
             <ul>
-                {% if is_granted('ROLE_PRACTITIONER') %}
+                {% if is_granted('ROLE_PRACTITIONER') and user.practValid != false %}
                     <li class="practicien"><a href="#" class="button">{{ "profile.show.practMenu.promotions"|trans }}</a></li>
-                    <li class="practicien"><a href="#" class="button">{{ "profile.show.practMenu.myPage"|trans }}</a></li>
                     <li class="practicien"><a href="{{ path('user_chooseSubscribe') }}" class="button">{{ "profile.show.practMenu.subscribe"|trans }}</a></li>
+                {% elseif is_granted('ROLE_PRACTITIONER') %}
+                    <li class="practicien"><a href="#" class="button">{{ "profile.show.practMenu.myPage"|trans }}</a></li>
                 {% endif %}
                 <li><a href="{{ path('own_questions') }}" class="button">{{ "profile.show.practMenu.questions"|trans }}</a></li>
                 <li><a href="{{ path('fos_user_profile_edit') }}" class="button">{{ "profile.show.edit"|trans }}</a></li>

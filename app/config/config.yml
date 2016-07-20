@@ -99,7 +99,8 @@ sonata_block:
             contexts: [admin]
 sonata_admin:
     templates:
-        dashboard: SonataAdminBundle:Core:dashboard.html.twig
+        layout: VimoliaBundle:Admin:standard_layout.html.twig
+        dashboard: VimoliaBundle:Admin:dashboard.html.twig
         action: SonataAdminBundle:CRUD:action.html.twig
     dashboard:
         groups:
@@ -110,13 +111,6 @@ sonata_admin:
                 items:
                     - admin.user
                     - admin.certifications
-            Discussion:
-                on_top:               true
-                label:                Discussions
-                label_catalogue:      ~
-                items:
-                    - admin.discussion
-
             Article:
                 on_top:               true
                 label:                Articles
