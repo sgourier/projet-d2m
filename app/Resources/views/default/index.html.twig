@@ -33,29 +33,21 @@
 
     <div id="container-video">
         <div class="col-xs-7">
-            <iframe id="player_youtube" width="560" height="315" src="https://www.youtube.com/embed/WsYqUX5xwjc" frameborder="0" allowfullscreen></iframe>
+
+            {% for video in videos %}
+                {% if loop.index == 1 %}
+                    <iframe id="player_youtube" width="560" height="315" src="http://www.youtube.com/embed/{{ video.id }}" frameborder="0" allowfullscreen></iframe>
+                {% endif %}
+            {% endfor %}
         </div>
         <div class="col-xs-5 content">
             <div class="title">Notre chaine Youtube</div>
             <div class="container-items">
-                <div class="item item-video" data-videourl="https://www.youtube.com/watch?v=-6q_Frq4uA0">
-                    Ce Que votre Médecin ne vous a pas Dit : La Posture
-                </div>
-                <div class="item white item-video" data-videourl="https://www.youtube.com/embed/-6q_Frq4uA0">
-                    Henri Joyeux - Nutrition & Prévention des Cancers
-                </div>
-                <div class="item item-video" data-videourl="https://www.youtube.com/embed/dNDYkegAAmw">
-                    Linky le compteur polémique - Maxence Layet
-                </div>
-                <div class="item white item-video" data-videourl="https://www.youtube.com/embed/7qssnH90uY4">
-                    Insomnies et Apnée du sommeil - Arnaud Metlaine
-                </div>
-                <div class="item item-video" data-videourl="https://www.youtube.com/embed/dNDYkegAAmw">
-                    Electrosensibilité, diagnostic et traitement - Béatrice Milbert
-                </div>
-                <div class="item white item-video" data-videourl="https://www.youtube.com/embed/-6q_Frq4uA0">
-                    Marion Kaplan - Changez votre alimentation !
-                </div>
+                {% for video in videos %}
+                    <div class="item item-video" data-videourl="http://www.youtube.com/embed/{{ video.id }}">
+                        {{ video.title }}
+                    </div>
+                {% endfor %}
             </div>
         </div>
     </div>
@@ -104,54 +96,16 @@
         </div>
     </div>
     <div id="container-domaines">
-        <div class="col-xs-2">
-            <a href="">
-                <img class="icone" src="{{ asset('img/practitionners/icone.png') }}" alt="">
-            </a>
-            <div class="nom-domaine">
-                Domaine 1
+        {% for domaine in domaines %}
+            <div class="cont-domaines">
+                <a href="{{ path("user_practList")~"/"~domaine.id }}">
+                    <img class="icone" src="{{ asset('img/practitionners/icone.png') }}" alt="">
+                </a>
+                <div class="nom-domaine">
+                    {{ domaine.name }}
+                </div>
             </div>
-        </div>
-        <div class="col-xs-2">
-            <a href="">
-                <img class="icone" src="{{ asset('img/practitionners/icone.png') }}" alt="">
-            </a>
-            <div class="nom-domaine">
-                Domaine 2
-            </div>
-        </div>
-        <div class="col-xs-2">
-            <a href="">
-                <img class="icone" src="{{ asset('img/practitionners/icone.png') }}" alt="">
-            </a>
-            <div class="nom-domaine">
-                Domaine 3
-            </div>
-        </div>
-        <div class="col-xs-2">
-            <a href="">
-                <img class="icone" src="{{ asset('img/practitionners/icone.png') }}" alt="">
-            </a>
-            <div class="nom-domaine">
-                Domaine 4
-            </div>
-        </div>
-        <div class="col-xs-2">
-            <a href="">
-                <img class="icone" src="{{ asset('img/practitionners/icone.png') }}" alt="">
-            </a>
-            <div class="nom-domaine">
-                Domaine 5
-            </div>
-        </div>
-        <div class="col-xs-2">
-            <a href="">
-                <img class="icone" src="{{ asset('img/practitionners/icone.png') }}" alt="">
-            </a>
-            <div class="nom-domaine">
-                Domaine 6
-            </div>
-        </div>
+        {% endfor %}
     </div>
 {% endblock %}
 
