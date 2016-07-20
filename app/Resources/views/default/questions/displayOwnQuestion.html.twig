@@ -160,7 +160,7 @@
 	            </div>
 			{% endif %}
 
-			{% if discussion.status == 'practResponsded' or discussion.status == 'finished'%}
+			{% if discussion.status == 'practResponsded' or ( discussion.status == 'finished' and discussion.reponsePract ) %}
 				<div class="personne">
 			        <div class="col-xs-4 container_img">
 			            <img src="{{ asset('img/homepage/discussion/expert.jpg') }}" alt="">
