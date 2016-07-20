@@ -225,7 +225,7 @@ file that was distributed with this source code.
                             {% if app.user and is_granted('ROLE_SONATA_ADMIN') %}
                                 <ul class="sidebar-menu">
                                     <li><a href="{{ path('adminNewQuestions') }}"><i class="fa fa-folder"></i> Questions</a></li>
-                                    <li><a href="{{ path('admin_displayInvalidPracts') }}"><i class="fa fa-folder"></i> Validation Practicien</a></li>
+                                    <li><a href="{{ path('admin_displayInvalidPracts') }}"><i class="fa fa-folder"></i>Validation Practicien</a></li>
                                     <li><a href="{{ path('video_affich') }}"><i class="fa fa-folder"></i> Vidéos</a></li>
                                 </ul>
                                 {{ knp_menu_render('sonata_admin_sidebar', {template: sonata_admin.adminPool.getTemplate('knp_menu_template')}) }}
