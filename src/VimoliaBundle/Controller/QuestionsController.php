@@ -141,24 +141,44 @@ class QuestionsController extends Controller
         }
 
         $em = $this->getDoctrine()->getManager();
-        $discussions = $em->getRepository('VimoliaBundle:Discussion')
-                          ->findBy(array("idMember" => $this->getUser()), array("dateupd" => "DESC"));
 
-        foreach($discussions as $discussion) {
-            $question = $em->getRepository('VimoliaBundle:Message')
-                           ->findOneBy(array("idDiscussion" => $discussion->getId(),
-                                          "idOwner" => $discussion->getIdMember(),
-                                          "active" => true
-                                    ));
-            $discussion->setQuestion($question);
+        if( $this->get('security.authorization_checker')->isGranted('ROLE_PRACTITIONER')) {
+          $discussions = $em->getRepository('VimoliaBundle:Discussion')
+                            ->findBy(array("idPract" => $this->getUser(),
+                                           "status" => "practAttributed"), array("dateupd" => "DESC"));
 
-            $expert = $em->getRepository('UserBundle:User')
-                          ->findOneBy(array("id" => $discussion->getIdExpert()));
-            $discussion->setExpert($expert);
+          foreach($discussions as $discussion) {
+              $question = $em->getRepository('VimoliaBundle:Message')
+                             ->findOneBy(array("idDiscussion" => $discussion->getId(),
+                                            "idOwner" => $discussion->getIdMember(),
+                                            "active" => true
+                                      ));
+              $discussion->setQuestion($question);
 
-            $user = $em->getRepository('UserBundle:User')
-                          ->findOneBy(array("id" => $discussion->getIdMember()));
-            $discussion->setUser($user);
+              $user = $em->getRepository('UserBundle:User')
+                            ->findOneBy(array("id" => $discussion->getIdMember()));
+              $discussion->setUser($user);
+          }
+        } else {
+          $discussions = $em->getRepository('VimoliaBundle:Discussion')
+                            ->findBy(array("idMember" => $this->getUser()), array("dateupd" => "DESC"));
+
+          foreach($discussions as $discussion) {
+              $question = $em->getRepository('VimoliaBundle:Message')
+                             ->findOneBy(array("idDiscussion" => $discussion->getId(),
+                                            "idOwner" => $discussion->getIdMember(),
+                                            "active" => true
+                                      ));
+              $discussion->setQuestion($question);
+
+              $expert = $em->getRepository('UserBundle:User')
+                            ->findOneBy(array("id" => $discussion->getIdExpert()));
+              $discussion->setExpert($expert);
+
+              $user = $em->getRepository('UserBundle:User')
+                            ->findOneBy(array("id" => $discussion->getIdMember()));
+              $discussion->setUser($user);
+          }
         }
 
         return $this->render('default/questions/displayOwnQuestions.html.twig', array(
@@ -176,34 +196,62 @@ class QuestionsController extends Controller
         }
 
         $em = $this->getDoctrine()->getManager();
-        $discussion = $em->getRepository('VimoliaBundle:Discussion')
+
+        if( $this->get('security.authorization_checker')->isGranted('ROLE_PRACTITIONER')) {
+          $discussion = $em->getRepository('VimoliaBundle:Discussion')
+                          ->findOneBy(array("idPract" => $this->getUser(), "id" => $idDiscussion), array("dateupd" => "DESC"));
+
+          $question = $em->getRepository('VimoliaBundle:Message')
+                         ->findOneBy(array("idDiscussion" => $discussion->getId(),
+                                          "idOwner" => $discussion->getIdMember(),
+                                          "active" => true
+                                    ));
+          $discussion->setQuestion($question);
+
+          $reponse = $em->getRepository('VimoliaBundle:Message')
+                        ->findOneBy(array("idDiscussion" => $discussion->getId(),
+                                       "idOwner" => $discussion->getIdExpert(),
+                                       "active" => true
+                                  ));
+          $discussion->setReponse($reponse);
+
+          $advancedInfos = $em->getRepository('VimoliaBundle:AdvancedInfos')
+                         ->findOneBy(array("id" => $discussion->getIdAdvancedinfos()));
+          $discussion->setAdvancedInfos($advancedInfos);
+
+          $user = $em->getRepository('UserBundle:User')
+                        ->findOneBy(array("id" => $discussion->getIdMember()));
+          $discussion->setUser($user);
+        } else {
+          $discussion = $em->getRepository('VimoliaBundle:Discussion')
                           ->findOneBy(array("idMember" => $this->getUser(), "id" => $idDiscussion), array("dateupd" => "DESC"));
 
-        $question = $em->getRepository('VimoliaBundle:Message')
-                       ->findOneBy(array("idDiscussion" => $discussion->getId(),
-                                      "idOwner" => $discussion->getIdMember(),
-                                      "active" => true
-                                ));
-        $discussion->setQuestion($question);
+          $question = $em->getRepository('VimoliaBundle:Message')
+                         ->findOneBy(array("idDiscussion" => $discussion->getId(),
+                                        "idOwner" => $discussion->getIdMember(),
+                                        "active" => true
+                                  ));
+          $discussion->setQuestion($question);
 
-        $reponse = $em->getRepository('VimoliaBundle:Message')
-                      ->findOneBy(array("idDiscussion" => $discussion->getId(),
-                                     "idOwner" => $discussion->getIdExpert(),
-                                     "active" => true
-                                ));
-        $discussion->setReponse($reponse);
+          $reponse = $em->getRepository('VimoliaBundle:Message')
+                        ->findOneBy(array("idDiscussion" => $discussion->getId(),
+                                       "idOwner" => $discussion->getIdExpert(),
+                                       "active" => true
+                                  ));
+          $discussion->setReponse($reponse);
 
-        $advancedInfos = $em->getRepository('VimoliaBundle:AdvancedInfos')
-                       ->findOneBy(array("id" => $discussion->getIdAdvancedinfos()));
-        $discussion->setAdvancedInfos($advancedInfos);
+          $advancedInfos = $em->getRepository('VimoliaBundle:AdvancedInfos')
+                         ->findOneBy(array("id" => $discussion->getIdAdvancedinfos()));
+          $discussion->setAdvancedInfos($advancedInfos);
 
-        $expert = $em->getRepository('UserBundle:User')
-                      ->findOneBy(array("id" => $discussion->getIdExpert()));
-        $discussion->setExpert($expert);
+          $expert = $em->getRepository('UserBundle:User')
+                        ->findOneBy(array("id" => $discussion->getIdExpert()));
+          $discussion->setExpert($expert);
 
-        $user = $em->getRepository('UserBundle:User')
-                      ->findOneBy(array("id" => $discussion->getIdMember()));
-        $discussion->setUser($user);
+          $user = $em->getRepository('UserBundle:User')
+                        ->findOneBy(array("id" => $discussion->getIdMember()));
+          $discussion->setUser($user);
+        }
 
         return $this->render('default/questions/displayOwnQuestion.html.twig', array(
             'discussion' => $discussion
