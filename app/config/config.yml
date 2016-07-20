@@ -111,12 +111,6 @@ sonata_admin:
                 items:
                     - admin.user
                     - admin.certifications
-            Article:
-                on_top:               true
-                label:                Articles
-                label_catalogue:      ~
-                items:
-                    - admin.article
             Domaines:
                 on_top:               true
                 label:                Domaines
@@ -131,18 +125,10 @@ sonata_admin:
                     - admin.partners
             Video:
                 on_top:               true
-                label:                Vidéo
+                label:                Vidéos
                 label_catalogue:      ~
                 items:
                     - admin.video
-
-            A propos de nous:
-                on_top:               false
-                label:                A propos de nous
-                label_catalogue:      ~
-                items:
-                    - admin.aboutus
-                    - admin.cgu
       # blocks:
       #     -
       #         position: center
