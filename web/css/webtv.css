@@ -1,0 +1,29 @@
+
+
+.container-webtv{
+
+}
+
+    .container-webtv .videos{
+        overflow: hidden;
+    }
+        .container-webtv .videos .video{
+            width:30%;
+            float: left;
+            margin-left:2%;
+        }
+            .container-webtv .videos .video .titre{
+                min-height: 70px;
+            }
+            .container-webtv .videos .video.video-principale{
+                width:70%;
+                margin: 0 auto 40px;
+                float: none;
+            }
+                .container-webtv .videos .video.video-principale .titre{
+                    font-size:30px;
+                }
+                .container-webtv .videos .video.video-principale .description{
+                    font-size:15px;
+                    color:gray;
+                }

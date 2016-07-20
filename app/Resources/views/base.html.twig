@@ -14,6 +14,7 @@
             <link rel="stylesheet" type="text/css" href="{{ asset('css/questions.css') }}">
             <link rel="stylesheet" type="text/css" href="{{ asset('css/profile.css') }}">
             <link rel="stylesheet" type="text/css" href="{{ asset('css/practicionners.css') }}">
+            <link rel="stylesheet" type="text/css" href="{{ asset('css/webtv.css') }}">
             <link rel="stylesheet" type="text/css" href="{{ asset('css/lib/component.css') }}">
             <link rel="stylesheet" type="text/css" href="{{ asset('css/lib/rating.min.css') }}">
         {% endblock %}
@@ -27,16 +28,11 @@
                 </a>
             </div>
             <ul class="nav">
-                <li id="thumb-webtv"><a> Web TV</a></li>
+                <li><a href="{{ path("youtube") }}"> Web TV</a></li>
                 <li><a href="{{ path("questions") }}"> Questions  </a></li>
                 <li><a href="{{ path("user_practList") }}"> Praticiens </a> </li>
                 <li><a href="{{ path("contactus") }}"> Contactez-nous </a></li>
                 <li><a href="{{ path("informations") }}"> Informations </a></li>
-            </ul>
-            <ul class="sous-menu-webtv">
-                <li><a href="{{ path("webtv_interviews") }}"> Interviews </a></li>
-                <li><a href="{{ path("webtv_emissions") }}"> Emissions </a></li>
-                <li><a href="{{ path("webtv_conferences") }}"> Conferences </a></li>
             </ul>
             <a href="{{ path("questions_new") }}" class="button button-new">Je pose <br/> ma question</a>
             <div class="reseaux_sociaux">
@@ -95,7 +91,6 @@
             <script src="{{ asset('js/jquery-ui/jquery-ui.js') }}"></script>
             <script src="{{ asset('js/bootstrap.min.js') }}"></script>
             <script src="{{ asset('js/rating.min.js') }}"></script>
-            <script src="{{ asset('js/nav/sous-menu-webtv.js') }}"></script>
         {% endblock %}
     </body>
 </html>

@@ -22,7 +22,11 @@
 				<div class="last-question-cont">
 					<div class="last-question">
 						<!-- discussion.user.avatarPath -->
-						<img class="image-user" src="{{ asset("uploads/users/membre.jpg") }}" alt="">
+						{%  if discussion.user.avatarPath is not null %}
+							<img class="image-user" src="{{ asset("uploads/users/"~discussion.user.id~"/"~discussion.user.avatarPath) }}" alt="">
+						{%  else %}
+							<img class="image-user" src="{{ asset("uploads/users/membre.jpg") }}" alt="">
+						{%  endif %}
 						<div class="name">
 							{{discussion.user.name}}
 						</div>
@@ -39,8 +43,10 @@
 				</div>
 			{% endfor %}
 		{% else %}
-		    Aucune questions publiques pour le moment.<br>
-		    Soyer le premier à poser la votre.
+			<div class="message-vide">
+				Aucune questions publiques pour le moment.<br>
+				Soyer le premier à poser la votre.
+			</div>
 		{% endif %}
 		
 		<div class="navigation">

@@ -123,12 +123,6 @@ sonata_admin:
                 label_catalogue:      ~
                 items:
                     - admin.partners
-            Video:
-                on_top:               true
-                label:                Vidéos
-                label_catalogue:      ~
-                items:
-                    - admin.video
       # blocks:
       #     -
       #         position: center

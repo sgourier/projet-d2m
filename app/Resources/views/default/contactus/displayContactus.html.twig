@@ -1,9 +1,53 @@
 {% extends "base.html.twig" %}
 {% block body %}
-    <div class="container-white" xmlns="http://www.w3.org/1999/html">
+    <div class="container-white container-contactus" xmlns="http://www.w3.org/1999/html">
         <img class="icone" src="{{ asset('img/contactus/icone.png') }}" alt="">
         <div class="title">
             {{ "contactUs.title"|trans }}
+        </div>
+        <div class="coordonnees">
+            <div class="part">
+                <img src="{{ asset('img/contactus/icone-tel.png') }}" alt="">
+                <div class="titre">Téléphone</div>
+                01 11 22 33 44
+            </div>
+            <div class="part">
+                <img src="{{ asset('img/contactus/icone-email.png') }}" alt="">
+                <div class="titre">Email</div>
+                contact@vimolia.fr
+            </div>
+        </div>
+        <div class="reseaux-sociaux">
+            <div class="col-xs-offset-1 col-xs-2">
+                <a target="_blank" href="https://www.facebook.com/DesMauxDesMots">
+                    <img src="{{ asset('img/contactus/rs/facebook.png') }}" alt="">
+                </a>
+            </div>
+            <div class="col-xs-2">
+                <a target="_blank" href="https://twitter.com/desmauxdesmots">
+                    <img src="{{ asset('img/contactus/rs/twitter.png') }}" alt="">
+                </a>
+            </div>
+            <div class="col-xs-2">
+                <a target="_blank" href="https://www.pinterest.com/desmauxdesmots/">
+                    <img src="{{ asset('img/contactus/rs/pinterest.png') }}" alt="">
+                </a>
+            </div>
+            <div class="col-xs-2">
+                <a target="_blank" href="https://plus.google.com/+Desmauxetdesmots/posts">
+                    <img src="{{ asset('img/contactus/rs/google_plus.png') }}" alt="">
+                </a>
+            </div>
+            <div class="col-xs-2">
+                <a target="_blank" href="https://www.youtube.com/c/desmauxetdesmots">
+                    <img src="{{ asset('img/contactus/rs/youtube.png') }}" alt="">
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="container-white" xmlns="http://www.w3.org/1999/html">
+        <div class="title">
+            Formulaire de contact
         </div>
         {% for flash_message in app.session.flashBag.get('notice') %}
             <div class="alert alert-success" role="alert">

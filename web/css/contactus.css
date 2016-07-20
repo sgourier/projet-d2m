@@ -1,3 +1,43 @@
+
+.container-contactus{
+
+}
+/****************************************************************************************/
+/*                                     COORDONNES                                       */
+/****************************************************************************************/
+    .container-contactus .coordonnees{
+        overflow: hidden;
+    }
+        .container-contactus .coordonnees .part{
+            width: 50%;
+            float: left;
+            text-align: center;
+            font-size: 30px;
+        }
+            .container-contactus .coordonnees img{
+                height:40px;
+            }
+            .container-contactus .coordonnees .titre {
+                margin-top: 15px;
+                font-size: 20px;
+            }
+
+/****************************************************************************************/
+/*                                     RESEAUX SOCIAUX                                  */
+/****************************************************************************************/
+    .container-contactus .reseaux-sociaux{
+        margin-top:40px;
+        overflow: hidden;
+    }
+        .container-contactus .reseaux-sociaux img{
+            width:50%
+        }
+            .container-contactus .reseaux-sociaux img:hover{
+                opacity: 0.5;
+            }
+/****************************************************************************************/
+/*                                     FORMULAIRE                                       */
+/****************************************************************************************/
 .contactForm
 {
 
@@ -25,3 +65,6 @@
     resize: none;
     font-family: "opensans";
 }
+
+
+
