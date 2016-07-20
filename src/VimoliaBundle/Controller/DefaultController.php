@@ -69,8 +69,23 @@ class DefaultController extends Controller
 
 
         $lastQuestion = $this->getDoctrine()->getRepository('VimoliaBundle:Discussion')->findOneBy(array('public'=>1),array('dateupd'=>'DESC'));
+		if(is_object($lastQuestion))
+		{
+			$question = $em->getRepository('VimoliaBundle:Message')
+			               ->findOneBy(array("idDiscussion" => $lastQuestion->getId(),
+			                                 "idOwner" => $lastQuestion->getIdMember(),
+			                                 "active" => true
+			               ));
+			$lastQuestion->setQuestion($question);
 
-        // replace this example code with whatever you need
+			$reponse = $em->getRepository('VimoliaBundle:Message')
+			              ->findOneBy(array("idDiscussion" => $lastQuestion->getId(),
+			                                "idOwner" => $lastQuestion->getIdExpert(),
+			                                "active" => true
+			              ));
+			$lastQuestion->setReponse($reponse);
+		}
+
         return $this->render('default/index.html.twig', [
             "videos" => $videos,
             "domaines" => $domaines,
