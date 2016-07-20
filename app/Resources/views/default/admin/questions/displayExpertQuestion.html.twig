@@ -1,6 +1,23 @@
-{% extends 'SonataAdminBundle::standard_layout.html.twig' %}
+{% extends 'VimoliaBundle:Admin:standard_layout.html.twig' %}
 
 {% block sonata_admin_content %}
+    <style>
+        .form-admin {
+            width: 50%;
+            float: left;
+        }
+            .form-admin label{
+                display: block;
+                margin-top:40px;
+            }
+                .form-admin .label1{
+                    margin-top:60px;
+                }
+            .form-admin textarea{
+                width:80%;
+            }
+
+    </style>
     <div id="container-discussion" class="container-white">
     	
         <div class="personne">
@@ -25,14 +42,16 @@
         </div>
 
         {% if discussion.status == 'expertAssociated' %}
-            <div>
+            <div class="form-admin">
                 {{ form_start(reponseForm)}}
                     {{ form_widget(reponseForm) }}
                 {{form_end(reponseForm)}}
             </div>
 
-            <div>
-                Demander des informations supplémentaires à l'utilisateur 
+            <div class="form-admin">
+                <label class="label1">
+                    Demander des informations supplémentaires à l'utilisateur
+                    </label>
                 <a href="{{ path('adminExpertQuestion_update_waiting', {'idDiscussion': discussion.id}) }}">
                     <button>Demander</button>
                 </a>
