@@ -1,25 +1,32 @@
 {% extends 'VimoliaBundle:Admin:standard_layout.html.twig' %}
 
 {% block sonata_admin_content %}
+<style>
+.row{
+margin-top:30px;
+}
+</style>
 	<div class="row">
-		<div class="col-sm-4">
+		<div class="col-sm-6">
 			<div id="usersChart"></div>
 		</div>
-		<div class="col-sm-4">
+		<div class="col-sm-6">
 			<div id="questionsChart"></div>
 		</div>
-		<div class="col-sm-4">
+		</div>
+	<div class="row">
+		<div class="col-sm-6">
+			<div id="agePyramid"></div>
+		</div>
+		<div class="col-sm-6">
 			<div id="practsPerDomainChart"></div>
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-sm-4">
-			<div id="agePyramid"></div>
-		</div>
-		<div class="col-sm-4">
+		<div class="col-sm-6">
 			<div id="departementsPractChart"></div>
 		</div>
-		<div class="col-sm-4">
+		<div class="col-sm-6">
 			<div id="departementsMembresChart"></div>
 		</div>
 	</div>
