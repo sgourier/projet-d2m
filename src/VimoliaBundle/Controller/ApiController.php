@@ -35,7 +35,7 @@ class ApiController extends Controller
         	"categories" => ["Administrateur", "Expert", "Utilisateur", "Praticien"],
         	"data" => [count($adminDiscussions), count($expertDiscussions), count($userDiscussions), count($practsDiscussions)]
         ];
-        return new JsonResponse($discussions);    
+        return new JsonResponse($discussions);
     }
 
     /**
@@ -68,5 +68,40 @@ class ApiController extends Controller
         $domainsCount[] = ["name" =>$domain->getName(), "y" => count($practs)];
       }
       return new JsonResponse($domainsCount);
+    }
+
+
+    /**
+     * @Route("/admin/api/departements", name="departements")
+     */
+    public function displayDepartementsDomain() {
+        $em = $this->getDoctrine()->getManager();
+        $practionners = $this->getDoctrine()->getRepository("UserBundle:User")->findByRole('ROLE_PRACTITIONER');
+
+
+        $zipCodes = [];
+        foreach( $practionners as $pract ){
+            $dep = substr( $pract->getZipcode() , 0, 2);
+            $index = strval($dep);
+
+            if(array_key_exists ($index,$zipCodes)){
+                $val = $zipCodes[$index];
+                $zipCodes[$index] = $val+1;
+            }
+            else{
+                $zipCodes[$index] = 1;
+            }
+        }
+
+
+        
+        /*
+        $domainsCount = [];
+        foreach ($domains as $domain) {
+            $practs = $this->getDoctrine()->getRepository("UserBundle:User")->findPracticiensByDomain($domain->getId());
+            $domainsCount[] = ["name" =>$domain->getName(), "y" => count($practs)];
+        }
+        return new JsonResponse($domainsCount);
+        */
     }
 }
