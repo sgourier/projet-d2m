@@ -21,7 +21,7 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
 			if($domain != null)
 			{
 				$query->leftJoin('a.practinfos', 'c');
-				$query->leftJoin('c.practdomains', 'd')
+				$query->leftJoin('c.practDomains', 'd')
 				->andWhere($qb->expr()->in('d', ':d'))
 				->setParameter('d', $domain);
 			}

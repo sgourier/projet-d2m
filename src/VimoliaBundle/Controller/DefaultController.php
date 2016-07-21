@@ -91,6 +91,16 @@ class DefaultController extends Controller
 			                                "idOwner" => $lastQuestion->getIdExpert(),
 			                                "active" => true
 			              ));
+
+			if($reponse == null)
+			{
+				$reponse = $em->getRepository('VimoliaBundle:Message')
+				              ->findOneBy(array("idDiscussion" => $lastQuestion->getId(),
+				                                "idOwner" => $lastQuestion->getIdPract(),
+				                                "active" => true
+				              ));
+			}
+
 			$lastQuestion->setReponse($reponse);
 		}
 

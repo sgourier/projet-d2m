@@ -2,7 +2,11 @@
 {% block body %}
     <div class="container-white container-pract-profile">
         <div class="banner">
-            <img src="{{ asset('img/profile/banners/banner_pract_1.jpg') }}" alt="">
+            {% if user.practinfos.imgPro != null and user.practinfos.imgPro != "" %}
+                <img src="{{ asset('') }}">
+            {% else %}
+                <img src="{{ asset('img/profile/banners/banner_pract_1.jpg') }}" alt="">
+            {% endif %}
         </div>
         {% if user.practinfos.practDomains|length > 0 %}
             <div class="pract-type">
@@ -32,6 +36,16 @@
                 <div class="adresse">
                     <p>ADRESSE : {{ user.practinfos.proAddress }} - {{ user.practinfos.procity }} - {{ user.practinfos.prozipCode }}</p>
                     <p>Numéro de Tel : {{ user.practinfos.prophone }} - {{ user.practinfos.procellphone }}</p>
+                </div>
+                <div>
+                    <h2>À propos de moi :</h2>
+                    <p>
+                        {{ user.practinfos.description }}
+                    </p>
+                    <h2>Mes diplômes et certifications :</h2>
+                    <p>
+                        {{ user.practinfos.degrees }}
+                    </p>
                 </div>
             </div>
         </div>
