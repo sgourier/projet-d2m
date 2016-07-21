@@ -69,4 +69,78 @@ class ApiController extends Controller
       }
       return new JsonResponse($domainsCount);
     }
+
+	/**
+	 * @Route("/admin/api/agePyramid", name="agePyramid")
+	 */
+    public function agePyramidAction()
+    {
+        $users = $this->getDoctrine()->getRepository('UserBundle:User')->findBy(array('enabled'=>1));
+	    $categories = array('0-4', '5-9', '10-14', '15-19',
+	                        '20-24', '25-29', '30-34', '35-39', '40-44',
+	                        '45-49', '50-54', '55-59', '60-64', '65-69',
+	                        '70-74', '75-79', '80-84', '85-89', '90-94',
+	                        '95-99', '100 + ');
+
+	    $categoriesPlace = array(
+	    	array(0,0,4),
+	    	array(1,5,9),
+	    	array(2,10,14),
+	    	array(3,15,19),
+	    	array(4,20,24),
+	    	array(5,21,24),
+	    	array(6,25,29),
+	    	array(7,30,34),
+	    	array(8,35,39),
+	    	array(9,40,44),
+	    	array(10,45,49),
+	    	array(11,50,54),
+	    	array(12,55,59),
+	    	array(13,60,64),
+	    	array(14,65,69),
+	    	array(15,70,74),
+	    	array(16,75,79),
+	    	array(17,80,84),
+	    	array(18,85,89),
+	    	array(19,90,94),
+	    	array(20,95,99),
+	    	array(21,100,99999)
+	    );
+
+	    $agesM = array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+	    $agesF = array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+
+	    foreach($users as $user)
+	    {
+	    	$age = $interval = $user->getBirthdate()->diff(new \DateTime());
+		    foreach ($categoriesPlace as $c)
+		    {
+		    	if($age->y >= $c[1] && $age->y <= $c[2] )
+			    {
+			    	if($user->getSex() == 'H')
+				    {
+				    	$agesM[$c[0]]++;
+				    }
+				    else
+				    {
+					    $agesF[$c[0]]++;
+				    }
+				    break;
+			    }
+		    }
+	    }
+
+	    $ages = array(
+	    	array(
+			    "name" => 'Homme',
+			    "data" => $agesM
+		    ),
+		    array(
+		    	"name" => "Femme",
+			    "data" => $agesF
+		    )
+	    );
+
+	    return new JsonResponse($ages);
+    }
 }
