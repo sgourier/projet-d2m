@@ -72,9 +72,9 @@ class ApiController extends Controller
 
 
     /**
-     * @Route("/admin/api/departements", name="departements")
+     * @Route("/admin/api/departementsPraticien", name="departements-pract")
      */
-    public function displayDepartementsDomain() {
+    public function displayDepartementsPractDomain() {
         $em = $this->getDoctrine()->getManager();
         $practionners = $this->getDoctrine()->getRepository("UserBundle:User")->findByRole('ROLE_PRACTITIONER');
 
@@ -83,7 +83,6 @@ class ApiController extends Controller
         foreach( $practionners as $pract ){
             $dep = substr( $pract->getZipcode() , 0, 2);
             $index = strval($dep);
-
             if(array_key_exists ($index,$zipCodes)){
                 $val = $zipCodes[$index];
                 $zipCodes[$index] = $val+1;
@@ -92,16 +91,30 @@ class ApiController extends Controller
                 $zipCodes[$index] = 1;
             }
         }
+    }
 
 
-        
-        /*
-        $domainsCount = [];
-        foreach ($domains as $domain) {
-            $practs = $this->getDoctrine()->getRepository("UserBundle:User")->findPracticiensByDomain($domain->getId());
-            $domainsCount[] = ["name" =>$domain->getName(), "y" => count($practs)];
+
+
+    /**
+     * @Route("/admin/api/departementsMembres", name="departements-membres")
+     */
+    public function displayDepartementsMembreDomain() {
+        $em = $this->getDoctrine()->getManager();
+        $practionners = $this->getDoctrine()->getRepository("UserBundle:User")->findByRole('ROLE_MEMBER');
+
+
+        $zipCodes = [];
+        foreach( $practionners as $pract ){
+            $dep = substr( $pract->getZipcode() , 0, 2);
+            $index = strval($dep);
+            if(array_key_exists ($index,$zipCodes)){
+                $val = $zipCodes[$index];
+                $zipCodes[$index] = $val+1;
+            }
+            else{
+                $zipCodes[$index] = 1;
+            }
         }
-        return new JsonResponse($domainsCount);
-        */
     }
 }
