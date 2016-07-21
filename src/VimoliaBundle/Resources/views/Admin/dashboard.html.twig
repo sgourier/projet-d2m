@@ -30,6 +30,11 @@ margin-top:30px;
 			<div id="departementsMembresChart"></div>
 		</div>
 	</div>
+	<div class="row">
+		<div class="col-sm-6">
+			<div id="feedBacksCount"></div>
+		</div>
+	</div>
 {% endblock %}
 
 {% block javascripts %}
@@ -42,5 +47,6 @@ margin-top:30px;
 	<script src="{{ asset('js/charts/departementMembre.js') }}"></script>
 	<script src="{{ asset('js/charts/departementPract.js') }}"></script>
 	<script src="{{ asset('js/charts/agePyramid.js') }}"></script>
+	<script src="{{ asset('js/charts/feedBacksCount.js') }}"></script>
 	<script src="{{ asset('js/bootstrap.min.js') }}"></script>
 {% endblock javascripts %}

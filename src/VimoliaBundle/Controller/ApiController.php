@@ -194,9 +194,6 @@ class ApiController extends Controller
         return new JsonResponse($res);
     }
 
-
-
-
     /**
      * @Route("/admin/api/departementsMembres", name="departements-membres")
      */
@@ -226,5 +223,37 @@ class ApiController extends Controller
 
 
         return new JsonResponse($res);
+    }
+
+    /**
+     * @Route("/admin/api/feedbackCounts", name="feedbackCount")
+     */
+    public function displayFeedbackCounts() {
+      $em = $this->getDoctrine()->getManager();
+      $discussions = $em->getRepository('VimoliaBundle:Discussion')
+                        ->findBy(array("status" => "finished", "active" => true));
+
+      $total = 0;
+      $feedbacksCounts = [
+        ['0', 0],
+        ['1', 0],
+        ['2', 0],
+        ['3', 0],
+        ['4', 0],
+        ['5', 0]
+      ];
+
+      $total = 0;
+      foreach($discussions as $discussion) {
+        $note = $discussion->getFeedback();
+        $feedbacksCounts[$note-1][1]++;
+        $total++;
+      }
+
+      foreach ($feedbacksCounts as $key => $feedback) {
+        $feedbacksCounts[$key][1] = $feedbacksCounts[$key][1] * 100 / $total;
+      }
+
+      return new JsonResponse($feedbacksCounts);
     }
 }
