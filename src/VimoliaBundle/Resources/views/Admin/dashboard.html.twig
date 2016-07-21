@@ -24,10 +24,18 @@ margin-top:30px;
 	</div>
 	<div class="row">
 		<div class="col-sm-6">
-			<div id="departementsPractChart"></div>
+			<div id="UserPerDiscoveryTypeChart"></div>
 		</div>
 		<div class="col-sm-6">
+			<div id="departementsPractChart"></div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-6">
 			<div id="departementsMembresChart"></div>
+		</div>
+		<div class="col-sm-6">
+			<div id="feedBacksCount"></div>
 		</div>
 	</div>
 {% endblock %}
@@ -37,10 +45,12 @@ margin-top:30px;
      <script src="https://code.highcharts.com/highcharts.js"></script>
 	<script src="https://code.highcharts.com/modules/exporting.js"></script>
 	<script src="{{ asset('js/charts/questionsChart.js') }}"></script>
+	<script src="{{ asset('js/charts/UserPerDiscoveryType.js') }}"></script>
 	<script src="{{ asset('js/charts/usersChart.js') }}"></script>
 	<script src="{{ asset('js/charts/practsPerDomainChart.js') }}"></script>
 	<script src="{{ asset('js/charts/departementMembre.js') }}"></script>
 	<script src="{{ asset('js/charts/departementPract.js') }}"></script>
 	<script src="{{ asset('js/charts/agePyramid.js') }}"></script>
+	<script src="{{ asset('js/charts/feedBacksCount.js') }}"></script>
 	<script src="{{ asset('js/bootstrap.min.js') }}"></script>
 {% endblock javascripts %}
