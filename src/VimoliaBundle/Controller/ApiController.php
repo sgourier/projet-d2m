@@ -74,7 +74,7 @@ class ApiController extends Controller
     /**
      * @Route("/admin/api/departementsPraticien", name="departements-pract")
      */
-    public function displayDepartementsPractDomain() {
+    public function displayDepartementsPract() {
         $em = $this->getDoctrine()->getManager();
         $practionners = $this->getDoctrine()->getRepository("UserBundle:User")->findByRole('ROLE_PRACTITIONER');
 
@@ -91,6 +91,16 @@ class ApiController extends Controller
                 $zipCodes[$index] = 1;
             }
         }
+
+        $res = [];
+
+        foreach($zipCodes as $dpt => $nb){
+            $res[] = ["name" => $dpt , "y" => $nb];
+        }
+
+
+
+        return new JsonResponse($res);
     }
 
 
@@ -99,7 +109,7 @@ class ApiController extends Controller
     /**
      * @Route("/admin/api/departementsMembres", name="departements-membres")
      */
-    public function displayDepartementsMembreDomain() {
+    public function displayDepartementsMembre() {
         $em = $this->getDoctrine()->getManager();
         $practionners = $this->getDoctrine()->getRepository("UserBundle:User")->findByRole('ROLE_MEMBER');
 
@@ -116,5 +126,14 @@ class ApiController extends Controller
                 $zipCodes[$index] = 1;
             }
         }
+        $res = [];
+
+        foreach($zipCodes as $dpt => $nb){
+            $res[] = ["name" => $dpt , "y" => $nb];
+        }
+
+
+
+        return new JsonResponse($res);
     }
 }

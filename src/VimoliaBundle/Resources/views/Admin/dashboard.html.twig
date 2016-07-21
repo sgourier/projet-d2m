@@ -12,6 +12,14 @@
 			<div id="practsPerDomainChart"></div>
 		</div>
 	</div>
+	<div class="row">
+		<div class="col-sm-4">
+			<div id="departementsPractChart"></div>
+		</div>
+		<div class="col-sm-4">
+			<div id="departementsMembresChart"></div>
+		</div>
+	</div>
 {% endblock %}
 
 {% block javascripts %}
@@ -21,5 +29,7 @@
 	<script src="{{ asset('js/charts/questionsChart.js') }}"></script>
 	<script src="{{ asset('js/charts/usersChart.js') }}"></script>
 	<script src="{{ asset('js/charts/practsPerDomainChart.js') }}"></script>
+	<script src="{{ asset('js/charts/departementMembre.js') }}"></script>
+	<script src="{{ asset('js/charts/departementPract.js') }}"></script>
 	<script src="{{ asset('js/bootstrap.min.js') }}"></script>
 {% endblock javascripts %}

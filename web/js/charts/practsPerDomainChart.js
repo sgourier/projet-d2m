@@ -64,20 +64,4 @@ $(function () {
 	    });
 	}
 
-
-
-	function getDepartements() {
-		var dfd = jQuery.Deferred();
-
-		$.when(
-			getRequest("api/departements", function(data) {
-				return data;
-			})
-		).then(function(value) {
-			dfd.resolve(value);
-		});
-
-		return dfd.promise();
-	}
-
 });
