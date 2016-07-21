@@ -12,6 +12,11 @@
 			<div id="practsPerDomainChart"></div>
 		</div>
 	</div>
+	<div class="row">
+		<div class="col-sm-4">
+			<div id="UserPerDiscoveryTypeChart"></div>
+		</div>
+	</div>
 {% endblock %}
 
 {% block javascripts %}
@@ -19,6 +24,7 @@
      <script src="https://code.highcharts.com/highcharts.js"></script>
 	<script src="https://code.highcharts.com/modules/exporting.js"></script>
 	<script src="{{ asset('js/charts/questionsChart.js') }}"></script>
+	<script src="{{ asset('js/charts/UserPerDiscoveryType.js') }}"></script>
 	<script src="{{ asset('js/charts/usersChart.js') }}"></script>
 	<script src="{{ asset('js/charts/practsPerDomainChart.js') }}"></script>
 	<script src="{{ asset('js/bootstrap.min.js') }}"></script>

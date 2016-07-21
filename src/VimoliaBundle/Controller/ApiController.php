@@ -69,4 +69,32 @@ class ApiController extends Controller
       }
       return new JsonResponse($domainsCount);
     }
+
+    /**
+     * @Route("/admin/api/UsersPerDiscoveryType", name="UserPerDiscoveryType")
+     */
+    public function displayUsersPerDiscoveryType() {
+        $em = $this->getDoctrine()->getManager();
+
+        $users = $em->getRepository('UserBundle:User')
+            ->findAll();
+
+        $discoveryTypesCount = [];
+        foreach ($users as $user) {
+            $users = $this->getDoctrine()->getRepository("UserBundle:User")->findBy(array("discoverytype" => $user->getdiscoveryType()));
+            $discoveryTypesCount[] = [$user->getdiscoveryType(), count($users)];
+        }
+
+        $result = [];
+        foreach ($discoveryTypesCount as $new_result)
+        {
+            if (!in_array($new_result, $result))
+            {
+                $result[]=$new_result;
+            }
+        }
+
+       // var_dump(($result));
+         return new JsonResponse($result);
+    }
 }
